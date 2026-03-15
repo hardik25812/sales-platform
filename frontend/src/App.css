@@ -1,34 +1,124 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* Industry card hover glow */
+.industry-card {
+  position: relative;
+  overflow: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+.industry-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, transparent, var(--card-glow, transparent), transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+.industry-card:hover::before {
+  opacity: 1;
 }
 
-.App-link {
-    color: #61dafb;
+/* Status pulse dot */
+.status-dot {
+  position: relative;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.status-dot::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: inherit;
+  animation: pulse-glow 2s ease-in-out infinite;
+  opacity: 0;
+}
+
+/* Tab transition */
+.tab-content-enter {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.tab-content-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Workflow connector line */
+.workflow-connector {
+  position: relative;
+}
+
+.workflow-connector::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -24px;
+  width: 2px;
+  height: 24px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.1), transparent);
+}
+
+/* Sparkline container */
+.sparkline-mini {
+  height: 32px;
+  opacity: 0.6;
+}
+
+/* Live feed pulse */
+.live-pulse {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #34d399;
+  animation: pulse-glow 1.5s ease-in-out infinite;
+}
+
+/* Number highlight on change */
+.number-highlight {
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Glass input */
+.glass-input {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #f4f4fb;
+  transition: all 0.3s ease;
+}
+
+.glass-input:focus {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 2px rgba(91, 141, 239, 0.15);
+  outline: none;
+}
+
+.glass-input::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+/* Comparison bar */
+.comparison-bar {
+  transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Pipeline funnel */
+.funnel-stage {
+  transition: all 0.5s ease;
+}
+
+/* Card glow effect */
+.glow-card {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.glow-card:hover {
+  transform: translateY(-1px);
 }

@@ -1,53 +1,38 @@
-import { useEffect } from "react";
 import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
+import { DemoProvider, useDemo } from './context/DemoContext';
+import IndustrySelector from './components/IndustrySelector';
+import DemoLayout from './components/DemoLayout';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+function AppContent() {
+  const { selectedIndustryId, industryConfig } = useDemo();
 
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
-
-  useEffect(() => {
-    helloWorldApi();
-  }, []);
+  // Determine orb colors based on industry
+  const orbColor1 = industryConfig?.color || '#5b8def';
+  const orbColor2 = industryConfig?.colorSecondary || '#a78bfa';
 
   return (
-    <div>
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
+    <div className="min-h-screen relative" style={{ backgroundColor: '#050508' }}>
+      {/* Background Orbs */}
+      <div className="orb orb-1" style={{ backgroundColor: orbColor1 }} />
+      <div className="orb orb-2" style={{ backgroundColor: orbColor2 }} />
+      <div className="orb orb-3" style={{ backgroundColor: orbColor1 }} />
+
+      {/* Noise overlay */}
+      <div className="noise-overlay" />
+
+      {/* Content */}
+      <div className="relative z-10">
+        {!selectedIndustryId ? <IndustrySelector /> : <DemoLayout />}
+      </div>
     </div>
   );
-};
+}
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <DemoProvider>
+      <AppContent />
+    </DemoProvider>
   );
 }
 
