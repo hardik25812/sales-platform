@@ -1,0 +1,138 @@
+{
+  "identity": {
+    "name": "E1",
+    "role": "Premium SaaS Designer",
+    "aesthetic": "Dark Mode Glassmorphism",
+    "principles": [
+      "Fusion: Finance precision x Gaming immersion",
+      "Emotion: Trust, Authority, Speed",
+      "Depth: Layers over flatness (Glass, Blur, Glow)",
+      "Motion: Everything is alive but disciplined"
+    ]
+  },
+  "theme": {
+    "mode": "dark",
+    "base_colors": {
+      "background": "#050508",
+      "layer_1": "#09090b",
+      "layer_2": "#121217",
+      "border_subtle": "rgba(255, 255, 255, 0.08)",
+      "border_highlight": "rgba(255, 255, 255, 0.15)",
+      "text_primary": "#F8FAFC",
+      "text_secondary": "#94A3B8",
+      "text_muted": "#475569"
+    },
+    "industry_themes": {
+      "roofing": {
+        "primary": "#F59E0B",
+        "secondary": "#D97706",
+        "accent": "#FFF7ED",
+        "gradient": "from-amber-500 to-orange-600",
+        "glow": "0 0 40px -10px rgba(245, 158, 11, 0.3)"
+      },
+      "medspa": {
+        "primary": "#EC4899",
+        "secondary": "#8B5CF6",
+        "accent": "#FDF2F8",
+        "gradient": "from-pink-500 to-violet-600",
+        "glow": "0 0 40px -10px rgba(236, 72, 153, 0.3)"
+      },
+      "solar": { "primary": "#3B82F6", "gradient": "from-blue-500 to-cyan-400" },
+      "hvac": { "primary": "#10B981", "gradient": "from-emerald-500 to-teal-400" },
+      "real_estate": { "primary": "#6366F1", "gradient": "from-indigo-500 to-purple-400" },
+      "legal": { "primary": "#E11D48", "gradient": "from-rose-600 to-red-500" },
+      "dental": { "primary": "#06B6D4", "gradient": "from-cyan-500 to-blue-400" },
+      "gym": { "primary": "#EF4444", "gradient": "from-red-600 to-orange-500" },
+      "restaurants": { "primary": "#F97316", "gradient": "from-orange-500 to-yellow-400" },
+      "ecommerce": { "primary": "#8B5CF6", "gradient": "from-violet-500 to-fuchsia-400" }
+    },
+    "typography": {
+      "headings": {
+        "family": "Sora, sans-serif",
+        "weights": ["400", "600", "700"],
+        "usage": "Hero titles, Section headers, KPI Labels"
+      },
+      "data": {
+        "family": "IBM Plex Mono, monospace",
+        "weights": ["400", "500"],
+        "usage": "Metrics, Tables, Code snippets, ROI inputs"
+      },
+      "body": {
+        "family": "Inter, sans-serif",
+        "weights": ["400", "500"],
+        "usage": "Paragraphs, UI labels"
+      }
+    }
+  },
+  "ui_components": {
+    "glass_card": {
+      "base": "bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] shadow-2xl",
+      "hover": "hover:bg-white/[0.06] hover:border-white/[0.15] transition-all duration-300",
+      "active": "ring-1 ring-white/20 bg-white/[0.08]"
+    },
+    "buttons": {
+      "primary": "bg-gradient-to-r text-white shadow-lg hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:scale-[1.02] active:scale-95 transition-all font-semibold rounded-lg px-6 py-3",
+      "secondary": "bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:border-white/20 transition-all rounded-lg px-6 py-3",
+      "ghost": "text-slate-400 hover:text-white hover:bg-white/5 transition-all rounded-lg px-4 py-2"
+    },
+    "inputs": {
+      "base": "bg-black/20 border-white/10 text-white placeholder:text-slate-600 focus:border-white/30 focus:ring-1 focus:ring-white/20 transition-all rounded-md h-12 px-4 font-mono"
+    }
+  },
+  "layout_strategy": {
+    "container": "max-w-[1600px] mx-auto px-4 md:px-8",
+    "grid_system": "grid grid-cols-12 gap-6",
+    "bento_grid": "Use mixed col-spans (4, 6, 8, 12) to create asymmetric, interesting layouts. Avoid uniform 3-col grids everywhere.",
+    "spacing": "Generous padding (py-12, py-24) to let the glass effect breathe."
+  },
+  "visual_enhancers": {
+    "orbs": "Use absolute positioned divs with heavy blur (blur-3xl) and opacity-20 to create ambient background lighting that matches the selected industry color.",
+    "mesh": "Overlay a subtle noise texture (opacity-5) on the background to prevent banding.",
+    "borders": "Use 'tracing beam' effects or gradient borders on active cards."
+  },
+  "motion": {
+    "page_transition": {
+      "initial": { "opacity": 0, "y": 20 },
+      "animate": { "opacity": 1, "y": 0 },
+      "exit": { "opacity": 0, "y": -20 },
+      "transition": { "duration": 0.4, "ease": "easeOut" }
+    },
+    "counters": "Use framer-motion useSpring for animated number counting.",
+    "hover": "Scale 1.02, Lift y-1, Glow intensification."
+  },
+  "images": {
+    "logo_placeholder": "Use a simple typographic logo 'SALES.OS' in Sora font.",
+    "industry_icons": "Use Lucide React icons for industry representation (e.g., Home for Roofing, Stethoscope/Sparkles for MedSpa).",
+    "backgrounds": "Do NOT use photographic backgrounds. Use CSS-generated gradients and mesh effects."
+  },
+  "structure": {
+    "nav": "Fixed bottom or floating top bar. Glassmorphic. Tabs: Industry, Discovery, Command, Workflow, ROI, Case Studies, Trial.",
+    "pages": {
+      "industry_selector": "Hero section + Grid of 10 cards. Roofing & MedSpa highlighted.",
+      "discovery": "Split view: Left = Input Sliders (Glass), Right = Live Impact Preview (Big Animated Numbers).",
+      "command_center": "Dashboard layout. Map view (optional), Agent Activity Feed, Pipeline Funnel.",
+      "workflow": "Compare Slider (React-Compare-Image style) or Side-by-Side cards showing 'Old Way' vs 'New Way'.",
+      "roi_calculator": "Deep dive charts (Area/Bar) showing cumulative growth. Interactive toggles.",
+      "case_studies": "Masonry or Grid of success stories with 'Verified' badges.",
+      "trial": "Minimalist, high-focus form. Trust indicators."
+    }
+  },
+  "instructions_to_main_agent": [
+    "1. Setup 'framer-motion', 'recharts', 'lucide-react', 'clsx', 'tailwind-merge' immediately.",
+    "2. Create a 'Layout' component that handles the dynamic background (orbs changing color based on industry).",
+    "3. Build the 'GlassCard' primitive component first and use it everywhere.",
+    "4. State Management: Use a simple React Context to hold 'selectedIndustry' and 'discoveryMetrics'. All tabs need access to this.",
+    "5. MOCK DATA: Create a robust 'industryData.js' config file. Do not hardcode text in components. Map over this data.",
+    "6. Charts: Custom style Recharts to match the dark theme (hide grid lines, use gradients for fills).",
+    "7. Font installation: Add Sora and IBM Plex Mono via Google Fonts in index.css.",
+    "8. Keyboard shortcuts: Implement a listener for keys 1-7 (tabs), P (presentation), F (fullscreen)."
+  ],
+  "universal_guidelines": [
+    "Do not use gradients for dark colors.",
+    "Avoid generic centered layouts.",
+    "Create depth with z-index and glassmorphism.",
+    "Use 'sonner' for toasts.",
+    "Use 'lucide-react' for icons.",
+    "Add 'data-testid' to all interactive elements."
+  ]
+}
