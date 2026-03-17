@@ -1,21 +1,26 @@
 import { useEffect, useCallback } from 'react';
 import { useDemo } from '../context/DemoContext';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/tabs';
-import { ArrowLeft, Search, LayoutDashboard, GitBranch, Calculator, BookOpen, Rocket, Monitor, Eye } from 'lucide-react';
+import { ArrowLeft, Search, AlertTriangle, Calendar, LayoutDashboard, GitBranch, Calculator, BookOpen, Rocket, Phone, Monitor, Eye } from 'lucide-react';
 import DiscoveryPanel from './DiscoveryPanel';
+import PainReveal from './PainReveal';
+import DayInYourLife from './DayInYourLife';
 import CommandCenter from './CommandCenter';
 import WorkflowVisualizer from './WorkflowVisualizer';
 import ROICalculator from './ROICalculator';
 import CaseStudies from './CaseStudies';
 import TrialCTA from './TrialCTA';
+import LiveDemo from './LiveDemo';
 
 const TAB_ITEMS = [
-  { value: 'discovery', label: 'Discovery', icon: Search, key: '1' },
-  { value: 'command', label: 'Command Center', icon: LayoutDashboard, key: '2' },
-  { value: 'workflow', label: 'Workflow', icon: GitBranch, key: '3' },
-  { value: 'roi', label: 'ROI', icon: Calculator, key: '4' },
-  { value: 'cases', label: 'Case Studies', icon: BookOpen, key: '5' },
-  { value: 'trial', label: 'Start Trial', icon: Rocket, key: '6' },
+  { value: 'discovery', label: 'Your Numbers', icon: Search, key: '1' },
+  { value: 'problems', label: 'Problems', icon: AlertTriangle, key: '2' },
+  { value: 'day', label: 'Your Day', icon: Calendar, key: '3' },
+  { value: 'command', label: 'AI Team', icon: LayoutDashboard, key: '4' },
+  { value: 'roi', label: 'ROI', icon: Calculator, key: '5' },
+  { value: 'workflow', label: 'How It Works', icon: GitBranch, key: '6' },
+  { value: 'cases', label: 'Proof', icon: BookOpen, key: '7' },
+  { value: 'trial', label: 'Free Trial', icon: Rocket, key: '8' },
 ];
 
 export default function DemoLayout() {
@@ -125,9 +130,11 @@ export default function DemoLayout() {
       <main className="max-w-[1600px] mx-auto px-4 md:px-8 py-6 md:py-8">
         <div className="animate-fade-up" style={{ opacity: 0, animationFillMode: 'forwards' }}>
           {activeTab === 'discovery' && <DiscoveryPanel />}
+          {activeTab === 'problems' && <PainReveal />}
+          {activeTab === 'day' && <DayInYourLife />}
           {activeTab === 'command' && <CommandCenter />}
-          {activeTab === 'workflow' && <WorkflowVisualizer />}
           {activeTab === 'roi' && <ROICalculator />}
+          {activeTab === 'workflow' && <WorkflowVisualizer />}
           {activeTab === 'cases' && <CaseStudies />}
           {activeTab === 'trial' && <TrialCTA />}
         </div>

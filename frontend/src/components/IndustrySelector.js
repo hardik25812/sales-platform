@@ -4,6 +4,34 @@ import { Home, Sparkles, Thermometer, Smile, Car, HardHat, Scale, Building2, Tre
 
 const ICON_MAP = { Home, Sparkles, Thermometer, Smile, Car, HardHat, Scale, Building2, TreePine, Waves };
 
+// Industry-specific hero images
+const INDUSTRY_IMAGES = {
+  roofing: "https://images.unsplash.com/photo-1632759145351-1d592919f522?w=600&q=80",
+  medspa: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80",
+  hvac: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&q=80",
+  dental: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600&q=80",
+  auto_dealership: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600&q=80",
+  construction: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80",
+  law_firm: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&q=80",
+  real_estate: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80",
+  landscaping: "https://images.unsplash.com/photo-1558904541-efa843a96f01?w=600&q=80",
+  pools: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&q=80",
+};
+
+// Industry-specific taglines (pain-first approach)
+const INDUSTRY_TAGLINES = {
+  roofing: "Stop losing $14K jobs to missed calls",
+  medspa: "Fill every consultation slot automatically",
+  hvac: "Never miss an emergency call again",
+  dental: "Keep every chair filled, every day",
+  auto_dealership: "Turn every lead into a test drive",
+  construction: "Win more bids, finish more projects",
+  law_firm: "Capture every intake call 24/7",
+  real_estate: "Never lose a lead to a faster agent",
+  landscaping: "Fill your spring schedule by February",
+  pools: "Close more pool builds, automatically",
+};
+
 export default function IndustrySelector() {
   const { selectIndustry, companyName, setCompanyName } = useDemo();
   const industries = getIndustryList();
@@ -36,15 +64,18 @@ export default function IndustrySelector() {
         />
       </div>
 
-      {/* Industry Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 md:gap-4 max-w-5xl w-full">
+      {/* Industry Grid - Updated with images */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 md:gap-4 max-w-6xl w-full">
         {industries.map((ind, i) => {
           const Icon = ICON_MAP[ind.icon] || Home;
+          const bgImage = INDUSTRY_IMAGES[ind.id];
+          const tagline = INDUSTRY_TAGLINES[ind.id] || ind.tagline;
+          
           return (
             <button
               key={ind.id}
               onClick={() => selectIndustry(ind.id)}
-              className="industry-card glass-panel glass-panel-hover p-5 flex flex-col items-center gap-3 cursor-pointer group animate-fade-up"
+              className="industry-card relative overflow-hidden rounded-2xl cursor-pointer group animate-fade-up h-48 md:h-56"
               style={{
                 '--card-glow': ind.color,
                 opacity: 0,
@@ -53,25 +84,66 @@ export default function IndustrySelector() {
               }}
               data-testid={`industry-card-${ind.id}`}
             >
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
-                style={{ backgroundColor: `${ind.color}15`, color: ind.color }}
-              >
-                <Icon size={24} />
+              {/* Background Image with Blur */}
+              <div 
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                style={{ 
+                  backgroundImage: `url(${bgImage})`,
+                }}
+              />
+              
+              {/* Dark Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/30 group-hover:from-black/80 group-hover:via-black/50 transition-all duration-300" />
+              
+              {/* Colored Glow on Hover */}
+              <div 
+                className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
+                style={{ backgroundColor: ind.color }}
+              />
+              
+              {/* Content */}
+              <div className="relative z-10 h-full flex flex-col items-center justify-end p-4 text-center">
+                {/* Icon */}
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-3 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg backdrop-blur-sm"
+                  style={{ 
+                    backgroundColor: `${ind.color}30`, 
+                    color: ind.color,
+                    boxShadow: `0 0 20px ${ind.color}20`
+                  }}
+                >
+                  <Icon size={24} />
+                </div>
+                
+                {/* Name */}
+                <p className="text-base font-bold text-white mb-1 drop-shadow-lg">{ind.name}</p>
+                
+                {/* Tagline */}
+                <p className="text-xs text-white/80 leading-tight max-w-[140px] drop-shadow-md">{tagline}</p>
+                
+                {/* Agent count badge */}
+                <div 
+                  className="mt-2 px-2 py-0.5 rounded-full text-[10px] font-mono backdrop-blur-sm"
+                  style={{ 
+                    backgroundColor: `${ind.color}20`, 
+                    color: ind.color,
+                    border: `1px solid ${ind.color}30`
+                  }}
+                >
+                  {ind.agentCount} AI agents
+                </div>
               </div>
-              <div className="text-center">
-                <p className="text-sm font-semibold text-white group-hover:text-white/90 transition-colors">{ind.name}</p>
-                <p className="text-xs text-slate-500 mt-0.5 font-mono">{ind.agentCount} agents</p>
-              </div>
+              
+              {/* Border glow on hover */}
+              <div 
+                className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-opacity-50 transition-all duration-300 pointer-events-none"
+                style={{ borderColor: `${ind.color}50` }}
+              />
             </button>
           );
         })}
       </div>
 
-      {/* Footer */}
-      <p className="text-xs text-slate-600 mt-10 font-mono animate-fade-up stagger-8" style={{ opacity: 0, animationFillMode: 'forwards' }}>
-        Powered by AI Workforce OS — Internal Sales Tool
-      </p>
     </div>
   );
 }

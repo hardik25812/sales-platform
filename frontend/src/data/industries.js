@@ -256,7 +256,31 @@ export const INDUSTRIES = {
       { type: "review", text: "5-star review collected from completed re-roof", time: "18 min ago" },
       { type: "lead", text: "After-hours lead qualified: full replacement needed", time: "23 min ago" },
       { type: "dispatch", text: "Crew A rerouted — 22 min drive time saved", time: "31 min ago" }
-    ]
+    ],
+
+    heroImage: "https://images.unsplash.com/photo-1632759145351-1d592919f522?w=1200&q=80",
+    
+    dayStory: {
+      before: [
+        { time: '7:02 AM', event: 'Homeowner finds roof leak after weekend storm', detail: 'Searches "roof repair near me" on Google', icon: '🔍' },
+        { time: '7:03 AM', event: 'Fills out your website form', detail: '', icon: '📝' },
+        { time: '7:03 AM', event: 'Form sits in your inbox', detail: "Nobody's in the office yet.", icon: '⚠️', status: 'warning' },
+        { time: '8:15 AM', event: 'Office manager arrives', detail: '14 voicemails, 23 emails. Your form is #19 in the queue.', icon: '😫', status: 'warning' },
+        { time: '10:30 AM', event: 'Finally sees the form. Calls back.', detail: 'No answer. Leaves voicemail.', icon: '📞', status: 'danger' },
+        { time: '10:32 AM', event: 'Homeowner already booked competitor', detail: 'They responded in 3 minutes.', icon: '❌', status: 'lost' },
+        { time: 'RESULT', event: '$14,000 job — LOST', detail: 'This happens 3-4 times per week.', icon: '💸', status: 'lost' },
+      ],
+      after: [
+        { time: '7:02 AM', event: 'Homeowner finds roof leak after weekend storm', detail: 'Searches "roof repair near me" on Google', icon: '🔍' },
+        { time: '7:03 AM', event: 'Fills out your website form', detail: '', icon: '📝' },
+        { time: '7:03 AM', event: 'AI Lead Agent activates instantly', detail: 'Reads submission: storm damage, residential, urgent', icon: '⚡', status: 'active' },
+        { time: '7:04 AM', event: 'Homeowner gets personalized text', detail: '"Hi John, we received your request about storm damage at 142 Oak St..."', icon: '📱', status: 'success' },
+        { time: '7:04 AM', event: 'Detailed email sent', detail: 'What to expect, insurance guide, credentials', icon: '📧', status: 'success' },
+        { time: '7:04 AM', event: 'Inspection auto-booked', detail: 'Tomorrow 9 AM, confirmed', icon: '📅', status: 'success' },
+        { time: '7:05 AM', event: 'You get a notification', detail: 'New qualified lead: John Smith, storm damage, $14K est. Booked.', icon: '🔔', status: 'success' },
+        { time: 'RESULT', event: '$14,000 job — SECURED', detail: 'In 2 minutes. While you were still in bed.', icon: '✅', status: 'won' },
+      ],
+    }
   },
 
   medspa: {
@@ -512,7 +536,30 @@ export const INDUSTRIES = {
       { type: "review", text: "5-star review collected from CoolSculpting patient", time: "15 min ago" },
       { type: "membership", text: "VIP membership renewal processed automatically", time: "22 min ago" },
       { type: "lead", text: "After-hours lip filler inquiry qualified and booked", time: "28 min ago" }
-    ]
+    ],
+
+    heroImage: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1200&q=80",
+    
+    dayStory: {
+      before: [
+        { time: '9:14 PM', event: 'Jessica sees your Instagram ad for lip fillers', detail: 'Impulse decision after seeing results photos', icon: '🔍' },
+        { time: '9:15 PM', event: 'Sends you a DM asking about pricing', detail: '"How much for lip filler? Do you have availability this week?"', icon: '📝' },
+        { time: '9:15 PM', event: 'DM sits unread', detail: 'Your front desk left at 6pm.', icon: '⚠️', status: 'warning' },
+        { time: '9:47 PM', event: 'Jessica DMs two other medspas', detail: 'Looking for someone who responds.', icon: '😫', status: 'warning' },
+        { time: '10:02 PM', event: 'Competitor responds instantly', detail: '"Hi Jessica! We have openings Thursday. Want me to book you?"', icon: '📞', status: 'danger' },
+        { time: '10:05 PM', event: 'Jessica books with competitor', detail: '$650 appointment gone.', icon: '❌', status: 'lost' },
+        { time: 'NEXT DAY', event: 'You respond to her DM at 9am', detail: '"Hi! Thanks for reaching out..." — Too late.', icon: '💸', status: 'lost' },
+      ],
+      after: [
+        { time: '9:14 PM', event: 'Jessica sees your Instagram ad for lip fillers', detail: 'Impulse decision after seeing results photos', icon: '🔍' },
+        { time: '9:15 PM', event: 'Sends you a DM asking about pricing', detail: '"How much for lip filler? Do you have availability this week?"', icon: '📝' },
+        { time: '9:15 PM', event: 'AI Booking Agent responds instantly', detail: '"Hi Jessica! Lip filler starts at $550. I have Thursday 2pm or Friday 11am open..."', icon: '⚡', status: 'active' },
+        { time: '9:16 PM', event: 'Jessica picks Thursday 2pm', detail: 'AI confirms and collects $100 deposit', icon: '📱', status: 'success' },
+        { time: '9:17 PM', event: 'Confirmation + prep instructions sent', detail: 'What to avoid before treatment, what to expect', icon: '📧', status: 'success' },
+        { time: '9:17 PM', event: 'Appointment in your calendar', detail: 'With deposit secured and notes attached', icon: '📅', status: 'success' },
+        { time: 'RESULT', event: '$650 appointment — BOOKED', detail: 'In 2 minutes. While you were at dinner.', icon: '✅', status: 'won' },
+      ],
+    }
   },
 
   hvac: {
