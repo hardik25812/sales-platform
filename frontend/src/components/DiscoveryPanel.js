@@ -58,7 +58,8 @@ export default function DiscoveryPanel() {
 
     try {
       // Call analyze-business API
-      const businessRes = await fetch('http://localhost:3001/api/analyze-business', {
+      const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+      const businessRes = await fetch(`${API_URL}/api/analyze-business`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -84,7 +85,7 @@ export default function DiscoveryPanel() {
       // Call analyze-website API if website provided
       let websiteData = null;
       if (lookupForm.website) {
-        const websiteRes = await fetch('http://localhost:3001/api/analyze-website', {
+        const websiteRes = await fetch(`${API_URL}/api/analyze-website`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ url: lookupForm.website }),
