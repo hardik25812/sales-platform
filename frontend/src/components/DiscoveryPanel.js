@@ -57,9 +57,8 @@ export default function DiscoveryPanel() {
     setLookupError(null);
 
     try {
-      // Call analyze-business API
-      const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
-      const businessRes = await fetch(`${API_URL}/api/analyze-business`, {
+      // Call analyze-business API (use relative path for Vercel serverless functions)
+      const businessRes = await fetch('/api/analyze-business', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -85,7 +84,7 @@ export default function DiscoveryPanel() {
       // Call analyze-website API if website provided
       let websiteData = null;
       if (lookupForm.website) {
-        const websiteRes = await fetch(`${API_URL}/api/analyze-website`, {
+        const websiteRes = await fetch('/api/analyze-website', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ url: lookupForm.website }),
