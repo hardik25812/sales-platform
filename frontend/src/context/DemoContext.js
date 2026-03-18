@@ -10,6 +10,9 @@ export function DemoProvider({ children }) {
   const [contactName, setContactName] = useState('');
   const [activeTab, setActiveTab] = useState('discovery');
   const [presentationMode, setPresentationMode] = useState(false);
+  const [liveMode, setLiveMode] = useState(false);
+  const [liveData, setLiveData] = useState(null);
+  const [liveLoading, setLiveLoading] = useState(false);
 
   // Metrics state
   const [metrics, setMetrics] = useState({
@@ -77,8 +80,14 @@ export function DemoProvider({ children }) {
     setActiveTab,
     presentationMode,
     setPresentationMode,
+    liveMode,
+    setLiveMode,
+    liveData,
+    setLiveData,
+    liveLoading,
+    setLiveLoading,
     goBack
-  }), [selectedIndustryId, industryConfig, companyName, contactName, metrics, updateMetric, selectIndustry, roi, activeTab, presentationMode, goBack]);
+  }), [selectedIndustryId, industryConfig, companyName, contactName, metrics, updateMetric, selectIndustry, roi, activeTab, presentationMode, liveMode, liveData, liveLoading, goBack]);
 
   return (
     <DemoContext.Provider value={value}>

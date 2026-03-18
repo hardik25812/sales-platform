@@ -24,10 +24,16 @@ const TAB_ITEMS = [
 ];
 
 export default function DemoLayout() {
-  const { industryConfig, companyName, activeTab, setActiveTab, goBack, presentationMode, setPresentationMode } = useDemo();
+  const { industryConfig, companyName, activeTab, setActiveTab, goBack, presentationMode, setPresentationMode, liveMode, setLiveMode } = useDemo();
 
   // Keyboard shortcuts
   const handleKeyDown = useCallback((e) => {
+    // Ignore keyboard shortcuts when typing in input fields or textareas
+    const target = e.target;
+    if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable) {
+      return;
+    }
+
     // Number keys for tabs
     const idx = parseInt(e.key) - 1;
     if (idx >= 0 && idx < TAB_ITEMS.length) {
@@ -95,7 +101,30 @@ export default function DemoLayout() {
 
             {/* Right controls */}
             {!presentationMode && (
-              <div className="flex items-center gap-2 shrink-0">
+              <div className="flex items-center gap-3 shrink-0">
+                {/* Live Mode Toggle */}
+                <div className="hidden md:flex items-center gap-2 px-2.5 py-1 rounded-lg glass-panel">
+                  <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider">
+                    {liveMode ? 'LIVE' : 'DEMO'}
+                  </span>
+                  <label className="relative inline-flex items-center cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={liveMode}
+                      onChange={() => setLiveMode(prev => !prev)}
+                      className="sr-only peer"
+                    />
+                    <div className="w-8 h-[18px] bg-white/[0.08] rounded-full peer peer-checked:bg-emerald-500/30 transition-colors">
+                      <div className={`absolute top-[2px] ${liveMode ? 'left-[17px]' : 'left-[2px]'} w-[14px] h-[14px] rounded-full transition-all duration-200 ${liveMode ? 'bg-emerald-400' : 'bg-slate-500'}`} />
+                    </div>
+                  </label>
+                  {liveMode && (
+                    <div className="flex items-center gap-1">
+                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    </div>
+                  )}
+                </div>
+
                 {companyName && (
                   <span className="text-xs font-mono text-slate-500 hidden lg:block">
                     {companyName}

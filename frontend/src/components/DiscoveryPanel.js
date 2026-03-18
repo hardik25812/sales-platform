@@ -1,7 +1,8 @@
+import { useState } from 'react';
 import { useDemo } from '../context/DemoContext';
 import { Slider } from '../components/ui/slider';
 import { CurrencyCounter, AnimatedCounter, PercentCounter } from './AnimatedCounter';
-import { DollarSign, Clock, PhoneMissed, TrendingUp, Zap, Users, BarChart3, ArrowRight } from 'lucide-react';
+import { DollarSign, Clock, PhoneMissed, TrendingUp, Zap, Users, BarChart3, ArrowRight, Search, Loader2, CheckCircle, AlertCircle, Globe } from 'lucide-react';
 
 function MetricInput({ label, value, onChange, min, max, step = 1, prefix = '', suffix = '', format = 'number', accentColor }) {
   const displayValue = format === 'currency'
@@ -32,11 +33,119 @@ function MetricInput({ label, value, onChange, min, max, step = 1, prefix = '', 
 }
 
 export default function DiscoveryPanel() {
-  const { industryConfig, metrics, updateMetric, roi, companyName, setActiveTab } = useDemo();
+  const { industryConfig, metrics, updateMetric, roi, companyName, setActiveTab, liveMode, liveData, setLiveData, liveLoading, setLiveLoading, selectedIndustryId } = useDemo();
+  
+  const [lookupForm, setLookupForm] = useState({
+    businessName: '',
+    city: '',
+    state: '',
+    website: '',
+  });
+  const [lookupError, setLookupError] = useState(null);
 
   if (!industryConfig || !roi) return null;
 
   const accent = industryConfig.color;
+
+  const handleLiveLookup = async () => {
+    if (!lookupForm.businessName) {
+      setLookupError('Business name is required');
+      return;
+    }
+
+    setLiveLoading(true);
+    setLookupError(null);
+
+    try {
+      // Call analyze-business API
+      const businessRes = await fetch('http://localhost:3001/api/analyze-business', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          businessName: lookupForm.businessName,
+          city: lookupForm.city,
+          state: lookupForm.state,
+          industry: selectedIndustryId,
+        }),
+      });
+      const businessData = await businessRes.json();
+
+      if (!businessData.success) {
+        // Show more helpful error messages
+        let errorMsg = businessData.error || 'Failed to fetch business data';
+        if (errorMsg.includes('Billing')) {
+          errorMsg = 'Google API requires billing enabled. Using demo data instead.';
+        } else if (errorMsg.includes('not found')) {
+          errorMsg = 'Business not found. Try a different name or check spelling.';
+        }
+        throw new Error(errorMsg);
+      }
+
+      // Call analyze-website API if website provided
+      let websiteData = null;
+      if (lookupForm.website) {
+        const websiteRes = await fetch('http://localhost:3001/api/analyze-website', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url: lookupForm.website }),
+        });
+        const webResult = await websiteRes.json();
+        if (webResult.success) {
+          websiteData = webResult.website;
+        }
+      }
+
+      // Store live data
+      setLiveData({
+        business: businessData.business,
+        website: websiteData,
+        marketData: businessData.marketData,
+        timestamp: new Date().toISOString(),
+      });
+
+      // Auto-populate metrics based on live data
+      const business = businessData.business;
+      const market = businessData.marketData;
+
+      // Estimate monthly leads from search volume and competitor count
+      if (market?.searchVolume && market?.competitorCount) {
+        const estimatedLeads = Math.round((market.searchVolume / market.competitorCount) * 0.15);
+        updateMetric('monthlyLeads', Math.max(20, Math.min(500, estimatedLeads)));
+      }
+
+      // Estimate employees from review count (rough heuristic)
+      if (business?.reviews?.count) {
+        const reviewCount = business.reviews.count;
+        let estimatedEmployees;
+        if (reviewCount < 50) estimatedEmployees = 3;
+        else if (reviewCount < 200) estimatedEmployees = 8;
+        else if (reviewCount < 500) estimatedEmployees = 15;
+        else if (reviewCount < 1000) estimatedEmployees = 25;
+        else estimatedEmployees = 40;
+        updateMetric('employees', estimatedEmployees);
+      }
+
+      // Estimate close rate from rating
+      if (business?.reviews?.rating) {
+        const rating = business.reviews.rating;
+        const closeRate = Math.min(0.45, Math.max(0.15, (rating - 3) * 0.15 + 0.20));
+        updateMetric('closeRate', closeRate);
+      }
+
+      // Estimate missed calls based on after-hours gap
+      if (business?.afterHoursGap) {
+        const gapPercent = parseInt(business.afterHoursGap) || 30;
+        const missedCalls = Math.round(gapPercent * 0.4);
+        updateMetric('missedCalls', Math.max(10, Math.min(50, missedCalls)));
+      }
+
+      setLiveLoading(false);
+    } catch (err) {
+      console.error('Live lookup error:', err);
+      setLookupError(err.message || 'Failed to fetch live data. Using demo data.');
+      setLiveLoading(false);
+    }
+  };
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6" data-testid="discovery-panel">
@@ -46,6 +155,175 @@ export default function DiscoveryPanel() {
           <h2 className="text-lg font-semibold text-white font-display">Discovery Inputs</h2>
           <p className="text-xs text-slate-500">Adjust sliders as your prospect shares their metrics</p>
         </div>
+
+        {/* Live Business Lookup - Only visible in Live Mode */}
+        {liveMode && (
+          <div className="glass-panel p-6 space-y-4" style={{ borderColor: `${accent}30` }}>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <h3 className="text-sm font-semibold text-white uppercase tracking-wider">Live Business Lookup</h3>
+            </div>
+            <p className="text-xs text-slate-500">Pull real data from Google Places & website analysis</p>
+
+            <div className="space-y-3">
+              <div>
+                <label className="text-xs font-medium text-slate-400 mb-1.5 block">Business Name *</label>
+                <input
+                  type="text"
+                  value={lookupForm.businessName}
+                  onChange={(e) => setLookupForm(prev => ({ ...prev, businessName: e.target.value }))}
+                  className="glass-input w-full rounded-lg px-3 py-2 text-sm"
+                  placeholder="e.g., Elite Roofing Co"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="text-xs font-medium text-slate-400 mb-1.5 block">City</label>
+                  <input
+                    type="text"
+                    value={lookupForm.city}
+                    onChange={(e) => setLookupForm(prev => ({ ...prev, city: e.target.value }))}
+                    className="glass-input w-full rounded-lg px-3 py-2 text-sm"
+                    placeholder="Austin"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-medium text-slate-400 mb-1.5 block">State</label>
+                  <input
+                    type="text"
+                    value={lookupForm.state}
+                    onChange={(e) => setLookupForm(prev => ({ ...prev, state: e.target.value }))}
+                    className="glass-input w-full rounded-lg px-3 py-2 text-sm"
+                    placeholder="TX"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="text-xs font-medium text-slate-400 mb-1.5 block">Website (optional)</label>
+                <div className="relative">
+                  <Globe size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
+                  <input
+                    type="text"
+                    value={lookupForm.website}
+                    onChange={(e) => setLookupForm(prev => ({ ...prev, website: e.target.value }))}
+                    className="glass-input w-full rounded-lg px-3 py-2 pl-9 text-sm"
+                    placeholder="www.example.com"
+                  />
+                </div>
+              </div>
+
+              <button
+                onClick={handleLiveLookup}
+                disabled={liveLoading || !lookupForm.businessName}
+                className="w-full py-2.5 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                style={{ 
+                  background: liveLoading ? '#334155' : `linear-gradient(135deg, ${accent}, ${industryConfig.colorSecondary || accent})`,
+                  color: 'white'
+                }}
+              >
+                {liveLoading ? (
+                  <>
+                    <Loader2 size={16} className="animate-spin" />
+                    Analyzing...
+                  </>
+                ) : (
+                  <>
+                    <Search size={16} />
+                    Analyze Business
+                  </>
+                )}
+              </button>
+
+              {lookupError && (
+                <div className="flex items-start gap-2 p-3 rounded-lg bg-rose-500/10 border border-rose-500/20">
+                  <AlertCircle size={14} className="text-rose-400 mt-0.5 shrink-0" />
+                  <p className="text-xs text-rose-300">{lookupError}</p>
+                </div>
+              )}
+
+              {liveData && (
+                <div className="space-y-3 p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle size={14} className="text-emerald-400 mt-0.5 shrink-0" />
+                    <div className="flex-1">
+                      <p className="text-sm text-emerald-300 font-semibold">{liveData.business.name}</p>
+                      <p className="text-xs text-emerald-400/70 mt-0.5">{liveData.business.address}</p>
+                    </div>
+                  </div>
+
+                  {/* Contact Info */}
+                  <div className="grid grid-cols-2 gap-2 text-xs">
+                    {liveData.business.phone && (
+                      <div className="flex items-center gap-1.5 text-slate-300">
+                        <span className="text-slate-500">📞</span>
+                        <span>{liveData.business.phone}</span>
+                      </div>
+                    )}
+                    {liveData.business.website && (
+                      <div className="flex items-center gap-1.5 text-slate-300 truncate">
+                        <span className="text-slate-500">🌐</span>
+                        <a href={liveData.business.website} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline truncate">
+                          Website
+                        </a>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Reviews */}
+                  {liveData.business.reviews && (
+                    <div className="flex items-center gap-3 text-xs">
+                      <div className="flex items-center gap-1">
+                        <span className="text-yellow-400">⭐</span>
+                        <span className="text-white font-semibold">{liveData.business.reviews.rating?.toFixed(1)}</span>
+                      </div>
+                      <span className="text-slate-400">({liveData.business.reviews.count?.toLocaleString()} reviews)</span>
+                      {liveData.business.reviews.recentSentiment && (
+                        <span className={`px-1.5 py-0.5 rounded text-[10px] ${
+                          liveData.business.reviews.recentSentiment === 'positive' ? 'bg-emerald-500/20 text-emerald-400' :
+                          liveData.business.reviews.recentSentiment === 'mixed' ? 'bg-yellow-500/20 text-yellow-400' :
+                          'bg-rose-500/20 text-rose-400'
+                        }`}>
+                          {liveData.business.reviews.recentSentiment}
+                        </span>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Hours & Gap */}
+                  {liveData.business.afterHoursGap && (
+                    <div className="flex items-center gap-2 text-xs">
+                      <span className="text-orange-400">⏰</span>
+                      <span className="text-orange-300">{liveData.business.afterHoursGap}</span>
+                    </div>
+                  )}
+
+                  {/* Market Data */}
+                  {liveData.marketData && (
+                    <div className="pt-2 border-t border-emerald-500/20">
+                      <p className="text-[10px] text-slate-500 uppercase tracking-wider mb-2">Market Intelligence</p>
+                      <div className="grid grid-cols-3 gap-2 text-center">
+                        <div className="bg-slate-800/50 rounded p-2">
+                          <p className="text-white font-semibold text-sm">{liveData.marketData.searchVolume?.toLocaleString()}</p>
+                          <p className="text-[10px] text-slate-500">Monthly Searches</p>
+                        </div>
+                        <div className="bg-slate-800/50 rounded p-2">
+                          <p className="text-white font-semibold text-sm">{liveData.marketData.competitorCount}</p>
+                          <p className="text-[10px] text-slate-500">Competitors</p>
+                        </div>
+                        <div className="bg-slate-800/50 rounded p-2">
+                          <p className="text-white font-semibold text-sm">${liveData.marketData.estimatedCPC}</p>
+                          <p className="text-[10px] text-slate-500">Avg CPC</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
 
         <div className="glass-panel p-6 space-y-5">
           {/* Company Name */}
