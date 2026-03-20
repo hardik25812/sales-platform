@@ -1,10 +1,18 @@
 import { roofingDepartments } from './roofing';
 import { medspaDepartments } from './medspa';
+import { hvacDepartments } from './hvac';
+import { dentalDepartments } from './dental';
+import { autoDepartments } from './auto';
+import { lawDepartments } from './law';
 
 // Map industry IDs to their department configurations
 const DEPARTMENT_MAP = {
   roofing: roofingDepartments,
   medspa: medspaDepartments,
+  hvac: hvacDepartments,
+  dental: dentalDepartments,
+  auto_dealership: autoDepartments,
+  law_firm: lawDepartments,
 };
 
 // Get departments for a specific industry

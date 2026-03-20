@@ -595,15 +595,43 @@ export const INDUSTRIES = {
     ],
     integrations: ["ServiceTitan", "Housecall Pro", "Jobber", "FieldEdge", "Google Business"],
     painPoints: [
-      { title: "Emergency Calls Go to Voicemail", stat: "45%", description: "of after-hours emergency calls are missed", icon: "PhoneMissed" },
-      { title: "Slow Response Loses Jobs", stat: "82%", description: "of homeowners call 3+ companies — first responder wins", icon: "Clock" },
-      { title: "Techs Waste Time Driving", stat: "2.5hrs", description: "average daily drive time per tech with unoptimized routes", icon: "Car" }
+      { title: "Emergency Calls Go to Voicemail", stat: "45%", description: "of after-hours emergency calls go unanswered — straight to competitors", icon: "PhoneMissed" },
+      { title: "First Responder Wins the Job", stat: "82%", description: "of homeowners call 3+ companies and hire whoever picks up first", icon: "Clock" },
+      { title: "Techs Waste 2.5 Hours Driving", stat: "2.5hrs", description: "average daily drive time per tech with unoptimized routes — that's $150/day burned", icon: "Car" },
+      { title: "Maintenance Agreements Lapse", stat: "38%", description: "of maintenance agreements don't renew because nobody follows up", icon: "FileX" }
     ],
     liveFeedExamples: [
-      { type: "lead", text: "Emergency AC repair call captured and triaged", time: "3 min ago" },
-      { type: "schedule", text: "Furnace maintenance booked for 456 Elm St", time: "8 min ago" },
-      { type: "dispatch", text: "Tech rerouted — 18 min drive time saved", time: "15 min ago" }
-    ]
+      { type: "lead", text: "Emergency no-heat call captured — 14°F outside, elderly resident", time: "2 min ago" },
+      { type: "dispatch", text: "Tech Mike dispatched to 847 Pine St — ETA 22 min", time: "4 min ago" },
+      { type: "schedule", text: "AC tune-up booked from seasonal campaign text", time: "9 min ago" },
+      { type: "agreement", text: "Comfort Club agreement renewed — $189/yr, auto-billed", time: "14 min ago" },
+      { type: "review", text: "5-star review: 'Mike fixed our furnace at 10pm. Lifesavers!'", time: "19 min ago" },
+      { type: "estimate", text: "Replacement follow-up #3 sent — customer asked about financing", time: "25 min ago" }
+    ],
+
+    heroImage: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1200&q=80",
+
+    dayStory: {
+      before: [
+        { time: '2:14 AM', event: 'Furnace dies in the middle of January', detail: 'Homeowner wakes up — house is 52°F and dropping. Kids are cold.', icon: '🥶' },
+        { time: '2:15 AM', event: 'Calls your company', detail: '"Thank you for calling Comfort Air. Our office hours are 8 AM to 5 PM..."', icon: '📞' },
+        { time: '2:16 AM', event: 'Gets your voicemail', detail: 'Leaves a message. Panic setting in — it\'s 14°F outside.', icon: '⚠️', status: 'warning' },
+        { time: '2:18 AM', event: 'Calls your competitor', detail: 'They answer on the second ring. "We can have someone there by 3 AM."', icon: '😫', status: 'warning' },
+        { time: '2:20 AM', event: 'Competitor dispatches a tech', detail: '$347 emergency repair + new maintenance agreement customer', icon: '📞', status: 'danger' },
+        { time: '8:02 AM', event: 'Your office opens, sees the voicemail', detail: 'Calls back. "Oh, we already got it fixed. Thanks anyway."', icon: '❌', status: 'lost' },
+        { time: 'RESULT', event: '$347 repair + $189/yr agreement — LOST', detail: 'Plus they\'ll call the competitor for the $12,000 replacement next year too.', icon: '💸', status: 'lost' },
+      ],
+      after: [
+        { time: '2:14 AM', event: 'Furnace dies in the middle of January', detail: 'Homeowner wakes up — house is 52°F and dropping. Kids are cold.', icon: '🥶' },
+        { time: '2:15 AM', event: 'Calls your company', detail: 'AI answers instantly: "I\'m sorry about the emergency. Let me help."', icon: '📞' },
+        { time: '2:16 AM', event: 'AI triages the situation', detail: '"Is your thermostat blank? Do you smell gas?" — No gas, blank thermostat.', icon: '⚡', status: 'active' },
+        { time: '2:17 AM', event: 'Emergency tech dispatched', detail: 'Mike is on call tonight, 15 minutes away. Carrier ignitor in his truck.', icon: '🚗', status: 'success' },
+        { time: '2:18 AM', event: 'Homeowner gets a text', detail: '"Mike is on his way — ETA 15 min. Here\'s his photo. He has your part in stock."', icon: '📱', status: 'success' },
+        { time: '2:35 AM', event: 'Furnace running again', detail: '$347 repair done. Mike recommends a maintenance agreement.', icon: '🔧', status: 'success' },
+        { time: '2:40 AM', event: 'You get a notification', detail: '"Emergency job complete: $347 repair + Comfort Club signup ($189/yr). 5-star review incoming."', icon: '🔔', status: 'success' },
+        { time: 'RESULT', event: '$347 + $189/yr recurring — CAPTURED', detail: 'While you were sleeping. And they\'ll call you for the replacement too.', icon: '✅', status: 'won' },
+      ],
+    }
   },
 
   dental: {
@@ -639,15 +667,42 @@ export const INDUSTRIES = {
     ],
     integrations: ["Dentrix", "Open Dental", "Eaglesoft", "CareStack", "Google Business"],
     painPoints: [
-      { title: "Empty Chairs Cost Thousands", stat: "$800+", description: "lost per empty hygiene hour", icon: "DollarSign" },
-      { title: "Patients Ghost After Treatment Plans", stat: "40%", description: "of treatment plans never get accepted without follow-up", icon: "FileX" },
-      { title: "Recall Patients Disappear", stat: "35%", description: "of patients don't return for their 6-month recall", icon: "UserMinus" }
+      { title: "Empty Chairs Cost $800/Hour", stat: "$800+", description: "in lost production every hour a hygiene or operatory chair sits empty", icon: "DollarSign" },
+      { title: "Treatment Plans Die on the Vine", stat: "40%", description: "of treatment plans never get accepted — patients walk out and never come back", icon: "FileX" },
+      { title: "Recall Patients Vanish", stat: "35%", description: "of patients don't return for their 6-month cleaning — and take their family with them", icon: "UserMinus" },
+      { title: "Benefits Expire Unused", stat: "$1,200", description: "average unused dental benefits per patient per year — money left on the table", icon: "CalendarX" }
     ],
     liveFeedExamples: [
-      { type: "lead", text: "New patient inquiry for teeth whitening captured", time: "2 min ago" },
-      { type: "schedule", text: "Cancellation slot filled from waitlist", time: "6 min ago" },
-      { type: "recall", text: "Recall appointment booked for Garcia family", time: "14 min ago" }
-    ]
+      { type: "lead", text: "New patient booked — Delta Dental PPO, $1,500 remaining benefits", time: "2 min ago" },
+      { type: "schedule", text: "Cancellation slot filled from waitlist in 4 minutes", time: "6 min ago" },
+      { type: "recall", text: "Garcia family — all 4 members booked back-to-back Tuesday", time: "11 min ago" },
+      { type: "treatment", text: "Crown treatment plan accepted — CareCredit $47/mo approved", time: "16 min ago" },
+      { type: "review", text: "5-star review: 'Best dental experience ever. No waiting!'", time: "22 min ago" },
+      { type: "insurance", text: "Year-end benefits alert sent to 89 patients with $500+ remaining", time: "28 min ago" }
+    ],
+
+    heroImage: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200&q=80",
+
+    dayStory: {
+      before: [
+        { time: '5:47 PM', event: 'Sarah searches "dentist near me accepting new patients"', detail: 'Hasn\'t been to a dentist in 3 years. Has Delta Dental through work.', icon: '🔍' },
+        { time: '5:48 PM', event: 'Finds your practice, calls the number', detail: '"Thank you for calling Bright Smile Dental. Our office hours are 8 to 5..."', icon: '📞' },
+        { time: '5:48 PM', event: 'Gets voicemail', detail: 'Your front desk left at 5. Sarah doesn\'t leave a message.', icon: '⚠️', status: 'warning' },
+        { time: '5:49 PM', event: 'Calls the next practice on Google', detail: 'They answer. "We accept Delta Dental! We have Tuesday at 2 PM."', icon: '😫', status: 'warning' },
+        { time: '5:50 PM', event: 'Books with your competitor', detail: 'New patient exam + cleaning + X-rays. Plus her husband and 2 kids.', icon: '📞', status: 'danger' },
+        { time: 'NEXT DAY', event: 'Your front desk sees a missed call', detail: 'No voicemail. No way to call back. Sarah is gone forever.', icon: '❌', status: 'lost' },
+        { time: 'RESULT', event: '4-person family worth $8,000+/year — LOST', detail: 'One missed call = one family = $40K+ in lifetime value. Gone.', icon: '💸', status: 'lost' },
+      ],
+      after: [
+        { time: '5:47 PM', event: 'Sarah searches "dentist near me accepting new patients"', detail: 'Hasn\'t been to a dentist in 3 years. Has Delta Dental through work.', icon: '🔍' },
+        { time: '5:48 PM', event: 'Finds your practice, calls the number', detail: 'AI answers: "Thanks for calling Bright Smile Dental! I can help you."', icon: '📞' },
+        { time: '5:49 PM', event: 'AI qualifies and verifies insurance', detail: '"Delta Dental PPO — great, we\'re in-network. Your cleaning is 100% covered."', icon: '⚡', status: 'active' },
+        { time: '5:50 PM', event: 'Appointment booked', detail: 'Tuesday 2 PM with Dr. Park. Digital paperwork texted to Sarah.', icon: '📅', status: 'success' },
+        { time: '5:51 PM', event: 'Family scheduling offered', detail: '"Would your husband and kids like back-to-back appointments?"', icon: '👨‍👩‍👧‍👦', status: 'success' },
+        { time: '5:52 PM', event: 'You get a notification', detail: '"New patient family: 4 Mitchells — Delta Dental PPO — $1,500 each in benefits — Tue 2-5 PM"', icon: '🔔', status: 'success' },
+        { time: 'RESULT', event: '4-person family worth $8,000+/year — BOOKED', detail: 'At 5:48 PM. While your front desk was at home. $40K+ lifetime value secured.', icon: '✅', status: 'won' },
+      ],
+    }
   },
 
   auto_dealership: {
@@ -683,15 +738,42 @@ export const INDUSTRIES = {
     ],
     integrations: ["DealerSocket", "VinSolutions", "CDK", "Reynolds & Reynolds", "Google Business"],
     painPoints: [
-      { title: "Internet Leads Go Cold", stat: "78%", description: "of internet leads never get proper follow-up", icon: "Globe" },
-      { title: "BDC Can't Keep Up", stat: "2.5hrs", description: "average response time to online leads", icon: "Clock" },
-      { title: "No-Shows Kill Showroom Traffic", stat: "30%", description: "of scheduled appointments are no-shows", icon: "UserX" }
+      { title: "1 Hour 38 Minutes to Respond", stat: "1hr 38m", description: "average dealership response time to internet leads — by then they've contacted 3 other dealers", icon: "Clock" },
+      { title: "74% Don't Include a Price", stat: "74%", description: "of dealer responses don't include pricing — the #1 thing the customer asked about", icon: "Globe" },
+      { title: "No-Shows Kill Your Saturday", stat: "30%", description: "of showroom appointments are no-shows — that's 6 wasted ups every weekend", icon: "UserX" },
+      { title: "BDC Turnover Bleeds Money", stat: "67%", description: "annual BDC turnover rate — you're constantly training people who leave in 8 months", icon: "UserMinus" }
     ],
     liveFeedExamples: [
-      { type: "lead", text: "New truck inquiry from AutoTrader captured", time: "1 min ago" },
-      { type: "schedule", text: "Test drive booked for 2024 Camry", time: "5 min ago" },
-      { type: "followup", text: "Day-3 follow-up sent to Williams lead", time: "12 min ago" }
-    ]
+      { type: "lead", text: "AutoTrader lead responded in 47 sec — VIN-specific pricing sent", time: "1 min ago" },
+      { type: "schedule", text: "Test drive booked: 2024 Camry LE, Saturday 11 AM with Brian", time: "4 min ago" },
+      { type: "trade", text: "Trade-in valued: 2020 Civic EX — $18,500 est. equity $7,200", time: "8 min ago" },
+      { type: "followup", text: "Be-back text sent: 'Toyota just announced 2.9% APR this month'", time: "13 min ago" },
+      { type: "equity", text: "Service-to-sales alert: customer in bay has $8K equity, same payment upgrade possible", time: "18 min ago" },
+      { type: "review", text: "5-star DealerRater review: 'Brian made it so easy. No pressure.'", time: "24 min ago" }
+    ],
+
+    heroImage: "https://images.unsplash.com/photo-1568844293986-8d0400f4745b?w=1200&q=80",
+
+    dayStory: {
+      before: [
+        { time: '8:47 PM', event: 'Mike submits a lead on AutoTrader for a 2024 Camry', detail: '"Interested in the Camry LE, stock #T4892. What\'s your best price?"', icon: '🔍' },
+        { time: '8:47 PM', event: 'Lead lands in your CRM', detail: 'Your BDC went home at 7. The lead sits.', icon: '📥' },
+        { time: '9:12 PM', event: 'Mike submits leads at 2 other dealers', detail: 'He\'s comparing. Whoever responds first with a real number wins.', icon: '⚠️', status: 'warning' },
+        { time: '9:15 PM', event: 'Competitor responds with price and payment', detail: '"Hi Mike, $27,485 out the door. $389/mo. When can you come in?"', icon: '😫', status: 'warning' },
+        { time: '9:20 PM', event: 'Mike books with the competitor', detail: 'Test drive Saturday at 11. He liked that they actually answered his question.', icon: '📞', status: 'danger' },
+        { time: '9:14 AM', event: 'Your BDC calls Mike the next morning', detail: '"Hi, thanks for your interest in..." — "Already bought one. Thanks."', icon: '❌', status: 'lost' },
+        { time: 'RESULT', event: '$3,500 front + back gross — LOST', detail: 'Because nobody responded for 12 hours. This happens 5-10 times per day.', icon: '💸', status: 'lost' },
+      ],
+      after: [
+        { time: '8:47 PM', event: 'Mike submits a lead on AutoTrader for a 2024 Camry', detail: '"Interested in the Camry LE, stock #T4892. What\'s your best price?"', icon: '🔍' },
+        { time: '8:47 PM', event: 'AI responds in 47 seconds', detail: 'VIN-specific: "$27,485 internet price. $389/mo. In stock, Celestial Silver."', icon: '⚡', status: 'active' },
+        { time: '8:48 PM', event: 'Mike engages — asks about trade', detail: 'AI: "What are you driving now? I can get you a preliminary value in 2 minutes."', icon: '💬', status: 'success' },
+        { time: '8:50 PM', event: 'Trade valued, payment adjusted', detail: '"Your 2020 Civic is worth ~$18,500. Net payment on the Camry: $267/mo."', icon: '💰', status: 'success' },
+        { time: '8:52 PM', event: 'Appointment booked', detail: 'Saturday 11 AM with Brian. Camry will be pulled up front, washed and gassed.', icon: '📅', status: 'success' },
+        { time: '8:53 PM', event: 'Brian gets a text', detail: '"New appointment: Mike Torres, Camry LE #T4892, has a trade, pre-qualified. Saturday 11 AM."', icon: '🔔', status: 'success' },
+        { time: 'RESULT', event: '$3,500 front + back gross — SOLD', detail: 'Responded in 47 seconds. With actual pricing. While your BDC was at home.', icon: '✅', status: 'won' },
+      ],
+    }
   },
 
   construction: {
@@ -771,15 +853,44 @@ export const INDUSTRIES = {
     ],
     integrations: ["Clio", "MyCase", "PracticePanther", "Lawmatics", "Google Business"],
     painPoints: [
-      { title: "Potential Clients Call Competitors", stat: "72%", description: "of legal prospects hire the first attorney who responds", icon: "PhoneMissed" },
-      { title: "Consultations Don't Convert", stat: "55%", description: "of free consultations never become retained clients", icon: "UserMinus" },
-      { title: "Client Communication Complaints", stat: "#1", description: "reason for bar complaints is poor client communication", icon: "MessageSquareX" }
+      { title: "35% of Calls Go Unanswered", stat: "35%", description: "of law firm calls go unanswered — that's 195 million missed calls industry-wide per year", icon: "PhoneMissed" },
+      { title: "First Attorney to Respond Wins", stat: "72%", description: "of legal prospects hire the first attorney who actually picks up the phone", icon: "Clock" },
+      { title: "#1 Bar Complaint: Communication", stat: "#1", description: "reason for bar complaints and malpractice claims is poor client communication", icon: "MessageSquareX" },
+      { title: "Consultations Don't Convert", stat: "55%", description: "of free consultations never become retained clients — no follow-up, no retainer", icon: "UserMinus" }
     ],
     liveFeedExamples: [
-      { type: "lead", text: "Personal injury inquiry qualified and booked", time: "3 min ago" },
-      { type: "followup", text: "Post-consultation retainer follow-up sent", time: "8 min ago" },
-      { type: "update", text: "Case status update sent to 12 active clients", time: "18 min ago" }
-    ]
+      { type: "lead", text: "Auto PI intake at 11:47 PM — rear-end collision, clear liability, ER visit", time: "2 min ago" },
+      { type: "schedule", text: "Consultation booked: Martinez, tomorrow 10 AM — case score 9/10", time: "5 min ago" },
+      { type: "retainer", text: "Retainer e-signed 2 hours after consultation — Santos case, est. $65K", time: "11 min ago" },
+      { type: "update", text: "Bi-weekly case updates sent to 47 active clients automatically", time: "16 min ago" },
+      { type: "deadline", text: "SOL alert: Johnson v. AllState — 30 days remaining, file NOW", time: "22 min ago" },
+      { type: "review", text: "5-star Google review: 'They answered at 11 PM when no one else would.'", time: "28 min ago" }
+    ],
+
+    heroImage: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&q=80",
+
+    dayStory: {
+      before: [
+        { time: '11:34 PM', event: 'Maria is rear-ended on I-10 driving home', detail: 'Other driver ran a red light. Police report filed. Maria has back and neck pain.', icon: '🚗' },
+        { time: '11:52 PM', event: 'Maria searches "car accident lawyer near me"', detail: 'In pain, scared, doesn\'t know what to do. Found your firm on Google.', icon: '🔍' },
+        { time: '11:53 PM', event: 'Calls your firm', detail: '"Thank you for calling Sterling & Associates. Our office hours are..."', icon: '📞' },
+        { time: '11:53 PM', event: 'Voicemail. Maria hangs up.', detail: 'She\'s not leaving a voicemail. She\'s calling the next lawyer on Google.', icon: '⚠️', status: 'warning' },
+        { time: '11:55 PM', event: 'Calls another firm — they answer', detail: '"I\'m so sorry about your accident. Let me get some details..."', icon: '😫', status: 'warning' },
+        { time: '11:58 PM', event: 'Maria retains the other firm', detail: 'They collected her info, explained the process, and emailed a retainer.', icon: '📞', status: 'danger' },
+        { time: '9:00 AM', event: 'Your office opens. You see the missed call.', detail: 'No voicemail. No way to call back. The case is gone.', icon: '❌', status: 'lost' },
+        { time: 'RESULT', event: '$65,000 case — LOST to a competitor', detail: 'You spent $400 on the Google ad that generated that click. Total waste.', icon: '💸', status: 'lost' },
+      ],
+      after: [
+        { time: '11:34 PM', event: 'Maria is rear-ended on I-10 driving home', detail: 'Other driver ran a red light. Police report filed. Maria has back and neck pain.', icon: '🚗' },
+        { time: '11:52 PM', event: 'Maria searches "car accident lawyer near me"', detail: 'In pain, scared, doesn\'t know what to do. Found your firm on Google.', icon: '🔍' },
+        { time: '11:53 PM', event: 'Calls your firm — AI answers instantly', detail: '"I\'m sorry about your accident, Maria. I\'m here to help. Are you safe right now?"', icon: '📞' },
+        { time: '11:55 PM', event: 'AI captures all case details', detail: 'Accident date, injuries, police report #, insurance info, photos requested via text', icon: '⚡', status: 'active' },
+        { time: '11:58 PM', event: 'Consultation booked', detail: 'Tomorrow 10 AM with Attorney Martinez. Prep checklist texted to Maria.', icon: '📅', status: 'success' },
+        { time: '11:59 PM', event: 'Attorney Martinez gets a full brief', detail: '"Auto PI, clear liability, ER visit, documented injuries. Score: 9/10. Est: $45-85K."', icon: '📱', status: 'success' },
+        { time: '12:01 AM', event: 'Maria feels heard and helped', detail: '"Don\'t give a statement to insurance. Keep all receipts. We\'re on your side."', icon: '🤝', status: 'success' },
+        { time: 'RESULT', event: '$65,000 case — SIGNED', detail: 'At 11:53 PM. Because you answered when the other 20 firms didn\'t.', icon: '✅', status: 'won' },
+      ],
+    }
   },
 
   real_estate: {
