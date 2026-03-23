@@ -16,7 +16,8 @@
   "problems": [
     {
       "id": "martine_free_trial_ai_team",
-      "title": "No 7-Day AI Team Handling Inbound Enquiries, Booking, Follow-Up, Payments, and Client Updates",
+      "title": "⭐ No 7-Day AI Team Handling Inbound Enquiries, Booking, Follow-Up, Payments, and Client Updates",
+      "highlighted": true,
       "description": "Martine was told we can build a 7-day free trial AI team that works across every department — but today there is no unified system doing that. New enquiries still depend on the owner being available. Bookings require manual back-and-forth. Leads who asked questions but never booked go cold. Outstanding invoices are not chased consistently. Clients waiting on reports or next steps are forced to call in for updates. For a niche built on trust, urgency, and reassurance, that means revenue leakage at every stage of the client journey.",
       "impact": "Lost bookings, slower cash collection, and anxious clients across the full pipeline — from first inquiry to final payment",
       "evidence": "Owner-operator workflow + multi-step inspection/report/remediation cycle creates obvious automation opportunities across intake, follow-up, payments, and updates"
@@ -61,8 +62,9 @@
   "systems": [
     {
       "id": "free_trial_ai_team",
-      "name": "7-Day Free Trial AI Operations Team",
+      "name": "⭐ 7-Day Free Trial AI Operations Team",
       "priority": "flagship",
+      "highlighted": true,
       "tagline": "Deploy an AI team across intake, booking, lead follow-up, payments, and client updates in 7 days",
       "role": "Cross-Department Trial Deployment",
       "what_it_does": [
@@ -191,6 +193,17 @@
     "monthlyAdSpend": 1800,
     "noShowRate": 9,
     "missedCallsEstimate": 17
+  },
+
+  "discoveryMetricLabels": {
+    "monthlyLeads": "Monthly Assessment Requests",
+    "avgJobValue": "Average Inspection / Test Value",
+    "employees": "Inspectors + Client Care Coverage",
+    "currentCloseRate": "Inquiry-to-Booked Inspection Rate",
+    "currentResponseTime": "Avg First Response Time",
+    "monthlyAdSpend": "Monthly Local Visibility Spend",
+    "missedCallsEstimate": "After-Hours Inquiries Missed / Month",
+    "noShowRate": "Report-to-Clearance Drop-Off Rate"
   },
 
   "personalization": {

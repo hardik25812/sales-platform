@@ -12,6 +12,30 @@ const defaultOptionalMetrics = [
   { key: 'missedCallsEstimate', label: 'Monthly Missed Calls', min: 0, max: 500, step: 5, format: 'number' },
 ];
 
+const defaultDiscoveryOutcomeLabels = {
+  currentLoss: 'Missed Opportunities',
+  response: 'Avg Lead Response',
+  goingCold: 'Leads Going Cold',
+  closeRate: 'Current Close Rate',
+  gain: 'Additional Revenue',
+  projectedResponse: 'Response Time',
+  projectedClose: 'Projected Close Rate',
+  fte: 'FTE Equivalent Savings',
+};
+
+const discoveryOutcomeLabelsByIndustry = {
+  indoor_environmental: {
+    currentLoss: 'Missed Assessment Revenue',
+    response: 'Avg Inquiry Response',
+    goingCold: 'Families Going Cold',
+    closeRate: 'Current Booking Rate',
+    gain: 'Recovered Revenue',
+    projectedResponse: 'First Response Speed',
+    projectedClose: 'Projected Booking Rate',
+    fte: 'Admin Load Recovered',
+  },
+};
+
 const discoveryConfig = {
   medspa: {
     primary: [
@@ -127,6 +151,20 @@ const discoveryConfig = {
       { key: 'missedCallsEstimate', label: 'Missed Inquiries per Month', min: 0, max: 500, step: 5, format: 'number' },
     ],
   },
+  indoor_environmental: {
+    primary: [
+      { key: 'monthlyLeads', label: 'Monthly Assessment Requests', min: 10, max: 180, step: 1, format: 'number' },
+      { key: 'avgJobValue', label: 'Average Inspection / Test Value', min: 150, max: 2500, step: 25, format: 'currency' },
+      { key: 'employees', label: 'Inspectors + Client Care Coverage', min: 1, max: 20, step: 1, format: 'number' },
+      { key: 'currentCloseRate', label: 'Inquiry-to-Booked Inspection Rate', min: 0.1, max: 0.85, step: 0.01, format: 'percent' },
+      { key: 'currentResponseTime', label: 'Avg First Response Time', min: 0.1, max: 24, step: 0.1, format: 'hours' },
+      { key: 'monthlyAdSpend', label: 'Monthly Local Visibility Spend', min: 0, max: 15000, step: 100, format: 'currency' },
+    ],
+    optional: [
+      { key: 'missedCallsEstimate', label: 'After-Hours Inquiries Missed / Month', min: 0, max: 120, step: 1, format: 'number' },
+      { key: 'noShowRate', label: 'Report-to-Clearance Drop-Off Rate', min: 0, max: 60, step: 1, format: 'percentageNumber' },
+    ],
+  },
 };
 
 export function getDiscoveryMetricGroups(industryId) {
@@ -135,6 +173,10 @@ export function getDiscoveryMetricGroups(industryId) {
     primary: config?.primary || defaultPrimaryMetrics,
     optional: config?.optional || defaultOptionalMetrics,
   };
+}
+
+export function getDiscoveryOutcomeLabels(industryId) {
+  return discoveryOutcomeLabelsByIndustry[industryId] || defaultDiscoveryOutcomeLabels;
 }
 
 export function getTeamUnitLabel(industryConfig) {

@@ -3,7 +3,7 @@ import { useDemo } from '../context/DemoContext';
 import { Slider } from '../components/ui/slider';
 import { CurrencyCounter, AnimatedCounter, PercentCounter } from './AnimatedCounter';
 import { DollarSign, Clock, PhoneMissed, TrendingUp, Zap, Users, BarChart3, ArrowRight, Search, Loader2, CheckCircle, AlertCircle, Globe } from 'lucide-react';
-import { getDiscoveryMetricGroups } from '../lib/industryPresentation';
+import { getDiscoveryMetricGroups, getDiscoveryOutcomeLabels } from '../lib/industryPresentation';
 
 function MetricInput({ label, value, onChange, min, max, step = 1, prefix = '', suffix = '', format = 'number', accentColor }) {
   const displayValue = format === 'currency'
@@ -51,6 +51,12 @@ export default function DiscoveryPanel() {
 
   const accent = industryConfig.color;
   const metricGroups = getDiscoveryMetricGroups(selectedIndustryId);
+  const outcomeLabels = getDiscoveryOutcomeLabels(selectedIndustryId);
+
+  // Override metric labels with saved profile's discoveryMetricLabels if available
+  const getMetricLabel = (metricKey, defaultLabel) => {
+    return savedProfile?.discoveryMetricLabels?.[metricKey] || defaultLabel;
+  };
 
   const handleLiveLookup = async () => {
     if (!lookupForm.businessName) {
@@ -372,7 +378,7 @@ export default function DiscoveryPanel() {
           {metricGroups.primary.map((metric) => (
             <MetricInput
               key={metric.key}
-              label={metric.label}
+              label={getMetricLabel(metric.key, metric.label)}
               value={metrics[metric.key] ?? 0}
               onChange={(v) => updateMetric(metric.key, v)}
               min={metric.min}
@@ -390,7 +396,7 @@ export default function DiscoveryPanel() {
           {metricGroups.optional.map((metric) => (
             <MetricInput
               key={metric.key}
-              label={metric.label}
+              label={getMetricLabel(metric.key, metric.label)}
               value={metrics[metric.key] ?? 0}
               onChange={(v) => updateMetric(metric.key, v)}
               min={metric.min}
@@ -418,7 +424,7 @@ export default function DiscoveryPanel() {
             <div className="glass-panel p-4 space-y-1">
               <div className="flex items-center gap-2 text-rose-400">
                 <DollarSign size={16} />
-                <span className="text-xs text-slate-500">Missed Opportunities</span>
+                <span className="text-xs text-slate-500">{outcomeLabels.currentLoss}</span>
               </div>
               <CurrencyCounter value={roi.losses.totalMonthlyLoss} className="text-2xl font-bold text-rose-400 font-mono" />
               <span className="text-xs text-slate-600">/month</span>
@@ -427,7 +433,7 @@ export default function DiscoveryPanel() {
             <div className="glass-panel p-4 space-y-1">
               <div className="flex items-center gap-2 text-amber-400">
                 <Clock size={16} />
-                <span className="text-xs text-slate-500">Avg Lead Response</span>
+                <span className="text-xs text-slate-500">{outcomeLabels.response}</span>
               </div>
               <p className="text-2xl font-bold text-amber-400 font-mono">
                 <AnimatedCounter value={metrics.currentResponseTime} decimals={1} /> <span className="text-sm">hours</span>
@@ -437,7 +443,7 @@ export default function DiscoveryPanel() {
             <div className="glass-panel p-4 space-y-1">
               <div className="flex items-center gap-2 text-orange-400">
                 <PhoneMissed size={16} />
-                <span className="text-xs text-slate-500">Leads Going Cold</span>
+                <span className="text-xs text-slate-500">{outcomeLabels.goingCold}</span>
               </div>
               <p className="text-2xl font-bold text-orange-400 font-mono">
                 <AnimatedCounter value={roi.summary.leadsGoingCold} />
@@ -448,7 +454,7 @@ export default function DiscoveryPanel() {
             <div className="glass-panel p-4 space-y-1">
               <div className="flex items-center gap-2 text-slate-400">
                 <BarChart3 size={16} />
-                <span className="text-xs text-slate-500">Current Close Rate</span>
+                <span className="text-xs text-slate-500">{outcomeLabels.closeRate}</span>
               </div>
               <p className="text-2xl font-bold text-slate-300 font-mono">
                 <PercentCounter value={metrics.currentCloseRate * 100} />
@@ -470,7 +476,7 @@ export default function DiscoveryPanel() {
             <div className="glass-panel p-4 space-y-1">
               <div className="flex items-center gap-2 text-emerald-400">
                 <TrendingUp size={16} />
-                <span className="text-xs text-slate-500">Additional Revenue</span>
+                <span className="text-xs text-slate-500">{outcomeLabels.gain}</span>
               </div>
               <p className="text-2xl font-bold text-emerald-400 font-mono">
                 +<CurrencyCounter value={roi.gains.totalMonthlyGain} className="text-2xl font-bold text-emerald-400 font-mono" />
@@ -481,7 +487,7 @@ export default function DiscoveryPanel() {
             <div className="glass-panel p-4 space-y-1">
               <div className="flex items-center gap-2 text-cyan-400">
                 <Zap size={16} />
-                <span className="text-xs text-slate-500">Response Time</span>
+                <span className="text-xs text-slate-500">{outcomeLabels.projectedResponse}</span>
               </div>
               <p className="text-2xl font-bold text-cyan-400 font-mono">{roi.projectedResponseTime}</p>
             </div>
@@ -489,7 +495,7 @@ export default function DiscoveryPanel() {
             <div className="glass-panel p-4 space-y-1">
               <div className="flex items-center gap-2 text-blue-400">
                 <BarChart3 size={16} />
-                <span className="text-xs text-slate-500">Projected Close Rate</span>
+                <span className="text-xs text-slate-500">{outcomeLabels.projectedClose}</span>
               </div>
               <p className="text-2xl font-bold text-blue-400 font-mono">
                 <PercentCounter value={roi.projectedCloseRate * 100} />
@@ -499,7 +505,7 @@ export default function DiscoveryPanel() {
             <div className="glass-panel p-4 space-y-1">
               <div className="flex items-center gap-2 text-violet-400">
                 <Users size={16} />
-                <span className="text-xs text-slate-500">FTE Equivalent Savings</span>
+                <span className="text-xs text-slate-500">{outcomeLabels.fte}</span>
               </div>
               <p className="text-2xl font-bold text-violet-400 font-mono">
                 <AnimatedCounter value={roi.fteEquivalent} decimals={1} /> <span className="text-sm">FTE</span>

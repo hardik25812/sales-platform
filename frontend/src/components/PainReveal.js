@@ -42,21 +42,18 @@ export default function PainReveal() {
     icon: cardIconMap[card.icon] || Clock,
   }));
 
-  const reputationCard = savedProfile ? {
-    icon: Star,
-    title: 'GOOGLE REVIEWS LEFT ON THE TABLE',
-    highlight: '50–70%',
-    description: 'of settled clients are never systematically asked for a Google review — leaving the firm invisible to the next injured victim searching online.',
-    calculation: 'Personal injury intakes start on Google. The firm with more credible reviews wins the call before a consultation is ever booked.',
-    cost: Math.round((metrics.monthlyLeads || 20) * (metrics.avgJobValue || 15000) * 0.04),
-    costLabel: 'in estimated new intakes lost monthly to competitors with stronger Google presence',
-    barPercent: 65,
-    isFlagship: true,
-  } : null;
-
-  const painCards = reputationCard
-    ? [reputationCard, ...basePainCards.slice(0, 3)]
-    : basePainCards;
+  // Use saved profile problems if available
+  const painCards = savedProfile?.problems ? savedProfile.problems.map((problem, idx) => ({
+    icon: problem.highlighted ? Star : (idx === 0 ? PhoneOff : idx === 1 ? Clock : idx === 2 ? FileX : UserX),
+    title: problem.title.replace('⭐ ', '').toUpperCase(),
+    highlight: problem.highlighted ? '7-Day Free Trial' : (idx === 0 ? '17' : idx === 1 ? '41%' : '25'),
+    description: problem.description,
+    calculation: problem.evidence || problem.impact,
+    cost: Math.round(roi.losses.totalMonthlyLoss / Math.max(savedProfile.problems.length, 1)),
+    costLabel: problem.impact,
+    barPercent: problem.highlighted ? 85 : 60 - (idx * 5),
+    isFlagship: !!problem.highlighted,
+  })) : basePainCards;
 
   const totalMonthlyLoss = painCards.reduce((acc, card) => acc + card.cost, 0);
   const annualLoss = totalMonthlyLoss * 12;
