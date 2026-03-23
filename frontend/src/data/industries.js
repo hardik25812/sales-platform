@@ -813,12 +813,14 @@ export const INDUSTRIES = {
     roi: { leadResponseImprovement: 0.78, conversionLift: 0.15, missedLeadRecovery: 0.25, avgResponseTimeBefore: "5 hours", avgResponseTimeAfter: "47 seconds", reviewIncreasePercent: 200 },
     
     defaults: { 
-      monthly_estimates_sent: 60,
-      avg_job_value: 12000,
-      estimate_to_job_rate: 25,
-      projects_active: 8,
-      avg_project_delay_days: 5,
-      margin_loss_from_changes: 15
+      monthlyLeads: 60,
+      avgJobValue: 12000,
+      employees: 18,
+      currentCloseRate: 0.25,
+      currentResponseTime: 5.0,
+      monthlyAdSpend: 3500,
+      noShowRate: 15,
+      missedCallsEstimate: 50
     },
 
     caseStudies: [
@@ -1052,14 +1054,14 @@ export const INDUSTRIES = {
     roi: { leadResponseImprovement: 0.80, conversionLift: 0.18, missedLeadRecovery: 0.26, avgResponseTimeBefore: "6 hours", avgResponseTimeAfter: "52 seconds", reviewIncreasePercent: 220 },
     
     defaults: { 
-      monthly_estimates_sent: 45,
-      avg_job_value: 3500,
-      estimate_to_job_rate: 22,
-      recurring_contracts: 85,
-      avg_contract_value: 2400,
-      crews: 3,
-      monthly_services: 340,
-      seasonal_revenue_drop: 40
+      monthlyLeads: 100,
+      avgJobValue: 3500,
+      employees: 10,
+      currentCloseRate: 0.15,
+      currentResponseTime: 6.0,
+      monthlyAdSpend: 2500,
+      noShowRate: 10,
+      missedCallsEstimate: 65
     },
 
     caseStudies: [

@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 
 export function AnimatedCounter({ value, prefix = '', suffix = '', duration = 800, decimals = 0, className = '' }) {
-  const [display, setDisplay] = useState(value);
-  const prevValue = useRef(value);
+  const safeValue = typeof value === 'number' && !isNaN(value) ? value : 0;
+  const [display, setDisplay] = useState(safeValue);
+  const prevValue = useRef(safeValue);
   const animFrame = useRef(null);
 
   useEffect(() => {
     const start = prevValue.current;
-    const end = value;
+    const end = safeValue;
     const diff = end - start;
     if (Math.abs(diff) < 0.01) { setDisplay(end); return; }
     const startTime = performance.now();
@@ -25,12 +26,12 @@ export function AnimatedCounter({ value, prefix = '', suffix = '', duration = 80
     };
 
     animFrame.current = requestAnimationFrame(animate);
-    prevValue.current = value;
+    prevValue.current = safeValue;
 
     return () => {
       if (animFrame.current) cancelAnimationFrame(animFrame.current);
     };
-  }, [value, duration]);
+  }, [safeValue, duration]);
 
   const formatted = decimals > 0
     ? display.toFixed(decimals)
