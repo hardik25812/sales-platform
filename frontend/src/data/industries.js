@@ -784,40 +784,101 @@ export const INDUSTRIES = {
     colorSecondary: "#EA580C",
     gradient: "from-orange-500 to-amber-500",
     glow: "rgba(249,115,22,0.3)",
-    tagline: "Win more bids, finish more projects",
-    subtitle: "6 AI agents available",
-    agents: [
-      { name: "Lead Capture Agent", icon: "PhoneIncoming", dept: "Sales", description: "Captures every remodeling inquiry instantly", status: "active", tasks: ["Answers calls and forms 24/7", "Qualifies project scope and budget", "Collects project photos", "Schedules consultations"], kpis: { primary: "Leads Captured", secondary: "Qualification Rate" }, metric: { value: 96, unit: "%", label: "Capture Rate" } },
-      { name: "Bid Follow-Up Agent", icon: "FileText", dept: "Sales", description: "Follows up on every bid until decision", status: "active", tasks: ["Sends bids same-day", "Multi-touch follow-up", "Handles objections", "Alerts on hot opportunities"], kpis: { primary: "Follow-Up Rate", secondary: "Win Rate" }, metric: { value: 100, unit: "%", label: "Follow-Up" } },
-      { name: "Project Scheduling Agent", icon: "CalendarCheck", dept: "Operations", description: "Manages project timelines and crew scheduling", status: "active", tasks: ["Schedules crew assignments", "Sends client updates", "Manages material deliveries", "Tracks milestones"], kpis: { primary: "On-Time Rate", secondary: "Client Satisfaction" }, metric: { value: 91, unit: "%", label: "On-Time" } },
-      { name: "Client Update Agent", icon: "MessageSquare", dept: "Operations", description: "Keeps clients informed throughout the project", status: "active", tasks: ["Sends weekly progress updates", "Shares progress photos", "Handles change orders", "Manages expectations"], kpis: { primary: "Update Frequency", secondary: "Satisfaction" }, metric: { value: 4.8, unit: "stars", label: "Satisfaction" } },
-      { name: "Review Agent", icon: "Star", dept: "Marketing", description: "Collects reviews post-project", status: "active", tasks: ["Sends review requests at project completion", "Follows up on non-responses", "Manages online reputation"], kpis: { primary: "Reviews", secondary: "Rating" }, metric: { value: 4.7, unit: "stars", label: "Avg Rating" } },
-      { name: "Subcontractor Agent", icon: "Users", dept: "Operations", description: "Manages subcontractor communication", status: "active", tasks: ["Coordinates sub schedules", "Sends scope and requirements", "Tracks sub completion", "Manages payments"], kpis: { primary: "Coordination Rate", secondary: "Sub Reliability" }, metric: { value: 88, unit: "%", label: "Reliability" } }
-    ],
+    tagline: "Turn sent estimates into signed contracts",
+    subtitle: "7 operational systems",
+    usesSystemsApproach: true,
+
+    // New construction-specific metrics (replaces leads/employees)
+    constructionMetrics: {
+      monthly_estimates_sent: 60,
+      avg_job_value: 12000,
+      estimate_to_job_rate: 25,
+      projects_active: 8,
+      avg_project_delay_days: 5,
+      margin_loss_from_changes: 15
+    },
+
+    // Real construction workflow
     workflow: [
-      { step: "Inquiry", agent: "Lead Agent", icon: "PhoneIncoming", before: "Missed calls during jobs", after: "Instant capture 24/7", beforeTime: "5+ hours", afterTime: "60 seconds", dropoff: { before: 60, after: 5 } },
-      { step: "Consultation", agent: "Scheduling Agent", icon: "CalendarCheck", before: "Phone tag for weeks", after: "Auto-booked", beforeTime: "1-2 weeks", afterTime: "Same day", dropoff: { before: 30, after: 7 } },
-      { step: "Bid", agent: "Bid Agent", icon: "FileText", before: "Bids take 1-2 weeks", after: "Same-week bids + follow-up", beforeTime: "1-2 weeks", afterTime: "2-3 days", dropoff: { before: 45, after: 12 } },
-      { step: "Build", agent: "Project Agent", icon: "HardHat", before: "Radio silence for clients", after: "Weekly auto-updates", beforeTime: "Sporadic", afterTime: "Weekly", dropoff: { before: 10, after: 2 } },
-      { step: "Complete", agent: "Client Agent", icon: "CheckCircle", before: "Punch list delays", after: "Structured completion process", beforeTime: "Delayed", afterTime: "Systematic", dropoff: { before: 5, after: 1 } },
-      { step: "Review", agent: "Review Agent", icon: "Star", before: "Rarely asked", after: "Every project", beforeTime: "Rarely", afterTime: "Automated", dropoff: { before: 0, after: 0 } }
+      { step: "Lead", system: "Rapid Response System", icon: "PhoneIncoming", before: "Missed calls while on job sites", after: "Instant capture 24/7, qualified in 3 min", beforeTime: "5+ hours", afterTime: "47 seconds", dropoff: { before: 60, after: 5 } },
+      { step: "Estimate", system: "Fast Estimate System", icon: "Calculator", before: "Estimates take 5-7 days", after: "Same-day professional estimates", beforeTime: "5-7 days", afterTime: "Same day", dropoff: { before: 35, after: 8 } },
+      { step: "Follow-Up", system: "Bid Follow-Up System", icon: "RefreshCw", before: "Maybe 1 follow-up, then forgotten", after: "Automated 5-touch sequence", beforeTime: "1 attempt", afterTime: "5 touches", dropoff: { before: 50, after: 12 } },
+      { step: "Job Won", system: "Change Order System", icon: "FileCheck", before: "Handshake deal, scope unclear", after: "Documented scope, change tracking ready", beforeTime: "Verbal", afterTime: "Documented", dropoff: { before: 10, after: 2 } },
+      { step: "Build", system: "Client Update System", icon: "HardHat", before: "Radio silence, clients anxious", after: "Daily updates, weekly summaries", beforeTime: "Sporadic", afterTime: "Daily", dropoff: { before: 8, after: 1 } },
+      { step: "Change Orders", system: "Change Order System", icon: "FileText", before: "Scope creep kills margins", after: "Every change logged and approved", beforeTime: "Undocumented", afterTime: "100% tracked", dropoff: { before: 15, after: 0 } },
+      { step: "Completion", system: "Project Timeline System", icon: "CheckCircle", before: "Punch list drags on", after: "Structured completion process", beforeTime: "Weeks", afterTime: "Days", dropoff: { before: 5, after: 1 } },
+      { step: "Review", system: "Review Collection System", icon: "Star", before: "Rarely asked for reviews", after: "Systematic collection every project", beforeTime: "Rarely", afterTime: "Every job", dropoff: { before: 0, after: 0 } }
     ],
-    roi: { leadResponseImprovement: 0.78, conversionLift: 0.09, missedLeadRecovery: 0.20, avgResponseTimeBefore: "5 hours", avgResponseTimeAfter: "60 seconds", reviewIncreasePercent: 200 },
-    defaults: { monthlyLeads: 80, avgJobValue: 45000, employees: 18, currentCloseRate: 0.12, currentResponseTime: 5.0, monthlyAdSpend: 3500, noShowRate: 15, missedCallsEstimate: 50 },
+
+    roi: { leadResponseImprovement: 0.78, conversionLift: 0.15, missedLeadRecovery: 0.25, avgResponseTimeBefore: "5 hours", avgResponseTimeAfter: "47 seconds", reviewIncreasePercent: 200 },
+    
+    defaults: { 
+      monthly_estimates_sent: 60,
+      avg_job_value: 12000,
+      estimate_to_job_rate: 25,
+      projects_active: 8,
+      avg_project_delay_days: 5,
+      margin_loss_from_changes: 15
+    },
+
     caseStudies: [
-      { company: "Cornerstone Builders", location: "Nashville, TN", employees: 20, result: "12% to 22% bid win rate in 90 days", savings: "$65,000/month in additional revenue", detail: "AI follow-up on every bid transformed their close rate. Client update automation eliminated 90% of project management headaches.", metrics: { closeBefore: 12, closeAfter: 22, days: 90, monthlySavings: 65000 } }
+      { company: "Cornerstone Builders", location: "Nashville, TN", employees: 20, result: "12% to 28% bid win rate in 90 days", savings: "$78,000/month in additional revenue", detail: "Automated follow-up on every estimate transformed their close rate. Change order tracking protected $4,200/month in margins.", metrics: { closeBefore: 12, closeAfter: 28, days: 90, monthlySavings: 78000 } },
+      { company: "Summit Remodeling", location: "Austin, TX", employees: 14, result: "Cut estimate turnaround from 7 days to same-day", savings: "$52,000/month in captured jobs", detail: "Fast estimates + systematic follow-up meant they won jobs competitors never even quoted.", metrics: { closeBefore: 15, closeAfter: 31, days: 60, monthlySavings: 52000 } }
     ],
+
     integrations: ["Buildertrend", "CoConstruct", "Jobber", "CompanyCam", "Google Business"],
+
+    // Personalized pain points based on metrics
     painPoints: [
-      { title: "Bids Sent Into the Void", stat: "55%", description: "of construction bids get zero follow-up", icon: "FileX" },
-      { title: "Leads Lost on Job Sites", stat: "5+ hrs", description: "average response time when crews are working", icon: "Clock" },
-      { title: "Client Communication Gaps", stat: "41%", description: "of negative reviews mention poor communication", icon: "MessageSquareX" }
+      { title: "Bids Sent But Never Followed Up", stat: "50%", description: "of your estimates never get a single follow-up — that's $360K in quotes sitting in inboxes", icon: "FileX" },
+      { title: "Slow Estimate Turnaround", stat: "5+ days", description: "average time to send an estimate — homeowners have already called 3 other contractors", icon: "Clock" },
+      { title: "Scope Creep Without Tracking", stat: "15%", description: "of your margin disappears to undocumented changes — 'while you're here, can you also...'", icon: "TrendingDown" },
+      { title: "Subcontractor Coordination Issues", stat: "2-3 days", description: "average delay per project from sub no-shows and miscommunication", icon: "Users" },
+      { title: "Project Delays from Miscommunication", stat: "5 days", description: "average delay per project — costing you $2,500+ in overhead and reputation", icon: "Calendar" },
+      { title: "Clients Constantly Asking for Updates", stat: "8+ calls", description: "per project asking 'what's happening?' — 4 hours/week of your time gone", icon: "Phone" },
+      { title: "Lost Jobs Due to Slow Response", stat: "30%", description: "of leads go to whoever responds first — you're on a job site, not checking your phone", icon: "PhoneMissed" },
+      { title: "Admin Overload", stat: "15+ hrs/week", description: "spent on quotes, updates, scheduling, and paperwork instead of building", icon: "FileText" }
     ],
+
     liveFeedExamples: [
-      { type: "lead", text: "Kitchen remodel inquiry captured from Houzz", time: "4 min ago" },
-      { type: "followup", text: "Bid follow-up #2 sent for bathroom renovation", time: "11 min ago" },
-      { type: "update", text: "Weekly progress update sent to Thompson project", time: "20 min ago" }
-    ]
+      { type: "estimate", text: "Kitchen remodel estimate sent — $47,000 — tracking started", time: "2 min ago" },
+      { type: "followup", text: "Day 3 follow-up sent: 'We have an opening next week...'", time: "8 min ago" },
+      { type: "change_order", text: "Change order approved: +$1,680 for recessed lighting", time: "15 min ago" },
+      { type: "update", text: "Daily progress update sent to Johnson project with photos", time: "22 min ago" },
+      { type: "hot_lead", text: "🔥 HOT LEAD: Client replied 'Can we start next week?'", time: "31 min ago" },
+      { type: "review", text: "5-star review collected: 'Best contractor we've ever worked with'", time: "45 min ago" }
+    ],
+
+    heroImage: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80",
+
+    // Personalization for sales approach
+    personalization: {
+      tone: "reliable",
+      toneDescription: "Straightforward, no-BS, gets the job done",
+      demoAngle: "Show them how many estimates are sitting unfollowed in their inbox right now",
+      hookQuestion: "How many estimates did you send last month that you never heard back from?",
+      painPoint: "You're losing half your potential revenue because you're too busy working to follow up",
+      valueProposition: "Turn your sent estimates into signed contracts — automatically"
+    },
+
+    dayStory: {
+      before: [
+        { time: '10:15 AM', event: 'Homeowner submits kitchen remodel inquiry', detail: 'Found you on Google, wants a quote for full kitchen renovation', icon: '🔍' },
+        { time: '10:15 AM', event: 'Form sits in your inbox', detail: 'You\'re on a job site running a crew. Phone is in the truck.', icon: '⚠️', status: 'warning' },
+        { time: '2:30 PM', event: 'You finally see the inquiry', detail: 'Between jobs, checking email. 4 hours have passed.', icon: '📱' },
+        { time: '2:35 PM', event: 'You call back — no answer', detail: 'Leave a voicemail. They\'re at work now.', icon: '📞', status: 'warning' },
+        { time: 'NEXT DAY', event: 'Homeowner already got 3 quotes', detail: 'Other contractors responded within an hour. You\'re too late.', icon: '❌', status: 'lost' },
+        { time: 'RESULT', event: '$45,000 kitchen remodel — LOST', detail: 'Because you were busy doing your job.', icon: '💸', status: 'lost' }
+      ],
+      after: [
+        { time: '10:15 AM', event: 'Homeowner submits kitchen remodel inquiry', detail: 'Found you on Google, wants a quote for full kitchen renovation', icon: '🔍' },
+        { time: '10:15 AM', event: 'Rapid Response System activates', detail: 'Instant text: "Thanks for reaching out! I\'d love to help with your kitchen..."', icon: '⚡', status: 'active' },
+        { time: '10:18 AM', event: 'Lead qualified automatically', detail: 'Project type, timeline, budget range collected. Site visit offered.', icon: '📋', status: 'success' },
+        { time: '10:20 AM', event: 'Site visit booked', detail: 'Tomorrow 4 PM — calendar confirmed, reminder scheduled', icon: '📅', status: 'success' },
+        { time: '10:21 AM', event: 'You get a notification', detail: '"New qualified lead: Kitchen remodel, $40-50K budget, site visit tomorrow 4 PM"', icon: '🔔', status: 'success' },
+        { time: 'RESULT', event: '$45,000 kitchen remodel — CAPTURED', detail: 'In 6 minutes. While you were running your crew.', icon: '✅', status: 'won' }
+      ]
+    }
   },
 
   law_firm: {
@@ -945,40 +1006,106 @@ export const INDUSTRIES = {
     colorSecondary: "#16A34A",
     gradient: "from-green-500 to-emerald-400",
     glow: "rgba(34,197,94,0.3)",
-    tagline: "Grow your book of business on autopilot",
-    subtitle: "6 AI agents available",
-    agents: [
-      { name: "Lead Capture Agent", icon: "PhoneIncoming", dept: "Sales", description: "Captures every landscaping inquiry instantly", status: "active", tasks: ["Answers calls and forms 24/7", "Qualifies project type and scope", "Collects property details", "Schedules on-site estimates"], kpis: { primary: "Leads Captured", secondary: "Qualification Rate" }, metric: { value: 96, unit: "%", label: "Capture Rate" } },
-      { name: "Estimate Agent", icon: "Calculator", dept: "Sales", description: "Generates and follows up on estimates", status: "active", tasks: ["Creates estimates from site visits", "Multi-touch follow-up", "Seasonal promotion offers", "Handles objections"], kpis: { primary: "Estimates Sent", secondary: "Close Rate" }, metric: { value: 100, unit: "%", label: "Follow-Up" } },
-      { name: "Scheduling Agent", icon: "CalendarCheck", dept: "Operations", description: "Manages crew scheduling and routing", status: "active", tasks: ["Optimizes daily crew routes", "Manages recurring service schedules", "Handles weather rescheduling", "Sends customer arrival alerts"], kpis: { primary: "Jobs/Day", secondary: "Route Efficiency" }, metric: { value: 28, unit: "%", label: "Efficiency" } },
-      { name: "Recurring Service Agent", icon: "RefreshCw", dept: "Revenue", description: "Manages and grows recurring contracts", status: "active", tasks: ["Books seasonal services", "Manages contract renewals", "Upsells additional services", "Sends seasonal reminders"], kpis: { primary: "Contract Value", secondary: "Retention" }, metric: { value: 85, unit: "%", label: "Retention" } },
-      { name: "Review Agent", icon: "Star", dept: "Marketing", description: "Generates reviews from completed projects", status: "active", tasks: ["Review requests post-project", "Shares before/after photos", "Manages online reputation"], kpis: { primary: "Reviews", secondary: "Rating" }, metric: { value: 4.7, unit: "stars", label: "Avg Rating" } },
-      { name: "Weather Alert Agent", icon: "CloudRain", dept: "Operations", description: "Manages weather-related communication", status: "active", tasks: ["Sends weather delay notifications", "Auto-reschedules affected jobs", "Promotes weather-related services", "Manages emergency storm cleanup"], kpis: { primary: "Reschedule Speed", secondary: "Client Satisfaction" }, metric: { value: 95, unit: "%", label: "Notification" } }
-    ],
+    tagline: "Capture every lead, close every estimate, renew every contract",
+    subtitle: "7 operational systems",
+    usesSystemsApproach: true,
+
+    // New landscaping-specific metrics (replaces leads/employees)
+    landscapingMetrics: {
+      monthly_estimates_sent: 45,
+      avg_job_value: 3500,
+      estimate_to_job_rate: 22,
+      recurring_contracts: 85,
+      avg_contract_value: 2400,
+      crews: 3,
+      monthly_services: 340,
+      seasonal_revenue_drop: 40
+    },
+
+    // Real landscaping workflow
     workflow: [
-      { step: "Inquiry", agent: "Lead Agent", icon: "PhoneIncoming", before: "Missed while mowing", after: "Instant capture 24/7", beforeTime: "6+ hours", afterTime: "60 seconds", dropoff: { before: 65, after: 5 } },
-      { step: "Estimate", agent: "Estimate Agent", icon: "Calculator", before: "1-2 week wait", after: "Same-week estimate + follow-up", beforeTime: "1-2 weeks", afterTime: "2-3 days", dropoff: { before: 40, after: 10 } },
-      { step: "Schedule", agent: "Scheduling Agent", icon: "CalendarCheck", before: "Manual crew dispatch", after: "Route-optimized scheduling", beforeTime: "Manual", afterTime: "Automated", dropoff: { before: 10, after: 2 } },
-      { step: "Service", agent: "Crew Agent", icon: "TreePine", before: "Inconsistent communication", after: "Customer alerts and updates", beforeTime: "Sporadic", afterTime: "Every visit", dropoff: { before: 5, after: 1 } },
-      { step: "Retain", agent: "Recurring Agent", icon: "RefreshCw", before: "Seasonal churn", after: "Auto-renewal + upsells", beforeTime: "High churn", afterTime: "Auto-renewed", dropoff: { before: 25, after: 5 } },
-      { step: "Review", agent: "Review Agent", icon: "Star", before: "Rarely asked", after: "Every project", beforeTime: "Rarely", afterTime: "Automated", dropoff: { before: 0, after: 0 } }
+      { step: "Lead", system: "Rapid Response System", icon: "PhoneIncoming", before: "Missed calls while on properties", after: "Instant capture 24/7, qualified in 3 min", beforeTime: "6+ hours", afterTime: "52 seconds", dropoff: { before: 65, after: 5 } },
+      { step: "Estimate", system: "Estimate Follow-Up System", icon: "Calculator", before: "Estimates take 1-2 weeks", after: "Same-week estimates with tracking", beforeTime: "1-2 weeks", afterTime: "2-3 days", dropoff: { before: 40, after: 10 } },
+      { step: "Follow-Up", system: "Estimate Follow-Up System", icon: "RefreshCw", before: "Maybe 1 follow-up, then forgotten", after: "Automated 5-touch sequence", beforeTime: "1 attempt", afterTime: "5 touches", dropoff: { before: 52, after: 15 } },
+      { step: "Schedule", system: "Route Optimization System", icon: "CalendarCheck", before: "Manual scheduling, inefficient routes", after: "Optimized routes, 1.5 hrs saved/day", beforeTime: "Manual", afterTime: "Automated", dropoff: { before: 10, after: 2 } },
+      { step: "Service", system: "Service Update System", icon: "TreePine", before: "Clients wondering when you're coming", after: "On-the-way alerts, completion photos", beforeTime: "No updates", afterTime: "Every visit", dropoff: { before: 5, after: 1 } },
+      { step: "Retain", system: "Contract Renewal System", icon: "RefreshCw", before: "38% of contracts lapse", after: "Automated renewal, 89% retention", beforeTime: "62% retention", afterTime: "89% retention", dropoff: { before: 38, after: 11 } },
+      { step: "Seasonal", system: "Seasonal Revenue System", icon: "Leaf", before: "40% revenue drop in off-season", after: "Year-round service promotion", beforeTime: "Reactive", afterTime: "Proactive", dropoff: { before: 40, after: 15 } },
+      { step: "Review", system: "Review Collection System", icon: "Star", before: "Rarely asked for reviews", after: "Systematic collection, 6+/month", beforeTime: "2/month", afterTime: "6+/month", dropoff: { before: 0, after: 0 } }
     ],
-    roi: { leadResponseImprovement: 0.80, conversionLift: 0.10, missedLeadRecovery: 0.22, avgResponseTimeBefore: "6 hours", avgResponseTimeAfter: "60 seconds", reviewIncreasePercent: 220 },
-    defaults: { monthlyLeads: 100, avgJobValue: 3500, employees: 10, currentCloseRate: 0.15, currentResponseTime: 6.0, monthlyAdSpend: 2500, noShowRate: 10, missedCallsEstimate: 65 },
+
+    roi: { leadResponseImprovement: 0.80, conversionLift: 0.18, missedLeadRecovery: 0.26, avgResponseTimeBefore: "6 hours", avgResponseTimeAfter: "52 seconds", reviewIncreasePercent: 220 },
+    
+    defaults: { 
+      monthly_estimates_sent: 45,
+      avg_job_value: 3500,
+      estimate_to_job_rate: 22,
+      recurring_contracts: 85,
+      avg_contract_value: 2400,
+      crews: 3,
+      monthly_services: 340,
+      seasonal_revenue_drop: 40
+    },
+
     caseStudies: [
-      { company: "Green Valley Landscaping", location: "Charlotte, NC", employees: 14, result: "15% to 28% close rate, 40% more recurring contracts", savings: "$24,000/month in additional revenue", detail: "AI captured all calls while crews were on properties. Route optimization saved 2hrs of drive time per crew per day.", metrics: { closeBefore: 15, closeAfter: 28, days: 60, monthlySavings: 24000 } }
+      { company: "Green Valley Landscaping", location: "Charlotte, NC", employees: 14, result: "15% to 32% close rate, 89% contract retention", savings: "$34,000/month in additional revenue", detail: "Automated follow-up on every estimate + contract renewal system transformed their business. Route optimization saved 1.5 hrs/day per crew.", metrics: { closeBefore: 15, closeAfter: 32, days: 60, monthlySavings: 34000 } },
+      { company: "Evergreen Landscapes", location: "Denver, CO", employees: 18, result: "Eliminated 40% seasonal revenue drop", savings: "$28,000/month in off-season revenue", detail: "Seasonal campaigns + proactive service promotion kept revenue steady year-round.", metrics: { closeBefore: 18, closeAfter: 29, days: 90, monthlySavings: 28000 } }
     ],
+
     integrations: ["Jobber", "LMN", "Service Autopilot", "Aspire", "Google Business"],
+
+    // Personalized pain points based on metrics
     painPoints: [
-      { title: "Calls Missed in the Field", stat: "70%", description: "of calls missed while crews are on properties", icon: "PhoneMissed" },
-      { title: "Seasonal Revenue Swings", stat: "40%", description: "revenue drop in off-season without proactive sales", icon: "TrendingDown" },
-      { title: "Estimate Follow-Up Falls Off", stat: "52%", description: "of landscaping estimates never get followed up", icon: "FileX" }
+      { title: "Calls Missed While You're on Properties", stat: "70%", description: "of calls go unanswered when your crews are working — leads calling your competitors instead", icon: "PhoneMissed" },
+      { title: "Estimates Never Followed Up", stat: "52%", description: "of your estimates sit in inboxes with zero follow-up — that's $82K in quotes going cold", icon: "FileX" },
+      { title: "Seasonal Revenue Swings", stat: "40%", description: "revenue drop in off-season because you're not proactively selling year-round services", icon: "TrendingDown" },
+      { title: "Maintenance Contracts Lapsing", stat: "38%", description: "of contracts don't renew because nobody follows up — that's $78K walking away", icon: "UserMinus" },
+      { title: "Weather Delays Cause Chaos", stat: "4+ hrs", description: "spent rescheduling and calling clients every time it rains", icon: "CloudRain" },
+      { title: "Crews Wasting Time Driving", stat: "2+ hrs/day", description: "per crew in unnecessary drive time from unoptimized routes", icon: "Car" },
+      { title: "Slow Estimate Turnaround", stat: "1-2 weeks", description: "to send an estimate — homeowners have already hired someone else", icon: "Clock" },
+      { title: "Not Collecting Reviews", stat: "2/month", description: "reviews collected when you should be getting 8+ — losing to competitors with better ratings", icon: "Star" }
     ],
+
     liveFeedExamples: [
-      { type: "lead", text: "Patio installation inquiry captured", time: "3 min ago" },
-      { type: "schedule", text: "Lawn maintenance route optimized for Crew B", time: "10 min ago" },
-      { type: "renewal", text: "Annual contract renewed for 456 Oak Lane", time: "22 min ago" }
-    ]
+      { type: "estimate", text: "Patio installation estimate sent — $8,500 — tracking started", time: "2 min ago" },
+      { type: "followup", text: "Day 3 follow-up: 'Spring is filling up fast...' sent to Mike J.", time: "7 min ago" },
+      { type: "renewal", text: "Contract renewal approved: Johnson residence — $2,400/year", time: "14 min ago" },
+      { type: "weather", text: "Rain delay notifications sent to 12 clients — auto-rescheduled", time: "21 min ago" },
+      { type: "route", text: "Crew B route optimized — 47 min drive time saved today", time: "28 min ago" },
+      { type: "hot_lead", text: "🔥 HOT LEAD: 'Can you do it before Memorial Day?'", time: "35 min ago" },
+      { type: "review", text: "5-star review: 'Best landscapers we've ever hired'", time: "42 min ago" }
+    ],
+
+    heroImage: "https://images.unsplash.com/photo-1558904541-efa843a96f01?w=1200&q=80",
+
+    // Personalization for sales approach
+    personalization: {
+      tone: "fast",
+      toneDescription: "Quick, efficient, gets it done — like a well-run crew",
+      demoAngle: "Show them how much revenue is walking away from unfollowed estimates and lapsed contracts",
+      hookQuestion: "How many estimates did you send last month that you never heard back from?",
+      painPoint: "You're losing jobs because you're too busy mowing to answer the phone",
+      valueProposition: "Capture every lead, follow up on every estimate, renew every contract — automatically"
+    },
+
+    dayStory: {
+      before: [
+        { time: '2:15 PM', event: 'Homeowner submits patio inquiry', detail: 'Found you on Google, wants a quote for backyard patio', icon: '🔍' },
+        { time: '2:15 PM', event: 'Form sits in your inbox', detail: 'You\'re on a property with Crew A. Phone is in the truck.', icon: '⚠️', status: 'warning' },
+        { time: '5:30 PM', event: 'You finally see the inquiry', detail: 'End of day, checking email. 3 hours have passed.', icon: '📱' },
+        { time: '5:35 PM', event: 'You call back — no answer', detail: 'Leave a voicemail. They\'re making dinner.', icon: '📞', status: 'warning' },
+        { time: 'NEXT DAY', event: 'Homeowner already got 2 quotes', detail: 'Other landscapers responded within an hour. You\'re playing catch-up.', icon: '❌', status: 'lost' },
+        { time: 'RESULT', event: '$8,500 patio job — LOST', detail: 'Because you were busy doing your job.', icon: '💸', status: 'lost' }
+      ],
+      after: [
+        { time: '2:15 PM', event: 'Homeowner submits patio inquiry', detail: 'Found you on Google, wants a quote for backyard patio', icon: '🔍' },
+        { time: '2:15 PM', event: 'Rapid Response System activates', detail: 'Instant text: "Thanks for reaching out! I\'d love to help with your patio..."', icon: '⚡', status: 'active' },
+        { time: '2:18 PM', event: 'Lead qualified automatically', detail: 'Project type, size, timeline collected. Site visit offered.', icon: '📋', status: 'success' },
+        { time: '2:20 PM', event: 'Site visit booked', detail: 'Tomorrow 4 PM — calendar confirmed, reminder scheduled', icon: '📅', status: 'success' },
+        { time: '2:21 PM', event: 'You get a notification', detail: '"New qualified lead: Patio, 400 sq ft, $8-12K budget, site visit tomorrow 4 PM"', icon: '🔔', status: 'success' },
+        { time: 'RESULT', event: '$8,500 patio job — CAPTURED', detail: 'In 6 minutes. While you were running your crew.', icon: '✅', status: 'won' }
+      ]
+    }
   },
 
   pools: {

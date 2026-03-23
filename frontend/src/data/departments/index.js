@@ -4,6 +4,9 @@ import { hvacDepartments } from './hvac';
 import { dentalDepartments } from './dental';
 import { autoDepartments } from './auto';
 import { lawDepartments } from './law';
+import { lawFirmSystems } from './law-systems';
+import { constructionSystems, constructionMetrics, constructionProblems, constructionWorkflow, constructionPersonalization } from './construction-systems';
+import { landscapingSystems, landscapingMetrics, landscapingProblems, landscapingWorkflow, landscapingPersonalization } from './landscaping-systems';
 
 // Map industry IDs to their department configurations
 const DEPARTMENT_MAP = {
@@ -14,6 +17,68 @@ const DEPARTMENT_MAP = {
   auto_dealership: autoDepartments,
   law_firm: lawDepartments,
 };
+
+// Systems-based configurations (for industries that use "systems" instead of "agents")
+// This is the new approach that focuses on operational systems rather than generic voice AI agents
+const SYSTEMS_MAP = {
+  law_firm: lawFirmSystems,
+  construction: constructionSystems,
+  landscaping: landscapingSystems,
+};
+
+// Industry-specific metrics (replaces generic leads/employees)
+const METRICS_MAP = {
+  construction: constructionMetrics,
+  landscaping: landscapingMetrics,
+};
+
+// Industry-specific problems (personalized pain points)
+const PROBLEMS_MAP = {
+  construction: constructionProblems,
+  landscaping: landscapingProblems,
+};
+
+// Industry-specific workflows (real operational flows)
+const WORKFLOW_MAP = {
+  construction: constructionWorkflow,
+  landscaping: landscapingWorkflow,
+};
+
+// Industry-specific personalization
+const PERSONALIZATION_MAP = {
+  construction: constructionPersonalization,
+  landscaping: landscapingPersonalization,
+};
+
+// Check if an industry uses systems-based configuration
+export function usesSystemsApproach(industryId) {
+  return !!SYSTEMS_MAP[industryId];
+}
+
+// Get systems for a specific industry (new systems-based approach)
+export function getSystems(industryId) {
+  return SYSTEMS_MAP[industryId] || null;
+}
+
+// Get industry-specific metrics
+export function getIndustryMetrics(industryId) {
+  return METRICS_MAP[industryId] || null;
+}
+
+// Get industry-specific problems
+export function getIndustryProblems(industryId) {
+  return PROBLEMS_MAP[industryId] || null;
+}
+
+// Get industry-specific workflow
+export function getIndustryWorkflow(industryId) {
+  return WORKFLOW_MAP[industryId] || null;
+}
+
+// Get industry-specific personalization
+export function getIndustryPersonalization(industryId) {
+  return PERSONALIZATION_MAP[industryId] || null;
+}
 
 // Get departments for a specific industry
 // Falls back to generating departments from the flat agents array if no department config exists

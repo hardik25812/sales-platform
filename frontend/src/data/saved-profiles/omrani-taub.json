@@ -1,0 +1,249 @@
+{
+  "firm": {
+    "name": "Omrani & Taub, P.C.",
+    "website": "https://omranitaub.com",
+    "phone": "212-714-1515",
+    "locations": ["Manhattan", "Queens", "Westchester"],
+    "practice_areas": [
+      "Personal Injury",
+      "Construction Accidents",
+      "Car Accidents",
+      "Truck Accidents",
+      "Bus/Mass Transit Accidents",
+      "Pedestrian Accidents",
+      "Bicycle Accidents",
+      "Slip and Fall",
+      "Wrongful Death",
+      "DUI/DWI Accidents",
+      "Workers Compensation"
+    ],
+    "attorneys": [
+      "Alex A. Omrani, Esq.",
+      "Michael A. Taub, Esq.",
+      "Isaac A. Arasteh, Esq."
+    ],
+    "key_staff": ["Mergime (Paralegal)", "Edwin", "Avi"],
+    "experience_years": 25,
+    "notable_verdicts": [
+      { "amount": 10580000, "type": "Pedestrian - Child struck by van" },
+      { "amount": 6000000, "type": "Bus accident - Passenger injuries" },
+      { "amount": 5000000, "type": "Pedestrian - Pelvic/leg fractures" },
+      { "amount": 5000000, "type": "Construction - Demolition laborer" },
+      { "amount": 4750000, "type": "Parking garage - Pinned between cars" },
+      { "amount": 4500000, "type": "Construction - Fatal injury (undocumented worker)" },
+      { "amount": 3900000, "type": "Pedestrian - Falling stop sign" },
+      { "amount": 3250000, "type": "Motor vehicle - Neck/shoulder injuries" },
+      { "amount": 3250000, "type": "Elevator malfunction" },
+      { "amount": 3000000, "type": "Slip and fall - Supermarket" }
+    ],
+    "tone": "compassionate_aggressive",
+    "positioning": "Maximum compensation for serious injuries in NYC metro area",
+    "target_clients": "Injury victims in NYC metro - construction workers, pedestrians, vehicle accident victims, immigrants",
+    "unique_strengths": [
+      "Strong construction accident expertise (NYC Labor Law)",
+      "Experience with immigrant/undocumented worker cases",
+      "Multi-million dollar verdict track record",
+      "Multi-location presence across NYC metro",
+      "Highly praised paralegal team (Mergime mentioned in 10+ reviews)"
+    ]
+  },
+
+  "problems": [
+    {
+      "id": "after_hours_intake",
+      "title": "High-Value Cases Lost After Hours",
+      "description": "Construction accidents happen at 6 AM. Car accidents happen at 11 PM. When a seriously injured victim searches 'construction accident lawyer NYC' at 2 AM, they're calling the first firm that answers. With $5M+ cases on the line, every missed call is catastrophic.",
+      "impact": "$500K-$5M+ in lost case value per missed high-severity intake",
+      "evidence": "Firm handles construction and vehicle accidents - both peak outside business hours"
+    },
+    {
+      "id": "case_qualification_inconsistency",
+      "title": "Inconsistent Case Qualification Across Intake Staff",
+      "description": "With construction accidents, the difference between a Labor Law 240 case ($2M+) and a general negligence case ($200K) depends on asking the right questions: Was there a scaffold? A ladder? A falling object? Inconsistent intake means high-value cases get undervalued or missed entirely.",
+      "impact": "20-30% of construction cases potentially misqualified at intake",
+      "evidence": "Firm specializes in construction - Labor Law 240/241 cases require specific fact patterns"
+    },
+    {
+      "id": "demand_letter_delays",
+      "title": "Demand Letter Drafting Bottleneck",
+      "description": "With 40+ case types and multi-million dollar verdicts, demand letters require extensive customization. Each letter needs case-specific medical summaries, liability analysis, and damages calculations. This creates a bottleneck that delays settlements.",
+      "impact": "2-4 week delays in demand letter production per case",
+      "evidence": "High verdict amounts suggest complex cases requiring detailed demand packages"
+    },
+    {
+      "id": "client_communication_gaps",
+      "title": "Client Communication Gaps During Case Lifecycle",
+      "description": "Reviews praise Mergime, Edwin, and Avi for responsiveness - but this creates dependency on specific staff. When they're busy, clients feel ignored. The #1 bar complaint is poor communication, and with cases lasting 1-3 years, consistent updates are critical.",
+      "impact": "Client anxiety, unnecessary status calls, potential bar complaints",
+      "evidence": "Multiple reviews specifically mention individual staff responsiveness"
+    },
+    {
+      "id": "construction_case_documentation",
+      "title": "Construction Case Documentation Complexity",
+      "description": "NYC Labor Law cases require specific documentation: OSHA reports, scaffold inspection records, safety training logs, contractor hierarchy. Missing one document can tank a $3M case. Current process likely relies on paralegal memory.",
+      "impact": "Weakened cases due to incomplete documentation requests",
+      "evidence": "Multiple $4-5M construction verdicts indicate Labor Law expertise"
+    },
+    {
+      "id": "settlement_pipeline_visibility",
+      "title": "No Real-Time Settlement Pipeline Visibility",
+      "description": "With cases ranging from $1M to $10M+, partners need to know: Which cases are in demand phase? Which are in negotiation? Which are trial-ready? Without real-time visibility, revenue forecasting is guesswork.",
+      "impact": "Cash flow unpredictability, missed settlement windows",
+      "evidence": "High-value verdicts suggest complex, long-duration cases"
+    },
+    {
+      "id": "review_generation_timing",
+      "title": "Review Requests Not Systematically Timed",
+      "description": "Reviews mention Mergime 10+ times - she's clearly exceptional. But review requests likely happen ad-hoc, not systematically at the moment of maximum client satisfaction (settlement receipt). This leaves reputation growth to chance.",
+      "impact": "50-70% fewer reviews than possible with systematic approach",
+      "evidence": "Reviews cluster around specific staff, suggesting organic not systematic collection"
+    }
+  ],
+
+  "systems": [
+    {
+      "id": "intake_qualification_engine",
+      "name": "Case Qualification Engine",
+      "icon": "⚖️",
+      "problem_it_solves": "Inconsistent case qualification - especially for high-value Labor Law 240/241 construction cases that require specific fact patterns",
+      "what_it_does": [
+        "Asks construction-specific questions: scaffold involved? ladder? falling object? height differential?",
+        "Identifies Labor Law 240 (gravity-related) vs 241(6) (safety violation) vs general negligence",
+        "Scores case value based on injury severity, liability clarity, and insurance coverage",
+        "Flags 'A-cases' (clear liability + serious injury + deep pockets) for immediate attorney review",
+        "Routes low-value cases to associate attorneys, high-value to partners"
+      ],
+      "example_output": {
+        "case_score": "9/10 - A-CASE",
+        "analysis": "Labor Law 240 - Scaffold collapse at construction site. Client fell 18 feet. Fractured pelvis, L4-L5 herniation. General contractor: Turner Construction (deep pockets). No comparative negligence. Similar cases: $3-5M range.",
+        "recommendation": "PRIORITY INTAKE - Route to Alex Omrani. Schedule consultation within 24 hours. Request: OSHA report, scaffold inspection logs, safety training records, contractor hierarchy."
+      },
+      "impact": "Capture 100% of Labor Law 240 cases at full value - estimated $500K+ additional annual revenue"
+    },
+    {
+      "id": "legal_document_automation",
+      "name": "Legal Document Automation System",
+      "icon": "📄",
+      "problem_it_solves": "2-4 week delays in demand letter production; inconsistent document quality across case types",
+      "what_it_does": [
+        "Generates retainer agreements customized by case type (construction, MVA, slip/fall)",
+        "Drafts demand letters with case-specific medical summaries and damages calculations",
+        "Creates HIPAA authorizations, lien letters, and settlement brochures",
+        "Pulls from verdict database to cite comparable Omrani & Taub results",
+        "Auto-populates with client info, medical records summary, and liability analysis"
+      ],
+      "example_output": {
+        "document_type": "Demand Letter - Construction Accident",
+        "preview": "RE: Labor Law 240 Claim - [Client Name] v. [General Contractor]\n\nDear Claims Adjuster,\n\nThis firm represents [Client], a construction laborer who sustained catastrophic injuries on [Date] when a scaffold collapsed at [Location]. Pursuant to New York Labor Law § 240(1), your insured, as general contractor, bears absolute liability for gravity-related injuries.\n\nLIABILITY: The scaffold was erected without proper bracing... [auto-generated from intake facts]\n\nDAMAGES: Our client sustained a fractured pelvis and L4-L5 disc herniation requiring fusion surgery. Medical specials to date: $287,000. Future medical: $150,000 (life care plan attached).\n\nCOMPARABLE VERDICTS: Omrani & Taub recently secured $5,000,000 for a demolition laborer with similar injuries. See also: [3 comparable NYC verdicts].\n\nDEMAND: $3,500,000\n\n[Auto-generated, attorney review required]"
+      },
+      "impact": "Reduce demand letter production from 2-4 weeks to 2-3 days; increase consistency across all attorneys"
+    },
+    {
+      "id": "client_status_hub",
+      "name": "Client Status Hub",
+      "icon": "💬",
+      "problem_it_solves": "Client anxiety and constant 'what's happening with my case?' calls that consume paralegal time",
+      "what_it_does": [
+        "Sends automated bi-weekly case status updates via text and email",
+        "Proactively notifies clients of milestones: demand sent, response received, deposition scheduled",
+        "Provides 24/7 case status lookup via secure client portal",
+        "Answers common questions: 'When will I get paid?' 'What happens next?' 'Do I need to do anything?'",
+        "Escalates urgent client concerns to Mergime/Edwin/Avi with full context"
+      ],
+      "example_output": {
+        "status_update_sms": "Hi Maria, update on your case (Santos v. ABC Construction):\n\n✅ Demand letter sent to insurance: March 15\n⏳ Current status: Awaiting response (they have 30 days)\n📅 Next milestone: Response due by April 14\n\nNo action needed from you right now. We'll contact you immediately when they respond.\n\nQuestions? Reply to this text or call Mergime at 212-714-1515.\n\n— Omrani & Taub Team",
+        "milestone_alert": "🎉 Good news, Maria! ABC Construction's insurance has responded to our demand. Attorney Omrani is reviewing their offer and will call you tomorrow between 2-4 PM to discuss next steps."
+      },
+      "impact": "Reduce 'status check' calls by 70%; eliminate #1 source of bar complaints; free Mergime for high-value work"
+    },
+    {
+      "id": "construction_case_tracker",
+      "name": "Construction Case Documentation Tracker",
+      "icon": "🏗️",
+      "problem_it_solves": "Missing critical documentation for Labor Law cases - OSHA reports, scaffold inspections, contractor hierarchy",
+      "what_it_does": [
+        "Generates case-specific document checklist based on accident type (scaffold, ladder, falling object)",
+        "Tracks document collection status with automated reminders",
+        "Sends FOIL requests for OSHA reports and DOB violations automatically",
+        "Identifies missing documents that could weaken the case",
+        "Alerts paralegal when statute of limitations approaches without complete documentation"
+      ],
+      "example_output": {
+        "checklist": "Construction Case Documentation - Santos v. ABC Construction\n\n✅ Police/Incident Report - Received 3/2\n✅ OSHA Report - FOIL submitted 3/5, received 3/18\n✅ Medical Records (Hospital) - Received 3/10\n⏳ Scaffold Inspection Logs - Requested from GC 3/12, follow-up sent 3/19\n❌ Safety Training Records - NOT REQUESTED\n❌ Contractor Hierarchy/Contracts - NOT REQUESTED\n\n⚠️ ALERT: Missing safety training records. Critical for Labor Law 241(6) claim. Request immediately.",
+        "auto_request": "FOIL Request auto-generated for NYC DOB violations at [Site Address] for past 3 years."
+      },
+      "impact": "Ensure 100% documentation completeness on construction cases; strengthen liability arguments"
+    },
+    {
+      "id": "settlement_pipeline",
+      "name": "Settlement Pipeline Dashboard",
+      "icon": "📊",
+      "problem_it_solves": "No real-time visibility into case pipeline, settlement timing, and revenue forecasting",
+      "what_it_does": [
+        "Tracks every case through stages: Intake → Treatment → Demand → Negotiation → Litigation → Trial → Settlement",
+        "Shows real-time pipeline value by stage and expected settlement timing",
+        "Alerts when cases stall (no activity in 30+ days)",
+        "Predicts monthly/quarterly revenue based on case progression",
+        "Identifies cases approaching statute of limitations"
+      ],
+      "example_output": {
+        "dashboard_summary": "OMRANI & TAUB PIPELINE - March 2026\n\n📊 Active Cases: 127\n💰 Total Pipeline Value: $47.2M\n\nBY STAGE:\n• Treatment Phase: 34 cases ($12.1M)\n• Demand Sent: 28 cases ($15.8M)\n• Negotiation: 19 cases ($11.4M)\n• Litigation: 12 cases ($7.9M)\n\n⚠️ STALLED CASES (no activity 30+ days): 7\n🚨 SOL APPROACHING (90 days): 3 cases\n\n📈 PROJECTED Q2 SETTLEMENTS: $4.2M (fees: $1.4M)",
+        "alert": "🚨 SOL ALERT: Rodriguez v. Metro Construction - Statute expires May 15, 2026 (52 days). Case in treatment phase. ACTION: File complaint or request extension."
+      },
+      "impact": "Predictable revenue forecasting; zero missed statutes; identify and unstick stalled cases"
+    },
+    {
+      "id": "review_reputation_system",
+      "name": "Review & Reputation System",
+      "icon": "⭐",
+      "problem_it_solves": "Reviews happen organically, not systematically - missing the optimal moment to ask (settlement receipt)",
+      "what_it_does": [
+        "Triggers review request 48 hours after client receives settlement check",
+        "Pre-screens satisfaction: unhappy clients get a callback, not a review link",
+        "Personalizes request based on case type and attorney",
+        "Sends follow-up if no review after 5 days",
+        "Auto-responds to all Google reviews within 2 hours (without disclosing case details)",
+        "Tracks review velocity vs. competitors"
+      ],
+      "example_output": {
+        "review_request": "Hi Maria,\n\nCongratulations again on your settlement! We're so glad we could help you get the compensation you deserved after your accident.\n\nIf you have a moment, would you share your experience on Google? Your review helps other injury victims find trustworthy legal help.\n\n[GOOGLE REVIEW LINK]\n\nThank you for trusting Omrani & Taub with your case.\n\n— The Omrani & Taub Team\n\nP.S. If anything about your experience wasn't perfect, please reply to this text first so we can make it right.",
+        "review_response": "Thank you so much, Maria! It was our privilege to represent you. We're thrilled that Mergime and the team could provide the support you needed during a difficult time. Wishing you continued health and happiness. — Omrani & Taub, P.C."
+      },
+      "impact": "Increase review volume by 200%; maintain 4.8+ star rating; dominate local search rankings"
+    },
+    {
+      "id": "immigrant_client_support",
+      "name": "Immigrant Client Support System",
+      "icon": "🌍",
+      "problem_it_solves": "Immigrant and undocumented clients have unique concerns (deportation fear, language barriers, unfamiliarity with US legal system) that require specialized communication",
+      "what_it_does": [
+        "Provides intake and updates in Spanish (and other languages as needed)",
+        "Addresses immigration concerns upfront: 'Your immigration status does not affect your right to compensation'",
+        "Explains US legal process in simple, culturally-sensitive terms",
+        "Connects with immigration attorneys if needed for visa/status concerns",
+        "Documents cases with awareness of potential ICE concerns at depositions/trials"
+      ],
+      "example_output": {
+        "intake_message_spanish": "Hola Maria, gracias por contactar a Omrani & Taub. Entendemos que puede tener preocupaciones sobre su estatus migratorio. Queremos asegurarle: su estatus NO afecta su derecho a compensación por sus lesiones. La ley de Nueva York protege a TODOS los trabajadores lesionados. Su información es confidencial. ¿Podemos programar una consulta gratuita?",
+        "reassurance": "We want you to know: Omrani & Taub has successfully recovered $4.5 million for an undocumented worker's family after a fatal construction accident. Your immigration status does not limit your rights under New York law."
+      },
+      "impact": "Capture underserved market segment; build reputation in immigrant communities; increase construction case volume"
+    }
+  ],
+
+  "personalization": {
+    "brand_tone": "Compassionate but aggressive - 'We care about your recovery AND we'll fight for maximum compensation'",
+    "messaging_style": "Direct, results-focused, emphasizes multi-million dollar verdicts as proof of capability",
+    "key_differentiators": [
+      "25+ years experience in NYC personal injury",
+      "$10.5M+ top verdict",
+      "Construction accident specialists (Labor Law 240/241)",
+      "Experience with immigrant/undocumented worker cases",
+      "Exceptional paralegal team (Mergime consistently praised)"
+    ],
+    "demo_angle": "Show them the Construction Case Documentation Tracker first - it speaks directly to their Labor Law expertise. Then show Settlement Pipeline Dashboard to appeal to partner-level revenue visibility. Close with the stat: 'You've won $4.5M for an undocumented worker's family. Our Immigrant Client Support System helps you capture more of these underserved cases.'"
+  },
+
+  "generated_at": "2026-03-23T07:50:00Z",
+  "version": "1.0"
+}
