@@ -1,13 +1,17 @@
-// Saved Law Firm Profiles
-// These are pre-analyzed firm profiles that can be loaded for personalized demos
+// Saved Profiles
+// Pre-analyzed business profiles that can be loaded for personalized demos
 
 import omraniTaub from './omrani-taub.json';
+import indoorEnvironmentalTesting from './indoor-environmental-testing.json';
 
 // Map of saved profiles by domain/identifier
 export const SAVED_PROFILES = {
   'omranitaub.com': omraniTaub,
   'omranitaub': omraniTaub,
   'omrani-taub': omraniTaub,
+  'airinspector.com': indoorEnvironmentalTesting,
+  'airinspector': indoorEnvironmentalTesting,
+  'indoor-environmental-testing': indoorEnvironmentalTesting,
 };
 
 // Get a saved profile by website URL or identifier
@@ -47,7 +51,8 @@ export function getAllSavedProfiles() {
     id: key,
     name: profile.firm.name,
     website: profile.firm.website,
-    practiceAreas: profile.firm.practice_areas,
+    profileImage: profile.firm.profile_image,
+    practiceAreas: profile.firm.practice_areas || profile.firm.services,
     tone: profile.firm.tone,
   }));
 }

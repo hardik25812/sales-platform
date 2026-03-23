@@ -26,7 +26,8 @@ const TAB_ITEMS = [
 ];
 
 export default function DemoLayout() {
-  const { industryConfig, companyName, activeTab, setActiveTab, goBack, presentationMode, setPresentationMode, liveMode, setLiveMode } = useDemo();
+  const { industryConfig, companyName, activeTab, setActiveTab, goBack, presentationMode, setPresentationMode, liveMode, setLiveMode, savedProfile } = useDemo();
+  const isIET = savedProfile?.firm?.industry_id === 'indoor_environmental';
 
   // Keyboard shortcuts
   const handleKeyDown = useCallback((e) => {
@@ -70,10 +71,22 @@ export default function DemoLayout() {
                   <ArrowLeft size={18} className="text-slate-400" />
                 </button>
                 <div className="hidden sm:flex items-center gap-2">
+                  {isIET && (
+                    <img
+                      src="/iet-logo.webp"
+                      alt="Indoor Environmental Testing"
+                      className="h-8 w-auto object-contain mr-1"
+                    />
+                  )}
                   <span className="text-sm font-semibold text-white">AI Workforce OS</span>
                   <span className="text-xs px-2 py-0.5 rounded-full font-mono" style={{ backgroundColor: `${industryConfig.color}20`, color: industryConfig.color }}>
                     {industryConfig.name}
                   </span>
+                  {isIET && (
+                    <span className="text-[10px] px-2 py-0.5 rounded-full font-mono border" style={{ borderColor: `${industryConfig.color}35`, color: industryConfig.color, backgroundColor: `${industryConfig.color}10` }}>
+                      We Detect What You Suspect
+                    </span>
+                  )}
                 </div>
               </div>
             )}

@@ -1,8 +1,17 @@
 import React, { createContext, useContext, useState, useMemo, useCallback } from 'react';
 import { getIndustry } from '../data/industries';
 import { calculateROI } from '../lib/calculations';
+import { loadLawFirmProfile } from '../utils/profileLoader';
 
 const DemoContext = createContext(null);
+
+function getMetricAliases(industryId, key, value) {
+  if (industryId !== 'construction' && industryId !== 'landscaping') return {};
+  if (key === 'monthlyLeads') return { monthly_estimates_sent: value };
+  if (key === 'avgJobValue') return { avg_job_value: value };
+  if (key === 'currentCloseRate') return { estimate_to_job_rate: Math.round(value * 100) };
+  return {};
+}
 
 export function DemoProvider({ children }) {
   const [selectedIndustryId, setSelectedIndustryId] = useState(null);
@@ -13,6 +22,7 @@ export function DemoProvider({ children }) {
   const [liveMode, setLiveMode] = useState(false);
   const [liveData, setLiveData] = useState(null);
   const [liveLoading, setLiveLoading] = useState(false);
+  const [savedProfile, setSavedProfile] = useState(null);
 
   // Metrics state
   const [metrics, setMetrics] = useState({
@@ -35,23 +45,33 @@ export function DemoProvider({ children }) {
     const config = getIndustry(id);
     if (config) {
       setSelectedIndustryId(id);
-      setMetrics({
-        monthlyLeads: config.defaults.monthlyLeads,
-        avgJobValue: config.defaults.avgJobValue,
-        employees: config.defaults.employees,
-        currentCloseRate: config.defaults.currentCloseRate,
-        currentResponseTime: config.defaults.currentResponseTime,
-        monthlyAdSpend: config.defaults.monthlyAdSpend,
-        noShowRate: config.defaults.noShowRate,
-        missedCallsEstimate: config.defaults.missedCallsEstimate
-      });
+      setMetrics({ ...config.defaults });
+      setSavedProfile(null);
       setActiveTab('discovery');
     }
   }, []);
 
-  const updateMetric = useCallback((key, value) => {
-    setMetrics(prev => ({ ...prev, [key]: value }));
+  const selectSavedProfile = useCallback((profileId) => {
+    const profile = loadLawFirmProfile(profileId);
+    if (!profile) return;
+    const industryId = profile.firm.industry_id || 'law_firm';
+    const config = getIndustry(industryId);
+    if (config) {
+      setSelectedIndustryId(industryId);
+      setMetrics({ ...config.defaults, ...(profile.metrics || {}) });
+      setSavedProfile(profile);
+      setCompanyName(profile.firm.name);
+      setActiveTab(industryId === 'indoor_environmental' ? 'discovery' : 'profile');
+    }
   }, []);
+
+  const updateMetric = useCallback((key, value) => {
+    setMetrics(prev => ({
+      ...prev,
+      [key]: value,
+      ...getMetricAliases(selectedIndustryId, key, value),
+    }));
+  }, [selectedIndustryId]);
 
   const roi = useMemo(() => {
     if (!industryConfig) return null;
@@ -62,6 +82,7 @@ export function DemoProvider({ children }) {
     setSelectedIndustryId(null);
     setCompanyName('');
     setContactName('');
+    setSavedProfile(null);
     setActiveTab('discovery');
   }, []);
 
@@ -86,8 +107,11 @@ export function DemoProvider({ children }) {
     setLiveData,
     liveLoading,
     setLiveLoading,
+    savedProfile,
+    setSavedProfile,
+    selectSavedProfile,
     goBack
-  }), [selectedIndustryId, industryConfig, companyName, contactName, metrics, updateMetric, selectIndustry, roi, activeTab, presentationMode, liveMode, liveData, liveLoading, goBack]);
+  }), [selectedIndustryId, industryConfig, companyName, contactName, metrics, updateMetric, selectIndustry, selectSavedProfile, roi, activeTab, presentationMode, liveMode, liveData, liveLoading, savedProfile, goBack]);
 
   return (
     <DemoContext.Provider value={value}>

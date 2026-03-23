@@ -26,6 +26,8 @@ export default function WorkflowVisualizer() {
 
   const accent = industryConfig.color;
   const workflow = industryConfig.workflow || [];
+  const workflowLabel = industryConfig.usesSystemsApproach ? 'system' : 'agent';
+  const summaryLabel = industryConfig.usesSystemsApproach ? 'Total Workflow Friction Reduction' : 'Total Lead Dropoff Reduction';
 
   return (
     <div className="space-y-6" data-testid="workflow-visualizer">
@@ -93,7 +95,7 @@ export default function WorkflowVisualizer() {
                   <div className="flex items-center gap-2 mb-1.5">
                     <h3 className="text-sm font-semibold text-white">{step.step}</h3>
                     <ChevronRight size={12} className="text-slate-600" />
-                    <span className="text-xs font-mono text-slate-500">{step.agent}</span>
+                    <span className="text-xs font-mono text-slate-500">{step.agent || step.system || workflowLabel}</span>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
@@ -144,7 +146,7 @@ export default function WorkflowVisualizer() {
 
       {/* Summary */}
       <div className="glass-panel p-6 text-center">
-        <p className="text-sm text-slate-400 mb-2">Total Lead Dropoff Reduction</p>
+        <p className="text-sm text-slate-400 mb-2">{summaryLabel}</p>
         <div className="flex items-center justify-center gap-6">
           <div>
             <p className="text-2xl font-bold text-rose-400 font-mono">

@@ -2,6 +2,7 @@
   "firm": {
     "name": "Omrani & Taub, P.C.",
     "website": "https://omranitaub.com",
+    "profile_image": "/omrani-taub-profile.webp",
     "phone": "212-714-1515",
     "locations": ["Manhattan", "Queens", "Westchester"],
     "practice_areas": [
@@ -50,6 +51,13 @@
 
   "problems": [
     {
+      "id": "review_generation_timing",
+      "title": "Google Reviews Are Being Left on the Table After Every Settlement",
+      "description": "Omrani & Taub has won $10.5M verdicts and recovered millions for hundreds of clients — but that track record isn't showing up on Google. Reviews mention Mergime, Edwin, and Avi constantly, but those satisfied clients are never systematically asked. Right now, review requests happen by chance, not by system. Every settlement that closes without a follow-up is a missed 5-star review, a missed referral, and a missed intake from someone Googling 'construction accident lawyer NYC' who picks a competitor with 200 more reviews. Personal injury is a reputation game — the firm with the most credible Google presence wins the case before a consultation is ever booked.",
+      "impact": "Losing 50-70% of achievable Google reviews per year — translating directly to lost intakes from high-intent search traffic",
+      "evidence": "Reviews cluster around specific staff names, confirming satisfied clients exist but aren't being captured systematically at the right moment"
+    },
+    {
       "id": "after_hours_intake",
       "title": "High-Value Cases Lost After Hours",
       "description": "Construction accidents happen at 6 AM. Car accidents happen at 11 PM. When a seriously injured victim searches 'construction accident lawyer NYC' at 2 AM, they're calling the first firm that answers. With $5M+ cases on the line, every missed call is catastrophic.",
@@ -90,13 +98,6 @@
       "description": "With cases ranging from $1M to $10M+, partners need to know: Which cases are in demand phase? Which are in negotiation? Which are trial-ready? Without real-time visibility, revenue forecasting is guesswork.",
       "impact": "Cash flow unpredictability, missed settlement windows",
       "evidence": "High-value verdicts suggest complex, long-duration cases"
-    },
-    {
-      "id": "review_generation_timing",
-      "title": "Review Requests Not Systematically Timed",
-      "description": "Reviews mention Mergime 10+ times - she's clearly exceptional. But review requests likely happen ad-hoc, not systematically at the moment of maximum client satisfaction (settlement receipt). This leaves reputation growth to chance.",
-      "impact": "50-70% fewer reviews than possible with systematic approach",
-      "evidence": "Reviews cluster around specific staff, suggesting organic not systematic collection"
     }
   ],
 
@@ -194,22 +195,26 @@
     },
     {
       "id": "review_reputation_system",
-      "name": "Review & Reputation System",
+      "name": "Google Review & Reputation Management Agent",
       "icon": "⭐",
-      "problem_it_solves": "Reviews happen organically, not systematically - missing the optimal moment to ask (settlement receipt)",
+      "priority": "flagship",
+      "problem_it_solves": "Satisfied clients are never systematically asked for reviews at the right moment. Every closed settlement is a missed 5-star review and a missed referral. Personal injury intakes start on Google — the firm with more credible reviews wins the call.",
       "what_it_does": [
-        "Triggers review request 48 hours after client receives settlement check",
-        "Pre-screens satisfaction: unhappy clients get a callback, not a review link",
-        "Personalizes request based on case type and attorney",
-        "Sends follow-up if no review after 5 days",
-        "Auto-responds to all Google reviews within 2 hours (without disclosing case details)",
-        "Tracks review velocity vs. competitors"
+        "Automatically triggers a personalized review request 48 hours after the client receives their settlement check — the moment of peak satisfaction",
+        "Pre-screens client sentiment first: if they signal any frustration, routes them to Mergime for a callback instead of a public review link",
+        "Sends a warm, personalized SMS/email referencing their specific attorney and case outcome — not a generic blast",
+        "Follows up automatically after 5 days if no review is left, with a softer second ask",
+        "Auto-responds to every Google review within 2 hours using attorney-approved language (never disclosing case details)",
+        "Tracks review velocity, star rating trends, and competitor review counts weekly",
+        "Identifies the clients most likely to leave glowing reviews based on engagement patterns and routes them first"
       ],
       "example_output": {
-        "review_request": "Hi Maria,\n\nCongratulations again on your settlement! We're so glad we could help you get the compensation you deserved after your accident.\n\nIf you have a moment, would you share your experience on Google? Your review helps other injury victims find trustworthy legal help.\n\n[GOOGLE REVIEW LINK]\n\nThank you for trusting Omrani & Taub with your case.\n\n— The Omrani & Taub Team\n\nP.S. If anything about your experience wasn't perfect, please reply to this text first so we can make it right.",
-        "review_response": "Thank you so much, Maria! It was our privilege to represent you. We're thrilled that Mergime and the team could provide the support you needed during a difficult time. Wishing you continued health and happiness. — Omrani & Taub, P.C."
+        "settlement_trigger_sms": "Hi Maria, congratulations again on your settlement — it was our honor to fight for you. If you have 60 seconds, would you share your experience on Google? Your review helps other injury victims in NYC find trustworthy help when they need it most.\n\n⭐ Leave a Review: [GOOGLE REVIEW LINK]\n\nThank you for trusting Omrani & Taub. — Mergime & the Team\n\nP.S. If anything wasn't perfect, reply here first and we'll make it right.",
+        "five_day_followup": "Hi Maria, just a gentle reminder — if you have a moment to share your experience on Google, it means the world to us and helps other accident victims find us. [LINK] No pressure at all. — Omrani & Taub",
+        "google_review_response": "Thank you so much, Maria. It was our privilege to stand by your side throughout this process. We're thrilled that Mergime and the team could provide the support you needed. Wishing you continued health and recovery. — Omrani & Taub, P.C.",
+        "weekly_report": "REPUTATION REPORT — Week of March 17\n\n⭐ New Reviews This Week: 4 (avg 5.0 stars)\n📈 Total Google Reviews: 87 (+4 from last week)\n🏆 Current Rating: 4.9 stars\n👀 Competitor Watch: [Competing Firm] gained 2 reviews this week (now 143 total)\n\n✅ All 4 reviews responded to within 2 hours\n⏳ 3 follow-up requests pending (day 3 of 5)"
       },
-      "impact": "Increase review volume by 200%; maintain 4.8+ star rating; dominate local search rankings"
+      "impact": "3x Google review volume within 90 days; protect and grow the 4.8+ star rating; rank #1 for 'construction accident lawyer NYC' and 'personal injury lawyer Manhattan' on Google Maps"
     },
     {
       "id": "immigrant_client_support",
@@ -241,7 +246,7 @@
       "Experience with immigrant/undocumented worker cases",
       "Exceptional paralegal team (Mergime consistently praised)"
     ],
-    "demo_angle": "Show them the Construction Case Documentation Tracker first - it speaks directly to their Labor Law expertise. Then show Settlement Pipeline Dashboard to appeal to partner-level revenue visibility. Close with the stat: 'You've won $4.5M for an undocumented worker's family. Our Immigrant Client Support System helps you capture more of these underserved cases.'"
+    "demo_angle": "Open with the Google Review & Reputation Management Agent — ask: 'How many settlements closed last year without a review request going out?' Every missed review is a missed intake from someone Googling you tonight. Show the settlement-trigger SMS and the weekly reputation report. Then pivot to the Case Qualification Engine to show they're also losing A-cases at intake. Close with the Settlement Pipeline Dashboard for partner-level revenue visibility. The reputation hook lands immediately because every attorney knows Google is where personal injury clients start."
   },
 
   "generated_at": "2026-03-23T07:50:00Z",

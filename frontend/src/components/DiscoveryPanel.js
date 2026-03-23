@@ -3,12 +3,15 @@ import { useDemo } from '../context/DemoContext';
 import { Slider } from '../components/ui/slider';
 import { CurrencyCounter, AnimatedCounter, PercentCounter } from './AnimatedCounter';
 import { DollarSign, Clock, PhoneMissed, TrendingUp, Zap, Users, BarChart3, ArrowRight, Search, Loader2, CheckCircle, AlertCircle, Globe } from 'lucide-react';
+import { getDiscoveryMetricGroups } from '../lib/industryPresentation';
 
 function MetricInput({ label, value, onChange, min, max, step = 1, prefix = '', suffix = '', format = 'number', accentColor }) {
   const displayValue = format === 'currency'
     ? `$${Math.round(value).toLocaleString()}`
     : format === 'percent'
     ? `${Math.round(value * 100)}%`
+    : format === 'percentageNumber'
+    ? `${Math.round(value)}%`
     : format === 'hours'
     ? `${value}hrs`
     : Math.round(value).toLocaleString();
@@ -33,7 +36,8 @@ function MetricInput({ label, value, onChange, min, max, step = 1, prefix = '', 
 }
 
 export default function DiscoveryPanel() {
-  const { industryConfig, metrics, updateMetric, roi, companyName, setActiveTab, liveMode, liveData, setLiveData, liveLoading, setLiveLoading, selectedIndustryId } = useDemo();
+  const { industryConfig, metrics, updateMetric, roi, companyName, setActiveTab, liveMode, liveData, setLiveData, liveLoading, setLiveLoading, selectedIndustryId, savedProfile } = useDemo();
+  const isIET = savedProfile?.firm?.industry_id === 'indoor_environmental';
   
   const [lookupForm, setLookupForm] = useState({
     businessName: '',
@@ -46,6 +50,7 @@ export default function DiscoveryPanel() {
   if (!industryConfig || !roi) return null;
 
   const accent = industryConfig.color;
+  const metricGroups = getDiscoveryMetricGroups(selectedIndustryId);
 
   const handleLiveLookup = async () => {
     if (!lookupForm.businessName) {
@@ -129,14 +134,14 @@ export default function DiscoveryPanel() {
       if (business?.reviews?.rating) {
         const rating = business.reviews.rating;
         const closeRate = Math.min(0.45, Math.max(0.15, (rating - 3) * 0.15 + 0.20));
-        updateMetric('closeRate', closeRate);
+        updateMetric('currentCloseRate', closeRate);
       }
 
       // Estimate missed calls based on after-hours gap
       if (business?.afterHoursGap) {
         const gapPercent = parseInt(business.afterHoursGap) || 30;
         const missedCalls = Math.round(gapPercent * 0.4);
-        updateMetric('missedCalls', Math.max(10, Math.min(50, missedCalls)));
+        updateMetric('missedCallsEstimate', Math.max(10, Math.min(50, missedCalls)));
       }
 
       setLiveLoading(false);
@@ -148,7 +153,32 @@ export default function DiscoveryPanel() {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6" data-testid="discovery-panel">
+    <div className="space-y-6" data-testid="discovery-panel">
+      {isIET && (
+        <div className="glass-panel p-5 md:p-6 border" style={{ borderColor: `${accent}35`, background: `linear-gradient(135deg, ${accent}10 0%, rgba(255,255,255,0.02) 100%)` }}>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <img
+                src="/iet-logo.webp"
+                alt="Indoor Environmental Testing"
+                className="h-14 md:h-16 w-auto object-contain"
+              />
+              <div>
+                <p className="text-xs font-mono uppercase tracking-[0.22em]" style={{ color: accent }}>Indoor Environmental Testing, Inc.</p>
+                <h2 className="text-xl md:text-2xl font-bold text-white">We Detect What You Suspect</h2>
+                <p className="text-sm text-slate-400">Mold inspections, air quality testing, EMF evaluation, and commercial air testing — modeled with live demo metrics.</p>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <span className="px-3 py-1 rounded-full text-[11px] font-mono border" style={{ borderColor: `${accent}30`, backgroundColor: `${accent}12`, color: accent }}>Nashville, TN</span>
+              <span className="px-3 py-1 rounded-full text-[11px] font-mono border" style={{ borderColor: `${accent}30`, backgroundColor: `${accent}12`, color: accent }}>Madison, WI</span>
+              <span className="px-3 py-1 rounded-full text-[11px] font-mono border text-slate-300 border-white/10 bg-white/[0.03]">20+ years</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
       {/* Left Panel - Inputs */}
       <div className="lg:col-span-5 space-y-6">
         <div className="glass-panel p-6 space-y-1.5">
@@ -339,19 +369,37 @@ export default function DiscoveryPanel() {
             />
           </div>
 
-          <MetricInput label="Monthly Leads" value={metrics.monthlyLeads} onChange={(v) => updateMetric('monthlyLeads', v)} min={10} max={1000} step={5} accentColor={accent} />
-          <MetricInput label="Average Job/Deal Value" value={metrics.avgJobValue} onChange={(v) => updateMetric('avgJobValue', v)} min={100} max={100000} step={100} format="currency" accentColor={accent} />
-          <MetricInput label="Number of Employees" value={metrics.employees} onChange={(v) => updateMetric('employees', v)} min={1} max={100} accentColor={accent} />
-          <MetricInput label="Current Close Rate" value={metrics.currentCloseRate} onChange={(v) => updateMetric('currentCloseRate', v)} min={0.05} max={0.50} step={0.01} format="percent" accentColor={accent} />
-          <MetricInput label="Avg Response Time (hours)" value={metrics.currentResponseTime} onChange={(v) => updateMetric('currentResponseTime', v)} min={0.5} max={24} step={0.1} format="hours" accentColor={accent} />
-          <MetricInput label="Monthly Ad Spend" value={metrics.monthlyAdSpend} onChange={(v) => updateMetric('monthlyAdSpend', v)} min={0} max={50000} step={250} format="currency" accentColor={accent} />
+          {metricGroups.primary.map((metric) => (
+            <MetricInput
+              key={metric.key}
+              label={metric.label}
+              value={metrics[metric.key] ?? 0}
+              onChange={(v) => updateMetric(metric.key, v)}
+              min={metric.min}
+              max={metric.max}
+              step={metric.step}
+              format={metric.format}
+              accentColor={accent}
+            />
+          ))}
         </div>
 
         {/* Optional metrics */}
         <div className="glass-panel p-6 space-y-5">
           <p className="text-xs text-slate-500 font-medium uppercase tracking-wider">Optional Metrics</p>
-          <MetricInput label="No-Show Rate" value={metrics.noShowRate} onChange={(v) => updateMetric('noShowRate', v)} min={0} max={40} suffix="%" accentColor={accent} />
-          <MetricInput label="Monthly Missed Calls" value={metrics.missedCallsEstimate} onChange={(v) => updateMetric('missedCallsEstimate', v)} min={0} max={500} step={5} accentColor={accent} />
+          {metricGroups.optional.map((metric) => (
+            <MetricInput
+              key={metric.key}
+              label={metric.label}
+              value={metrics[metric.key] ?? 0}
+              onChange={(v) => updateMetric(metric.key, v)}
+              min={metric.min}
+              max={metric.max}
+              step={metric.step}
+              format={metric.format}
+              accentColor={accent}
+            />
+          ))}
         </div>
       </div>
 
@@ -480,6 +528,7 @@ export default function DiscoveryPanel() {
           </div>
           <ArrowRight size={20} className="text-slate-500 group-hover:text-white group-hover:translate-x-1 transition-all" />
         </button>
+      </div>
       </div>
     </div>
   );

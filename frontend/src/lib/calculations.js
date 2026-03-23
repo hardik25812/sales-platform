@@ -1,16 +1,14 @@
 // ROI Calculation Engine for Sales Experience Platform
 
 export function calculateROI(metrics, industry) {
-  const {
-    monthlyLeads,
-    avgJobValue,
-    employees,
-    currentCloseRate,
-    currentResponseTime,
-    monthlyAdSpend,
-    noShowRate,
-    missedCallsEstimate
-  } = metrics;
+  const monthlyLeads = metrics.monthlyLeads ?? 0;
+  const avgJobValue = metrics.avgJobValue ?? 0;
+  const employees = metrics.employees ?? 0;
+  const currentCloseRate = metrics.currentCloseRate ?? 0;
+  const currentResponseTime = metrics.currentResponseTime ?? 0;
+  const monthlyAdSpend = metrics.monthlyAdSpend ?? 0;
+  const noShowRate = metrics.noShowRate ?? 0;
+  const missedCallsEstimate = metrics.missedCallsEstimate ?? 0;
 
   const roi = industry.roi;
 

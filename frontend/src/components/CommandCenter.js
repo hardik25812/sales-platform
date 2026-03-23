@@ -3,13 +3,14 @@ import { useDemo } from '../context/DemoContext';
 import { CurrencyCounter, AnimatedCounter, PercentCounter } from './AnimatedCounter';
 import { getDepartments, calculateAgentValue, calculateDepartmentValue, getAllAgents } from '../data/departments';
 import { formatCurrency } from '../lib/formatters';
+import { getCommandCenterTagline, getCommandCenterTitle, getCommandStats, getPipelineStages, getTeamUnitLabel } from '../lib/industryPresentation';
 import AgentDetailPanel from './AgentDetailPanel';
 import {
   PhoneIncoming, CalendarCheck, FileText, Star, Truck, Shield, MessageCircle,
   CalendarPlus, Stethoscope, HeartPulse, Award, Crown, AlertTriangle, Wrench,
   MapPin, Smile, ClipboardList, RotateCcw, ShieldCheck, Zap, Phone, RefreshCw,
   TrendingUp, Users, Target, Car, HardHat, MessageSquare, Scale, Building2,
-  Heart, FileCheck, DoorOpen, TreePine, Calculator, CloudRain, Waves, Palette,
+  Heart, FileCheck, DoorOpen, TreePine, Calculator, CloudRain, Waves, Palette, BarChart3,
   Sun, Filter, Bell, Key, CheckCircle, UserMinus, Activity
 } from 'lucide-react';
 
@@ -18,7 +19,7 @@ const ICON_MAP = {
   CalendarPlus, Stethoscope, HeartPulse, Award, Crown, AlertTriangle, Wrench,
   MapPin, Smile, ClipboardList, RotateCcw, ShieldCheck, Zap, Phone, RefreshCw,
   TrendingUp, Users, Target, Car, HardHat, MessageSquare, Scale, Building2,
-  Heart, FileCheck, DoorOpen, TreePine, Calculator, CloudRain, Waves, Palette,
+  Heart, FileCheck, DoorOpen, TreePine, Calculator, CloudRain, Waves, Palette, BarChart3,
   Sun, Filter, Bell, Key, CheckCircle, UserMinus, Activity
 };
 
@@ -34,15 +35,27 @@ function LiveFeedItem({ item, accent }) {
   );
 }
 
-function DeptAgentCard({ agent, accent, index, onClick, metrics }) {
+function DeptAgentCard({ agent, accent, index, onClick, metrics, isFlagship }) {
   const agentValue = calculateAgentValue(agent, metrics);
   return (
     <button
       onClick={() => onClick(agent)}
-      className="glass-panel glass-panel-hover p-4 space-y-3 animate-fade-up text-left w-full cursor-pointer group"
+      className={`p-4 space-y-3 animate-fade-up text-left w-full cursor-pointer group rounded-2xl transition-all duration-300 ${
+        isFlagship
+          ? 'border-2 border-amber-500/40 bg-gradient-to-br from-amber-950/30 to-rose-950/20 shadow-lg hover:border-amber-500/60'
+          : 'glass-panel glass-panel-hover'
+      }`}
       style={{ opacity: 0, animationFillMode: 'forwards', animationDelay: `${0.05 + index * 0.06}s` }}
       data-testid={`agent-card-${agent.id}`}
     >
+      {isFlagship && (
+        <div className="flex items-center gap-2 mb-1">
+          <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-amber-500/15 border border-amber-500/30">
+            <Star size={9} className="text-amber-400" fill="currentColor" />
+            <span className="text-[9px] font-mono text-amber-400 tracking-widest uppercase">Flagship — Lead With This</span>
+          </div>
+        </div>
+      )}
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-2.5">
           <div className="w-9 h-9 rounded-lg flex items-center justify-center text-lg" style={{ backgroundColor: `${accent}15` }}>
@@ -95,7 +108,7 @@ function DeptAgentCard({ agent, accent, index, onClick, metrics }) {
   );
 }
 
-function DepartmentHeader({ dept, accent, metrics }) {
+function DepartmentHeader({ dept, accent, metrics, unitLabel }) {
   const totalValue = calculateDepartmentValue(dept, metrics);
   const agentCount = dept.agents.length;
 
@@ -118,7 +131,7 @@ function DepartmentHeader({ dept, accent, metrics }) {
         </div>
         <div className="text-right hidden sm:block">
           <div className="text-[10px] text-slate-500 font-mono">
-            {agentCount} agent{agentCount !== 1 ? 's' : ''}
+            {agentCount} {unitLabel}{agentCount !== 1 ? 's' : ''}
             {totalValue > 0 && (
               <> · Worth <span style={{ color: accent }}>{formatCurrency(totalValue)}</span>/mo</>
             )}
@@ -129,8 +142,14 @@ function DepartmentHeader({ dept, accent, metrics }) {
   );
 }
 
+const REVIEW_AGENT_NAMES = ['review agent', 'review & reputation', 'reputation', 'google review'];
+
+function isReviewAgent(agent) {
+  return REVIEW_AGENT_NAMES.some(n => (agent.name || '').toLowerCase().includes(n));
+}
+
 export default function CommandCenter() {
-  const { industryConfig, selectedIndustryId, metrics, roi, companyName } = useDemo();
+  const { industryConfig, selectedIndustryId, metrics, roi, companyName, savedProfile } = useDemo();
   const [feedIndex, setFeedIndex] = useState(0);
   const [selectedAgent, setSelectedAgent] = useState(null);
 
@@ -156,41 +175,30 @@ export default function CommandCenter() {
 
   const accent = industryConfig.color;
   const feed = industryConfig.liveFeedExamples || [];
-
-  // Pipeline funnel data
-  const pipelineStages = [
-    { name: 'Leads', value: metrics.monthlyLeads, pct: 100 },
-    { name: 'Contacted', value: Math.round(metrics.monthlyLeads * 0.92), pct: 92 },
-    { name: 'Qualified', value: Math.round(metrics.monthlyLeads * 0.65), pct: 65 },
-    { name: 'Proposal', value: Math.round(metrics.monthlyLeads * 0.40), pct: 40 },
-    { name: 'Closed', value: Math.round(metrics.monthlyLeads * roi.projectedCloseRate), pct: Math.round(roi.projectedCloseRate * 100) },
-  ];
+  const unitLabel = getTeamUnitLabel(industryConfig).slice(0, -1);
+  const commandStats = getCommandStats(selectedIndustryId, roi, metrics);
+  const pipelineStages = getPipelineStages(selectedIndustryId, metrics, roi);
 
   return (
     <div className="space-y-6" data-testid="command-center">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
-          <p className="text-xs text-slate-500 font-mono uppercase tracking-wider mb-1">Your AI Team</p>
+          <p className="text-xs text-slate-500 font-mono uppercase tracking-wider mb-1">{getCommandCenterTagline(industryConfig)}</p>
           <h2 className="text-2xl font-bold text-white font-display">
-            {companyName ? `${companyName}'s` : 'Your'} AI Workforce
+            {companyName ? `${companyName}'s` : 'Your'} {getCommandCenterTitle(industryConfig)}
           </h2>
         </div>
         <div className="flex items-center gap-2 px-3 py-1.5 rounded-full glass-panel">
           <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-xs font-mono text-emerald-400">{totalAgentCount} Agents Active</span>
+          <span className="text-xs font-mono text-emerald-400">{totalAgentCount} {getTeamUnitLabel(industryConfig)} active</span>
         </div>
       </div>
 
       {/* Stat Cards Row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        {[
-          { label: 'Monthly Revenue Potential', value: roi.gains.totalMonthlyGain, type: 'currency', color: 'text-emerald-400', icon: TrendingUp },
-          { label: 'Projected Close Rate', value: roi.projectedCloseRate * 100, type: 'percent', color: 'text-blue-400', icon: Target },
-          { label: 'Response Time', value: null, display: roi.projectedResponseTime, color: 'text-cyan-400', icon: Zap },
-          { label: 'FTE Savings', value: roi.fteEquivalent, type: 'number', suffix: ' FTE', color: 'text-violet-400', icon: Users },
-        ].map((stat, i) => {
-          const Icon = stat.icon;
+        {commandStats.map((stat, i) => {
+          const Icon = ICON_MAP[stat.icon] || Activity;
           return (
             <div key={i} className="glass-panel p-4 animate-fade-up" style={{ opacity: 0, animationFillMode: 'forwards', animationDelay: `${i * 0.08}s` }}>
               <div className="flex items-center gap-1.5 mb-2">
@@ -215,7 +223,7 @@ export default function CommandCenter() {
         <div className="lg:col-span-8 space-y-6">
           {departments.map((dept, deptIdx) => (
             <div key={dept.id}>
-              <DepartmentHeader dept={dept} accent={accent} metrics={metrics} />
+              <DepartmentHeader dept={dept} accent={accent} metrics={metrics} unitLabel={unitLabel} />
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3">
                 {dept.agents.map((agent, agentIdx) => (
                   <DeptAgentCard
@@ -225,6 +233,7 @@ export default function CommandCenter() {
                     index={deptIdx * 3 + agentIdx}
                     onClick={setSelectedAgent}
                     metrics={metrics}
+                    isFlagship={!!savedProfile && isReviewAgent(agent)}
                   />
                 ))}
               </div>

@@ -128,17 +128,21 @@ export function hasProfile(identifier) {
 export function formatProfileForDisplay(profile) {
   if (!profile) return null;
 
+  const primaryArea = profile.firm.practice_areas?.[0] || profile.firm.services?.[0] || profile.firm.name;
+  const primaryLocation = profile.firm.locations?.[0] || profile.firm.service_area || '';
+  const topVerdictRaw = profile.firm.notable_verdicts?.[0]?.amount;
+
   return {
     firmName: profile.firm.name,
-    tagline: `${profile.firm.practice_areas[0]} specialists in ${profile.firm.locations[0]}`,
-    topVerdict: profile.firm.notable_verdicts?.[0]?.amount 
-      ? `$${(profile.firm.notable_verdicts[0].amount / 1000000).toFixed(1)}M top verdict`
+    tagline: primaryLocation ? `${primaryArea} specialists in ${primaryLocation}` : primaryArea,
+    topVerdict: topVerdictRaw
+      ? `$${(topVerdictRaw / 1000000).toFixed(1)}M top verdict`
       : null,
-    experience: `${profile.firm.experience_years}+ years`,
+    experience: profile.firm.experience_years ? `${profile.firm.experience_years}+ years` : null,
     attorneys: profile.firm.attorneys?.length || 0,
     problemCount: profile.problems?.length || 0,
     systemCount: profile.systems?.length || 0,
-    tone: profile.personalization?.brand_tone,
+    tone: profile.personalization?.brand_tone || profile.firm.tone,
     demoAngle: profile.personalization?.demo_angle,
   };
 }

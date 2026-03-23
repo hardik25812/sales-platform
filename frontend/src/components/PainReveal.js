@@ -1,7 +1,8 @@
 import { useDemo } from '../context/DemoContext';
 import { formatCurrency, formatPercent } from '../lib/formatters';
 import { AnimatedCounter } from './AnimatedCounter';
-import { PhoneOff, Clock, FileX, UserX, MessageSquareX, TrendingDown, DollarSign } from 'lucide-react';
+import { PhoneOff, Clock, FileX, UserX, MessageSquareX, TrendingDown, DollarSign, Palette, Star } from 'lucide-react';
+import { getPainCards } from '../lib/industryPresentation';
 
 const ICON_MAP = {
   PhoneMissed: PhoneOff,
@@ -19,64 +20,45 @@ const ICON_MAP = {
 };
 
 export default function PainReveal() {
-  const { industryConfig, metrics, roi, companyName } = useDemo();
+  const { industryConfig, metrics, roi, companyName, selectedIndustryId, savedProfile } = useDemo();
 
   if (!industryConfig || !roi) return null;
 
   const painPoints = industryConfig.painPoints || [];
-  
-  // Calculate specific pain values based on metrics
-  const missedCallsCount = Math.round(metrics.monthlyLeads * (metrics.missedCallsEstimate / 100 || 0.65));
-  const missedCallRevenue = missedCallsCount * metrics.avgJobValue * metrics.currentCloseRate;
-  const slowResponseLoss = metrics.monthlyLeads * 0.21 * metrics.avgJobValue * metrics.currentCloseRate * 0.3;
-  const noFollowUpLoss = metrics.monthlyLeads * 0.48 * metrics.avgJobValue * metrics.currentCloseRate * 0.25;
-  const noShowLoss = metrics.monthlyLeads * (metrics.noShowRate / 100) * metrics.avgJobValue * metrics.currentCloseRate;
+  const helperPainCards = getPainCards(selectedIndustryId, metrics);
+  const cardIconMap = {
+    PhoneOff,
+    Clock,
+    FileX,
+    UserX,
+    MessageSquareX,
+    TrendingDown,
+    DollarSign,
+    Palette,
+    Star,
+  };
+  const basePainCards = helperPainCards.map((card) => ({
+    ...card,
+    icon: cardIconMap[card.icon] || Clock,
+  }));
 
-  const painCards = [
-    {
-      icon: PhoneOff,
-      title: 'MISSED CALLS',
-      highlight: `${Math.round(metrics.missedCallsEstimate || 65)}%`,
-      description: `of your calls go unanswered when your team is busy with customers.`,
-      calculation: `That's ~${missedCallsCount} missed calls/month.`,
-      subtext: `At your avg job value of ${formatCurrency(metrics.avgJobValue)}...`,
-      cost: missedCallRevenue,
-      costLabel: 'in potential revenue calling your competitor instead',
-      barPercent: metrics.missedCallsEstimate || 65,
-    },
-    {
-      icon: Clock,
-      title: 'SLOW RESPONSE',
-      highlight: `${metrics.currentResponseTime} hours`,
-      description: `Your avg response time. Industry data: leads that get a response in <5 min are 21x more likely to convert.`,
-      calculation: `You're responding ${Math.round(metrics.currentResponseTime * 12)}x slower than what it takes to win the lead.`,
-      cost: slowResponseLoss,
-      costLabel: 'lost to competitors who respond faster',
-      barPercent: Math.min(100, metrics.currentResponseTime * 15),
-    },
-    {
-      icon: FileX,
-      title: 'NO FOLLOW-UP',
-      highlight: '48%',
-      description: `of estimates/quotes never get a single follow-up. It takes 5+ touches to close.`,
-      calculation: `You're leaving 40% of your quotes on the table.`,
-      cost: noFollowUpLoss,
-      costLabel: 'in quotes going cold every month',
-      barPercent: 48,
-    },
-    {
-      icon: UserX,
-      title: 'NO-SHOWS',
-      highlight: `${metrics.noShowRate}%`,
-      description: `of scheduled appointments are no-shows without proper reminders.`,
-      calculation: `That's ${Math.round(metrics.monthlyLeads * (metrics.noShowRate / 100))} wasted appointment slots per month.`,
-      cost: noShowLoss,
-      costLabel: 'in lost appointment value',
-      barPercent: metrics.noShowRate,
-    },
-  ];
+  const reputationCard = savedProfile ? {
+    icon: Star,
+    title: 'GOOGLE REVIEWS LEFT ON THE TABLE',
+    highlight: '50–70%',
+    description: 'of settled clients are never systematically asked for a Google review — leaving the firm invisible to the next injured victim searching online.',
+    calculation: 'Personal injury intakes start on Google. The firm with more credible reviews wins the call before a consultation is ever booked.',
+    cost: Math.round((metrics.monthlyLeads || 20) * (metrics.avgJobValue || 15000) * 0.04),
+    costLabel: 'in estimated new intakes lost monthly to competitors with stronger Google presence',
+    barPercent: 65,
+    isFlagship: true,
+  } : null;
 
-  const totalMonthlyLoss = missedCallRevenue + slowResponseLoss + noFollowUpLoss + noShowLoss;
+  const painCards = reputationCard
+    ? [reputationCard, ...basePainCards.slice(0, 3)]
+    : basePainCards;
+
+  const totalMonthlyLoss = painCards.reduce((acc, card) => acc + card.cost, 0);
   const annualLoss = totalMonthlyLoss * 12;
 
   return (
@@ -95,32 +77,49 @@ export default function PainReveal() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
         {painCards.map((card, index) => {
           const Icon = card.icon;
+          const flagship = !!card.isFlagship;
           return (
             <div
               key={index}
-              className="glass-panel p-5 md:p-6 rounded-2xl border border-white/[0.04] hover:border-red-500/20 transition-all duration-300"
+              className={`p-5 md:p-6 rounded-2xl transition-all duration-300 ${
+                flagship
+                  ? 'border-2 border-amber-500/40 bg-gradient-to-br from-amber-950/30 to-rose-950/20 shadow-lg md:col-span-2'
+                  : 'glass-panel border border-white/[0.04] hover:border-red-500/20'
+              }`}
               style={{
                 animation: `fadeSlideUp 0.5s ease-out ${index * 0.1}s forwards`,
                 opacity: 0,
               }}
             >
+              {flagship && (
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/15 border border-amber-500/30">
+                    <Star size={11} className="text-amber-400" fill="currentColor" />
+                    <span className="text-[10px] font-mono text-amber-400 tracking-widest uppercase">Primary Issue — Start Here</span>
+                  </div>
+                </div>
+              )}
               <div className="flex items-start gap-4">
-                <div className="p-3 rounded-xl bg-red-500/10 shrink-0">
-                  <Icon size={24} className="text-red-400" />
+                <div className={`p-3 rounded-xl shrink-0 ${flagship ? 'bg-amber-500/10' : 'bg-red-500/10'}`}>
+                  <Icon size={24} className={flagship ? 'text-amber-400' : 'text-red-400'} />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-xs font-semibold tracking-wider text-red-400">{card.title}</span>
+                    <span className={`text-xs font-semibold tracking-wider ${flagship ? 'text-amber-400' : 'text-red-400'}`}>{card.title}</span>
                   </div>
-                  <div className="text-2xl md:text-3xl font-bold text-white mb-2">{card.highlight}</div>
+                  <div className={`font-bold text-white mb-2 ${flagship ? 'text-3xl md:text-4xl' : 'text-2xl md:text-3xl'}`}>{card.highlight}</div>
                   <p className="text-sm text-slate-400 mb-3">{card.description}</p>
                   <p className="text-xs text-slate-500 mb-4">{card.calculation}</p>
-                  
+
                   {/* Progress bar */}
                   <div className="mb-4">
                     <div className="h-2 bg-white/[0.06] rounded-full overflow-hidden">
-                      <div 
-                        className="h-full bg-gradient-to-r from-red-500 to-red-400 rounded-full transition-all duration-1000"
+                      <div
+                        className={`h-full rounded-full transition-all duration-1000 ${
+                          flagship
+                            ? 'bg-gradient-to-r from-amber-500 to-amber-400'
+                            : 'bg-gradient-to-r from-red-500 to-red-400'
+                        }`}
                         style={{ width: `${card.barPercent}%` }}
                       />
                     </div>
@@ -129,7 +128,7 @@ export default function PainReveal() {
                   {/* Cost */}
                   <div className="pt-3 border-t border-white/[0.06]">
                     <div className="flex items-baseline gap-2">
-                      <span className="text-xl md:text-2xl font-bold text-red-400">
+                      <span className={`font-bold ${flagship ? 'text-2xl md:text-3xl text-amber-400' : 'text-xl md:text-2xl text-red-400'}`}>
                         <AnimatedCounter value={card.cost} prefix="$" />
                       </span>
                       <span className="text-xs text-slate-500">/mo</span>

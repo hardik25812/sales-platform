@@ -7,6 +7,7 @@ import { lawDepartments } from './law';
 import { lawFirmSystems } from './law-systems';
 import { constructionSystems, constructionMetrics, constructionProblems, constructionWorkflow, constructionPersonalization } from './construction-systems';
 import { landscapingSystems, landscapingMetrics, landscapingProblems, landscapingWorkflow, landscapingPersonalization } from './landscaping-systems';
+import { indoorEnvironmentalDepartments } from './indoor-environmental';
 
 // Map industry IDs to their department configurations
 const DEPARTMENT_MAP = {
@@ -16,6 +17,7 @@ const DEPARTMENT_MAP = {
   dental: dentalDepartments,
   auto_dealership: autoDepartments,
   law_firm: lawDepartments,
+  indoor_environmental: indoorEnvironmentalDepartments,
 };
 
 // Systems-based configurations (for industries that use "systems" instead of "agents")
@@ -50,6 +52,38 @@ const PERSONALIZATION_MAP = {
   landscaping: landscapingPersonalization,
 };
 
+function mapSystemToAgent(system) {
+  return {
+    id: system.id,
+    name: system.name,
+    icon: system.icon || '⚙️',
+    tagline: system.tagline,
+    role: system.role,
+    outcomes: system.outcomes || [],
+    connectsTo: system.connectsTo || [],
+    connectsDescription: system.connectsDescription || [],
+    workflow: system.workflow || [],
+    sampleOutputs: system.sampleOutputs || {},
+    valueFormula: system.valueFormula || null,
+    valueLabel: system.valueLabel || '',
+    kpis: system.kpis || [],
+    loadPercent: system.loadPercent || 0,
+    color: system.color || 'blue',
+  };
+}
+
+function mapSystemsToDepartments(systemGroups) {
+  return systemGroups.map((group) => ({
+    id: group.id,
+    name: group.name,
+    icon: group.icon || '⚙️',
+    description: group.description,
+    isNicheSpecific: group.isNicheSpecific || false,
+    nicheLabel: group.nicheLabel,
+    agents: (group.systems || []).map(mapSystemToAgent),
+  }));
+}
+
 // Check if an industry uses systems-based configuration
 export function usesSystemsApproach(industryId) {
   return !!SYSTEMS_MAP[industryId];
@@ -83,6 +117,10 @@ export function getIndustryPersonalization(industryId) {
 // Get departments for a specific industry
 // Falls back to generating departments from the flat agents array if no department config exists
 export function getDepartments(industryId, industryConfig) {
+  if (SYSTEMS_MAP[industryId]) {
+    return mapSystemsToDepartments(SYSTEMS_MAP[industryId]);
+  }
+
   if (DEPARTMENT_MAP[industryId]) {
     return DEPARTMENT_MAP[industryId];
   }
@@ -130,11 +168,29 @@ export function getDepartments(industryId, industryConfig) {
   return Object.values(deptMap);
 }
 
-// Calculate agent value from formula and metrics
+// Calculate agent value from formula
 export function calculateAgentValue(agent, metrics) {
   if (!agent.valueFormula) return 0;
   try {
-    const { monthlyLeads, avgJobValue, employees, currentCloseRate, currentResponseTime, monthlyAdSpend, noShowRate, missedCallsEstimate } = metrics;
+    const monthlyLeads = metrics.monthlyLeads ?? 0;
+    const avgJobValue = metrics.avgJobValue ?? 0;
+    const employees = metrics.employees ?? 0;
+    const currentCloseRate = metrics.currentCloseRate ?? 0;
+    const currentResponseTime = metrics.currentResponseTime ?? 0;
+    const monthlyAdSpend = metrics.monthlyAdSpend ?? 0;
+    const noShowRate = metrics.noShowRate ?? 0;
+    const missedCallsEstimate = metrics.missedCallsEstimate ?? 0;
+    const monthly_estimates_sent = metrics.monthly_estimates_sent ?? metrics.monthlyLeads ?? 0;
+    const avg_job_value = metrics.avg_job_value ?? metrics.avgJobValue ?? 0;
+    const estimate_to_job_rate = metrics.estimate_to_job_rate ?? Math.round((metrics.currentCloseRate ?? 0) * 100);
+    const projects_active = metrics.projects_active ?? 0;
+    const avg_project_delay_days = metrics.avg_project_delay_days ?? 0;
+    const margin_loss_from_changes = metrics.margin_loss_from_changes ?? 0;
+    const recurring_contracts = metrics.recurring_contracts ?? 0;
+    const avg_contract_value = metrics.avg_contract_value ?? 0;
+    const crews = metrics.crews ?? 0;
+    const monthly_services = metrics.monthly_services ?? 0;
+    const seasonal_revenue_drop = metrics.seasonal_revenue_drop ?? 0;
     // eslint-disable-next-line no-eval
     return Math.round(eval(agent.valueFormula)) || 0;
   } catch {

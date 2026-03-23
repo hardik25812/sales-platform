@@ -1,0 +1,202 @@
+{
+  "firm": {
+    "name": "Indoor Environmental Testing, Inc.",
+    "website": "airinspector.com",
+    "industry_id": "indoor_environmental",
+    "phone_tn": "(615) 649-6080",
+    "phone_wi": "(608) 241-9883",
+    "locations": ["Nashville, TN", "Madison, WI"],
+    "tagline": "We Detect What You Suspect",
+    "services": ["Mold Inspections", "Air Quality Assessments", "EMF Exposure Testing", "Commercial Air & Mold Testing"],
+    "experience_years": 20,
+    "tone": "compassionate-expert",
+    "service_area": "Nashville / Mid-Tennessee & Madison, Wisconsin"
+  },
+
+  "problems": [
+    {
+      "id": "martine_free_trial_ai_team",
+      "title": "No 7-Day AI Team Handling Inbound Enquiries, Booking, Follow-Up, Payments, and Client Updates",
+      "description": "Martine was told we can build a 7-day free trial AI team that works across every department — but today there is no unified system doing that. New enquiries still depend on the owner being available. Bookings require manual back-and-forth. Leads who asked questions but never booked go cold. Outstanding invoices are not chased consistently. Clients waiting on reports or next steps are forced to call in for updates. For a niche built on trust, urgency, and reassurance, that means revenue leakage at every stage of the client journey.",
+      "impact": "Lost bookings, slower cash collection, and anxious clients across the full pipeline — from first inquiry to final payment",
+      "evidence": "Owner-operator workflow + multi-step inspection/report/remediation cycle creates obvious automation opportunities across intake, follow-up, payments, and updates"
+    },
+    {
+      "id": "review_stagnation",
+      "title": "Google Reviews Not Keeping Pace with Completed Jobs",
+      "description": "Indoor Environmental Testing has 20+ years of experience and hundreds of satisfied families — but that track record isn't fully visible on Google. Every job ends with a grateful homeowner who finally has answers after months of unexplained symptoms. Those are perfect review moments. But without a systematic ask at the right time (24–48 hours after the report lands, when relief is highest), most clients never think to leave a review. Meanwhile, newer competitors with fewer qualifications are building larger review counts simply because they ask every single time. In a niche where trust is everything and families are scared, Google reviews are the #1 intake driver.",
+      "impact": "Losing 40–60% of achievable reviews per year — directly reducing visibility in 'mold testing near me' and 'air quality testing Nashville' searches",
+      "evidence": "High satisfaction implied by referral volume, but review count lags behind service output"
+    },
+    {
+      "id": "missed_after_hours_inquiries",
+      "title": "After-Hours Inquiries Going Unanswered",
+      "description": "Health anxiety doesn't follow business hours. A parent Googling 'mold inspector Nashville' at 10pm after seeing black spots near the baby's room is a high-intent, emotionally ready buyer. As a small owner-operator business, there's no staff to respond until the next morning — by which time the prospect has already booked with whoever responded first. The owner-inspector is often in the field during business hours too, creating the same gap during peak calling windows.",
+      "impact": "Estimated 30–40% of web inquiries arrive outside business hours — most book with the first responder",
+      "evidence": "Owner-operator model with no after-hours coverage; field schedule during core business hours creates double exposure"
+    },
+    {
+      "id": "referral_pipeline_untracked",
+      "title": "Referral Partners Not Systematically Nurtured",
+      "description": "Real estate agents, pediatricians, allergists, and remediation contractors are the highest-value referral sources in this niche — one active realtor partner can send 15–20 inspections per year. But referral relationships die from neglect. Without a system sending monthly educational content, referral thank-yous, and outcome updates to partners, the referral channel is entirely dependent on personal relationships that fade over time.",
+      "impact": "Referral channel producing far below potential — untapped 2–3x growth opportunity",
+      "evidence": "Dual-market operation (Nashville + Madison) requires scalable partner outreach — can't rely on in-person relationship maintenance"
+    },
+    {
+      "id": "report_delivery_no_followthrough",
+      "title": "Reports Delivered Without a Clear Next Step",
+      "description": "When a report shows elevated mold counts or concerning air quality, clients need immediate guidance on what to do next. Without an automated next-step sequence, clients sit with a confusing technical PDF and no clear action plan. They delay remediation, don't book clearance tests, and don't refer neighbors — all because the moment of highest urgency passed without a systematic response.",
+      "impact": "Clearance retest conversion rate well below potential; remediation referral revenue not captured",
+      "evidence": "Mold remediation referral and post-remediation clearance testing are natural high-margin follow-on services"
+    },
+    {
+      "id": "seasonal_demand_not_leveraged",
+      "title": "Seasonal Demand Spikes Not Being Capitalized On",
+      "description": "Nashville and Madison both have distinct mold and air quality seasons — spring humidity in Tennessee, fall basement moisture in Wisconsin, HVAC startup season (when contaminated ducts distribute spores), and wildfire smoke events. These are high-intent windows when homeowners are primed to act. Without automated seasonal campaigns to past clients and referral partners, this demand spike goes to whoever has visibility at the right moment.",
+      "impact": "Peak season demand not pre-captured — reactive rather than proactive scheduling",
+      "evidence": "Dual-market operation spans two distinct climate zones with different seasonal patterns"
+    }
+  ],
+
+  "systems": [
+    {
+      "id": "free_trial_ai_team",
+      "name": "7-Day Free Trial AI Operations Team",
+      "priority": "flagship",
+      "tagline": "Deploy an AI team across intake, booking, lead follow-up, payments, and client updates in 7 days",
+      "role": "Cross-Department Trial Deployment",
+      "what_it_does": [
+        "Answers inbound enquiries automatically by SMS, web form, and missed-call textback",
+        "Books inspections without staff involvement and sends reminders automatically",
+        "Follows up with leads who asked questions but never converted",
+        "Chases outstanding balances and sends invoice reminders professionally",
+        "Sends client updates at every stage: booked, inspector en route, report delivered, next step due",
+        "Coordinates handoffs between intake, scheduling, report delivery, payments, and reputation workflows",
+        "Gives Martine a full AI team to test in a 7-day free trial before committing"
+      ],
+      "example_outputs": [
+        "Inbound enquiry reply: 'Hi Sarah — thank you for reaching out to Indoor Environmental Testing. We can help with that. Based on what you described, a mold inspection is the right next step. I can get you booked for Thursday at 10am or Friday at 1pm.'",
+        "Lead reactivation: 'Hi Sarah — just checking in. You asked us about air quality testing last week. If you'd still like answers, we have 2 openings tomorrow and can get your report back within 48 hours.'",
+        "Payment reminder: 'Hi Sarah — your invoice for the inspection completed on March 22 is still open. You can pay securely here: [LINK]. Reply if you'd like us to resend the report or answer any questions.'",
+        "Client update: 'Your lab results are in and your report is being finalized now. We'll have your full summary and recommended next steps to you by 4 PM today.'"
+      ],
+      "impact": "A real trial AI team Martine can use immediately — recovering revenue across intake, follow-up, payments, and communication"
+    },
+    {
+      "id": "review_reputation_system",
+      "name": "Google Review & Reputation Engine",
+      "tagline": "Systematically capture 5-star reviews at peak gratitude — after every report",
+      "role": "Review Generation & Reputation Management",
+      "what_it_does": [
+        "Sends personalized review request 24 hours after report delivery — the highest-satisfaction window",
+        "Uses the client's name and situation: 'Jennifer, we're so glad your family finally has answers'",
+        "One-tap Google review link with zero friction — no login, no confusion",
+        "2-touch follow-up sequence (Day 3, Day 7) for non-responders",
+        "Monitors Google and Yelp for new reviews and drafts warm, professional responses",
+        "Tracks review velocity vs Nashville and Madison competitors weekly",
+        "Flags when a competitor gains review momentum — triggers response campaign"
+      ],
+      "example_outputs": [
+        "SMS Day 1: 'Hi Jennifer — we're so glad your family finally has answers. Your daughter's health is exactly why we do this. 60 seconds on Google would help other Nashville families find us: [LINK] 💙'",
+        "SMS Day 3 follow-up: 'Just a gentle reminder — your feedback helps other families dealing with unexplained symptoms find trusted help. [LINK]'",
+        "Google review response: 'Thank you so much, Jennifer. Helping families in Nashville breathe easier is exactly why we do this work. We're thrilled your daughter is feeling better.'",
+        "Weekly competitor report: 'IET: 47 reviews (4.9★) | Nashville Air Pros: 89 reviews (4.7★) — Gap: 42 reviews. Projected catch-up: 4 months at current velocity.'"
+      ],
+      "impact": "3x review volume within 90 days — ranking improvement for 'mold testing Nashville' and 'air quality testing Madison'"
+    },
+    {
+      "id": "inquiry_capture_system",
+      "name": "24/7 Inquiry Capture & Booking System",
+      "tagline": "Never miss a worried family — answer every inquiry instantly, day or night",
+      "role": "Lead Capture & Appointment Booking",
+      "what_it_does": [
+        "Responds to every website form, call, and referral inquiry within 60 seconds — 24/7",
+        "Triages service type: mold vs air quality vs EMF vs commercial",
+        "Asks health-aware qualification questions without sounding clinical",
+        "Quotes price range to set expectations and prevent no-shows",
+        "Books site assessment directly into the inspection calendar",
+        "Sends pre-visit prep packet with inspector bio and what to expect"
+      ],
+      "example_outputs": [
+        "SMS: 'Hi Jennifer, thank you for reaching out to Indoor Environmental Testing. We understand how concerning this is. I've booked you for a mold inspection Thursday at 10am. Here's what to expect: [LINK]'",
+        "Owner alert: '🏠 New Booking: Jennifer Martinez — Mold Inspection — 2,200 sq ft Nashville home — Child with respiratory symptoms — Thu 10am'"
+      ],
+      "impact": "Capture 30–40% more inquiries that currently go unanswered after hours or during field work"
+    },
+    {
+      "id": "report_next步_system",
+      "name": "Report Delivery & Action System",
+      "tagline": "Every report lands with urgency, clarity, and a clear next step — not just a PDF",
+      "role": "Post-Inspection Results Communication & Remediation Referral",
+      "what_it_does": [
+        "Delivers completed report with plain-language summary alongside the technical PDF",
+        "Flags urgency: 'Action Recommended' vs 'Monitor' vs 'Clearance Achieved'",
+        "Sends matched remediation contractor referrals when action is needed",
+        "Automatically pre-schedules post-remediation clearance test 3–4 weeks out",
+        "Triggers review request sequence 24 hours after report is opened",
+        "Captures client testimonial at peak relief and gratitude"
+      ],
+      "example_outputs": [
+        "Report summary SMS: '🔴 ACTION RECOMMENDED — Elevated mold confirmed in basement. Full report attached. Here are 2 certified Nashville remediation contractors we trust: [LINK]. Your clearance test is pre-scheduled for April 18.'",
+        "Clearance booking: 'Hi Jennifer — your remediation is complete. We have your clearance test scheduled for April 18 at 10am. This confirms your home is safe for your family.'"
+      ],
+      "impact": "41% clearance retest conversion; remediation referral revenue captured on every high-urgency result"
+    },
+    {
+      "id": "referral_partner_system",
+      "name": "Referral Partner Nurture System",
+      "tagline": "Turn realtors, doctors, and contractors into reliable monthly referral sources",
+      "role": "B2B Partner Outreach & Referral Tracking",
+      "what_it_does": [
+        "Manages monthly outreach cadence to real estate agents, pediatricians, and allergists",
+        "Sends co-branded content: 'Nashville Home Buyer's Air Quality Guide' for realtor clients",
+        "Tracks referral source for every lead — identify which partner is worth 10 jobs/year",
+        "Automates thank-you and outcome updates after completed referral jobs",
+        "Sends quarterly partner recap: 'You've referred 7 families this quarter'",
+        "Identifies top remediation contractors who can send reverse referrals"
+      ],
+      "example_outputs": [
+        "Partner email: 'Hi Lisa — the Martinson family you referred had elevated mold confirmed. They're now symptom-free and left us a 5-star review. Attached is our updated buyer's guide for your closing packets.'",
+        "Quarterly recap: 'You've referred 7 families this quarter. 6 confirmed mold or air quality concerns. All resolved. Thank you for trusting us with your clients.'"
+      ],
+      "impact": "Referral channel growing to 35%+ of total monthly bookings within 6 months"
+    },
+    {
+      "id": "reactivation_system",
+      "name": "Seasonal Reactivation Campaign System",
+      "tagline": "Hit past clients at exactly the right seasonal moment — before they go searching",
+      "role": "Past Client Reactivation & Seasonal Demand Capture",
+      "what_it_does": [
+        "Sends annual retest reminders timed to Nashville spring humidity and Madison fall moisture seasons",
+        "Triggers HVAC startup reminders when contaminated ducts begin distributing spores",
+        "Post-renovation outreach: 'You mentioned a bathroom remodel — post-construction testing recommended'",
+        "Wildfire/smoke event alerts: 'Nashville air quality alert — your HVAC filter may need attention'",
+        "Referral asks to past 5-star clients: 'Know a neighbor dealing with unexplained symptoms?'",
+        "Reactivates borderline-result clients who never followed up on a 'Monitor' recommendation"
+      ],
+      "example_outputs": [
+        "Spring SMS: 'Hi Jennifer — Nashville humidity is peaking and we're entering peak mold season. Time for your annual check? We have same-week availability. Reply YES to book.'",
+        "HVAC startup: 'Fall HVAC startup season is here. If you haven't had your ducts inspected since your mold remediation, now is the time. Priority booking available this week.'"
+      ],
+      "impact": "28% past-client reactivation rate; seasonal campaigns capture demand before competitors get the Google search"
+    }
+  ],
+
+  "metrics": {
+    "monthlyLeads": 46,
+    "avgJobValue": 625,
+    "employees": 4,
+    "currentCloseRate": 0.41,
+    "currentResponseTime": 3.8,
+    "monthlyAdSpend": 1800,
+    "noShowRate": 9,
+    "missedCallsEstimate": 17
+  },
+
+  "personalization": {
+    "demo_angle": "Lead with the 7-day free trial AI team. Show Martine how one team can answer inbound enquiries, book inspections automatically, follow up with leads who never converted, chase outstanding payments, and keep clients updated without staff having to manually touch every step.",
+    "hook_question": "If we gave you an AI team for 7 days that handled inbound enquiries, booking, lead follow-up, payment reminders, and client updates automatically — where would you want to deploy it first?",
+    "primary_pain": "No unified AI team handling enquiry capture, booking, follow-up, payments, and updates across departments",
+    "value_proposition": "Launch a 7-day free trial AI team that captures more jobs, follows up faster, gets invoices paid, and keeps clients informed automatically"
+  }
+}

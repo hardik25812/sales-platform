@@ -1,7 +1,10 @@
 import { useDemo } from '../context/DemoContext';
 import { AnimatedCounter, CurrencyCounter } from './AnimatedCounter';
 import { Zap, CalendarCheck, Mail, BarChart3, Shield, Clock, ChevronDown, Rocket } from 'lucide-react';
+import { useMemo } from 'react';
 import { useState } from 'react';
+import { getDepartments } from '../data/departments';
+import { getTeamCount, getTeamUnitLabel, getTrialBenefits } from '../lib/industryPresentation';
 
 function FAQItem({ question, answer }) {
   const [open, setOpen] = useState(false);
@@ -23,11 +26,18 @@ function FAQItem({ question, answer }) {
 }
 
 export default function TrialCTA() {
-  const { industryConfig, roi, companyName } = useDemo();
+  const { industryConfig, roi, companyName, selectedIndustryId } = useDemo();
+  const departments = useMemo(() => (
+    industryConfig ? getDepartments(selectedIndustryId, industryConfig) : []
+  ), [selectedIndustryId, industryConfig]);
 
   if (!industryConfig || !roi) return null;
 
   const accent = industryConfig.color;
+  const teamCount = getTeamCount(industryConfig, departments);
+  const teamUnitLabel = getTeamUnitLabel(industryConfig);
+  const benefits = getTrialBenefits(selectedIndustryId, roi, teamCount, teamUnitLabel);
+  const iconMap = { Zap, CalendarCheck, Mail, BarChart3 };
 
   return (
     <div className="max-w-3xl mx-auto space-y-8" data-testid="trial-cta">
@@ -46,13 +56,8 @@ export default function TrialCTA() {
 
       {/* Benefits Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {[
-          { icon: Zap, text: 'Every lead responded to in <60 seconds', detail: roi.projectedResponseTime },
-          { icon: CalendarCheck, text: 'Appointments auto-booked 24/7', detail: `${industryConfig.agents.length} agents working` },
-          { icon: Mail, text: 'Follow-up sequences running on autopilot', detail: '5-touch automated sequence' },
-          { icon: BarChart3, text: 'Real-time dashboard showing every lead', detail: 'Full Command Center access' },
-        ].map((benefit, i) => {
-          const Icon = benefit.icon;
+        {benefits.map((benefit, i) => {
+          const Icon = iconMap[benefit.icon] || Zap;
           return (
             <div
               key={i}
@@ -119,7 +124,7 @@ export default function TrialCTA() {
       </div>
 
       <p className="text-center text-xs text-slate-600 font-mono">
-        Your AI agent goes live within 24 hours
+        Your AI {teamUnitLabel.slice(0, -1)} goes live within 24 hours
       </p>
 
       {/* FAQ */}

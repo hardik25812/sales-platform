@@ -820,7 +820,13 @@ export const INDUSTRIES = {
       currentResponseTime: 5.0,
       monthlyAdSpend: 3500,
       noShowRate: 15,
-      missedCallsEstimate: 50
+      missedCallsEstimate: 50,
+      monthly_estimates_sent: 60,
+      avg_job_value: 12000,
+      estimate_to_job_rate: 25,
+      projects_active: 8,
+      avg_project_delay_days: 5,
+      margin_loss_from_changes: 15
     },
 
     caseStudies: [
@@ -1061,7 +1067,15 @@ export const INDUSTRIES = {
       currentResponseTime: 6.0,
       monthlyAdSpend: 2500,
       noShowRate: 10,
-      missedCallsEstimate: 65
+      missedCallsEstimate: 65,
+      monthly_estimates_sent: 100,
+      avg_job_value: 3500,
+      estimate_to_job_rate: 15,
+      recurring_contracts: 85,
+      avg_contract_value: 2400,
+      crews: 3,
+      monthly_services: 340,
+      seasonal_revenue_drop: 40
     },
 
     caseStudies: [
@@ -1167,6 +1181,113 @@ export const INDUSTRIES = {
       { type: "design", text: "Design consultation booked with inspiration package sent", time: "8 min ago" },
       { type: "update", text: "Week 4 construction update sent to Miller family", time: "18 min ago" }
     ]
+  },
+
+  indoor_environmental: {
+    id: "indoor_environmental",
+    name: "Indoor Air Quality",
+    icon: "Wind",
+    color: "#97A07A",
+    colorSecondary: "#6B735B",
+    gradient: "from-lime-700 to-stone-600",
+    glow: "rgba(151,160,122,0.3)",
+    tagline: "7-day AI team for enquiries, booking, follow-up, payments",
+    subtitle: "7 AI agents available",
+    heroImage: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80",
+
+    savedProfiles: [
+      {
+        id: "indoor-environmental-testing",
+        name: "Indoor Environmental Testing, Inc.",
+        website: "airinspector.com",
+        location: "Nashville, TN & Madison, WI",
+        specialty: "Mold, Air Quality & EMF Testing",
+        preview: "20+ year mold/IAQ inspector — Nashville & Madison markets"
+      }
+    ],
+
+    agents: [
+      { name: "Inquiry Response Agent", icon: "PhoneIncoming", dept: "Intake", description: "Answers every mold, air quality, and EMF inquiry 24/7 and starts the booking flow", status: "active", tasks: ["Responds to website forms and calls within 60 seconds", "Triages service type: mold vs air quality vs EMF vs commercial", "Collects property details and health symptom context", "Hands warm leads directly into booking workflow"], kpis: { primary: "Inquiries Captured", secondary: "Booking Rate" }, metric: { value: 96, unit: "%", label: "Capture Rate" } },
+      { name: "Assessment Scheduler", icon: "CalendarCheck", dept: "Intake", description: "Books inspections automatically and kills phone-tag delays", status: "active", tasks: ["Books assessments based on inspector availability and zone", "Groups same-area inspections to reduce drive time", "Sends 24hr and 2hr confirmation reminders", "Handles reschedules without the owner's involvement"], kpis: { primary: "Appointments Booked", secondary: "Show Rate" }, metric: { value: 93, unit: "%", label: "Show Rate" } },
+      { name: "Lead Follow-Up Agent", icon: "RefreshCw", dept: "Intake", description: "Reactivates people who asked questions but never booked", status: "active", tasks: ["Follows up with unconverted leads by text and email", "Revives estimates and inspection inquiries that went cold", "Prompts quick booking with limited-slot urgency", "Routes hot replies back to scheduling automatically"], kpis: { primary: "Lead Revival", secondary: "Recovered Jobs" }, metric: { value: 22, unit: "%", label: "Revival Rate" } },
+      { name: "Environmental Education Agent", icon: "FileText", dept: "Client Success", description: "Builds trust and authority through targeted pre- and post-visit education", status: "active", tasks: ["Sends service-specific education before every inspection", "Explains mold, VOC, radon, and EMF health effects in plain language", "Demystifies report findings before the follow-up call", "Positions IET as trusted expert vs faceless competitor"], kpis: { primary: "Emails Opened", secondary: "Upsell Rate" }, metric: { value: 63, unit: "%", label: "Open Rate" } },
+      { name: "Client Update Agent", icon: "MessageSquareMore", dept: "Client Success", description: "Keeps clients updated at every stage so they stop chasing the office", status: "active", tasks: ["Confirms bookings and sends prep reminders", "Updates clients when inspector is en route", "Confirms report delivery and next steps", "Sends remediation and retest status updates automatically"], kpis: { primary: "Status Calls Reduced", secondary: "Client Satisfaction" }, metric: { value: 71, unit: "%", label: "Calls Reduced" } },
+      { name: "Payment Recovery Agent", icon: "BadgeDollarSign", dept: "Finance", description: "Chases outstanding invoices professionally and speeds up collections", status: "active", tasks: ["Sends invoice reminders by SMS and email", "Handles payment link follow-ups automatically", "Escalates overdue accounts with context", "Reduces time-to-payment without staff chasing manually"], kpis: { primary: "Collections Recovered", secondary: "Days to Pay" }, metric: { value: 67, unit: "%", label: "Recovery Rate" } },
+      { name: "Review & Reputation Agent", icon: "Star", dept: "Growth", description: "Captures 5-star reviews at peak gratitude — 24hr after every report delivery", status: "active", tasks: ["Sends personalized review request 24hr after report delivery", "One-tap Google review link — zero friction", "2-touch follow-up sequence for non-responders", "Monitors and responds to Google/Yelp reviews professionally"], kpis: { primary: "Review Conversion", secondary: "Avg Rating" }, metric: { value: 38, unit: "%", label: "Review Conversion" } }
+    ],
+
+    workflow: [
+      { step: "Inquiry", system: "Inquiry Response Agent", icon: "PhoneIncoming", before: "Goes to voicemail after hours or during field work", after: "Answered in <60 seconds and qualified automatically", beforeTime: "Next day", afterTime: "60 seconds", dropoff: { before: 55, after: 5 } },
+      { step: "Booking", system: "Assessment Scheduler", icon: "CalendarCheck", before: "Phone tag to find a time — clients give up", after: "Instant booking with prep checklist and reminders", beforeTime: "1-2 days", afterTime: "2 minutes", dropoff: { before: 20, after: 4 } },
+      { step: "Lead Revival", system: "Lead Follow-Up Agent", icon: "RefreshCw", before: "Unbooked enquiries disappear forever", after: "Cold leads reactivated automatically within 24 hours", beforeTime: "Never", afterTime: "Same day", dropoff: { before: 35, after: 10 } },
+      { step: "Updates", system: "Client Update Agent", icon: "MessageSquareMore", before: "Clients keep calling for status updates", after: "Every step communicated automatically", beforeTime: "Random", afterTime: "Real-time", dropoff: { before: 25, after: 5 } },
+      { step: "Payments", system: "Payment Recovery Agent", icon: "BadgeDollarSign", before: "Invoices chased manually or forgotten", after: "Payment reminders and follow-up sent automatically", beforeTime: "Delayed", afterTime: "Same day", dropoff: { before: 18, after: 4 } },
+      { step: "Reviews", system: "Review & Reputation Agent", icon: "Star", before: "Review asked by chance — maybe 1 in 10 clients posts", after: "Systematic ask 24hr post-report — 38% conversion rate", beforeTime: "Rarely", afterTime: "Every job", dropoff: { before: 0, after: 0 } }
+    ],
+
+    roi: { leadResponseImprovement: 0.72, conversionLift: 0.18, missedLeadRecovery: 0.35, avgResponseTimeBefore: "Next day", avgResponseTimeAfter: "60 seconds", reviewIncreasePercent: 300 },
+
+    defaults: {
+      monthlyLeads: 46,
+      avgJobValue: 625,
+      employees: 4,
+      currentCloseRate: 0.41,
+      currentResponseTime: 3.8,
+      monthlyAdSpend: 1800,
+      noShowRate: 9,
+      missedCallsEstimate: 17
+    },
+
+    caseStudies: [
+      { company: "Clear Air Inspections", location: "Charlotte, NC", employees: 4, result: "Review count grew from 31 to 94 in 90 days", savings: "$8,200/month in additional revenue", detail: "Systematic post-report review requests captured what manual asking never did. Google ranking for 'mold inspector Charlotte' moved from page 2 to top 3.", metrics: { closeBefore: 58, closeAfter: 71, days: 90, monthlySavings: 8200 } },
+      { company: "Healthy Home Testing", location: "Austin, TX", employees: 5, result: "After-hours inquiry capture added 8 jobs/month", savings: "$11,400/month in new revenue", detail: "24/7 AI response captured 34% more inquiries — primarily from homeowners searching after work hours or on weekends.", metrics: { closeBefore: 55, closeAfter: 68, days: 60, monthlySavings: 11400 } }
+    ],
+
+    integrations: ["Google Business Profile", "Calendly", "HubSpot", "Mailchimp", "DocuSign", "Stripe"],
+
+    painPoints: [
+      { title: "No 7-Day AI Team Across Departments", stat: "5 leaks", description: "inbound enquiries, booking, lead follow-up, payments, and updates all still require manual effort", icon: "Bot" },
+      { title: "After-Hours Inquiries Lost", stat: "35%+", description: "of web inquiries arrive when owner is unavailable — first-responder wins the booking", icon: "PhoneOff" },
+      { title: "Unconverted Leads Never Revisited", stat: "20%+", description: "warm prospects who asked questions disappear because no automated follow-up exists", icon: "RefreshCw" },
+      { title: "Outstanding Payments Need Chasing", stat: "67%", description: "of overdue invoices could be recovered faster with systematic reminders and payment links", icon: "BadgeDollarSign" }
+    ],
+
+    liveFeedExamples: [
+      { type: "booking", text: "Mold inspection booked — 2,400 sq ft Nashville home — child with respiratory symptoms", time: "4 min ago" },
+      { type: "report", text: "Report delivered: elevated Aspergillus confirmed — remediation referral sent", time: "11 min ago" },
+      { type: "review", text: "⭐ 5-star Google review posted — 'Finally have answers after 6 months of symptoms'", time: "22 min ago" },
+      { type: "referral", text: "Realtor referral received — pre-purchase mold inspection, $350 job", time: "34 min ago" },
+      { type: "reactivation", text: "Annual retest reminder sent — 12 months since last clearance test", time: "48 min ago" },
+      { type: "review", text: "Review request sent 24hr post-report — Jennifer M., Nashville", time: "1 hr ago" }
+    ],
+
+    personalization: {
+      tone: "compassionate-expert",
+      toneDescription: "Science-based but deeply human — these are scared families, not just transactions",
+      demoAngle: "Lead with the 7-day free trial AI team and show Martine how it handles enquiries, booking, follow-up, payments, and updates across every department.",
+      hookQuestion: "If we gave you a full AI team for 7 days, would you deploy it first to inbound enquiries, booking, follow-up, payments, or client updates?",
+      painPoint: "The real issue isn't one leak — it's that every department still needs manual follow-up to keep jobs moving and cash collected.",
+      valueProposition: "Launch a 7-day AI team that captures more inspections, follows up faster, gets invoices paid, and keeps clients informed automatically"
+    },
+
+    dayStory: {
+      before: [
+        { time: "8:45 PM", event: "Parent Googles 'mold inspector Nashville'", detail: "Saw black spots near the baby's room — scared, ready to book tonight", icon: "🔍" },
+        { time: "8:46 PM", event: "Finds airinspector.com, submits contact form", detail: "High urgency — child with respiratory symptoms", icon: "📝" },
+        { time: "8:46 PM", event: "Form sits in inbox overnight", detail: "Owner is at home, done for the day. No auto-response.", icon: "⚠️", status: "warning" },
+        { time: "NEXT MORNING", event: "Competitor who had live chat responded at 8:52 PM", detail: "Booked the appointment. $385 job — and likely a clearance test after.", icon: "❌", status: "lost" },
+        { time: "9:15 AM", event: "Owner calls back — 'Sorry we missed you'", detail: "Prospect already booked. 12-hour response gap cost the job.", icon: "📞", status: "lost" },
+        { time: "RESULT", event: "$770+ in lost revenue (inspection + clearance)", detail: "Because a worried parent couldn't wait until morning.", icon: "💸", status: "lost" }
+      ],
+      after: [
+        { time: "8:45 PM", event: "Parent Googles 'mold inspector Nashville'", detail: "Saw black spots near the baby's room — scared, ready to book tonight", icon: "🔍" },
+        { time: "8:46 PM", event: "Submits contact form — AI responds in 48 seconds", detail: "Empathetic response: 'We understand how concerning this is. Let's get you scheduled.'", icon: "⚡", status: "active" },
+        { time: "8:49 PM", event: "Service triaged, price range confirmed", detail: "'Mold inspection for a 2,000 sq ft home is $299–$385 — here's what we test for'", icon: "✅", status: "success" },
+        { time: "8:51 PM", event: "Inspection booked for Thursday 10 AM", detail: "Calendar confirmed. Pre-visit packet sent. Inspector bio included.", icon: "📅", status: "success" },
+        { time: "8:52 PM", event: "Owner notified", detail: "'New mold booking: Martinez family, baby with symptoms, Thu 10am — HIGH PRIORITY'", icon: "🔔", status: "success" },
+        { time: "RESULT", event: "$385 inspection — CAPTURED at 8:51 PM", detail: "While owner was watching TV. Family has peace of mind tonight.", icon: "✅", status: "won" }
+      ]
+    }
   }
 };
 
@@ -1180,7 +1301,7 @@ export const getIndustryList = () => {
     gradient: ind.gradient,
     tagline: ind.tagline,
     subtitle: ind.subtitle,
-    agentCount: ind.agents?.length || 6,
+    agentCount: ind.agents?.length || parseInt(ind.subtitle, 10) || 6,
     usesSystemsApproach: ind.usesSystemsApproach || false,
     heroImage: ind.heroImage
   }));
