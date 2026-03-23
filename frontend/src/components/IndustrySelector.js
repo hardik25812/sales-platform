@@ -68,7 +68,7 @@ export default function IndustrySelector() {
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 md:gap-4 max-w-6xl w-full">
         {industries.map((ind, i) => {
           const Icon = ICON_MAP[ind.icon] || Home;
-          const bgImage = INDUSTRY_IMAGES[ind.id];
+          const bgImage = ind.heroImage || INDUSTRY_IMAGES[ind.id];
           const tagline = INDUSTRY_TAGLINES[ind.id] || ind.tagline;
           
           return (
@@ -121,7 +121,7 @@ export default function IndustrySelector() {
                 {/* Tagline */}
                 <p className="text-xs text-white/80 leading-tight max-w-[140px] drop-shadow-md">{tagline}</p>
                 
-                {/* Agent count badge */}
+                {/* Agent/System count badge */}
                 <div 
                   className="mt-2 px-2 py-0.5 rounded-full text-[10px] font-mono backdrop-blur-sm"
                   style={{ 
@@ -130,7 +130,7 @@ export default function IndustrySelector() {
                     border: `1px solid ${ind.color}30`
                   }}
                 >
-                  {ind.agentCount} AI agents
+                  {ind.usesSystemsApproach ? `${ind.agentCount} systems` : `${ind.agentCount} AI agents`}
                 </div>
               </div>
               

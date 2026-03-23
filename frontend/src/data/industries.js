@@ -889,8 +889,23 @@ export const INDUSTRIES = {
     colorSecondary: "#BE123C",
     gradient: "from-rose-600 to-red-500",
     glow: "rgba(225,29,72,0.3)",
-    tagline: "Convert more consultations, retain more clients",
-    subtitle: "6 AI agents available",
+    tagline: "Never miss a high-value case again",
+    subtitle: "7 operational systems",
+    usesSystemsApproach: true,
+
+    // Saved Profiles - Pre-analyzed law firms
+    savedProfiles: [
+      {
+        id: "omrani-taub",
+        name: "Omrani & Taub, P.C.",
+        website: "omranitaub.com",
+        location: "NYC Metro",
+        specialty: "Personal Injury & Construction Accidents",
+        topVerdict: "$10.5M",
+        preview: "Labor Law 240 specialists with $10.5M top verdict"
+      }
+    ],
+
     agents: [
       { name: "Intake Agent", icon: "PhoneIncoming", dept: "Intake", description: "Captures and qualifies every legal inquiry 24/7", status: "active", tasks: ["Answers calls and web forms", "Qualifies case type and urgency", "Collects initial case details", "Schedules consultations"], kpis: { primary: "Intakes Completed", secondary: "Qualification Rate" }, metric: { value: 98, unit: "%", label: "Capture Rate" } },
       { name: "Consultation Booking Agent", icon: "CalendarCheck", dept: "Intake", description: "Books and confirms consultation appointments", status: "active", tasks: ["Books consultations instantly", "Sends preparation checklists", "Manages attorney calendars", "Reduces no-shows"], kpis: { primary: "Consultations Booked", secondary: "Show Rate" }, metric: { value: 91, unit: "%", label: "Show Rate" } },
@@ -1163,7 +1178,9 @@ export const getIndustryList = () => {
     gradient: ind.gradient,
     tagline: ind.tagline,
     subtitle: ind.subtitle,
-    agentCount: ind.agents?.length || 6
+    agentCount: ind.agents?.length || 6,
+    usesSystemsApproach: ind.usesSystemsApproach || false,
+    heroImage: ind.heroImage
   }));
 };
 
