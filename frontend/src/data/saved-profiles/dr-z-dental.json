@@ -1,0 +1,214 @@
+{
+  "firm": {
+    "name": "Dr. Z Family Dental",
+    "industry_id": "dental",
+    "website": "https://drzdental.com",
+    "profile_image": null,
+    "phone": "(718) 555-0192",
+    "locations": ["Brooklyn", "Staten Island"],
+    "services": [
+      "General Dentistry",
+      "Cosmetic Dentistry",
+      "Invisalign & Orthodontics",
+      "Dental Implants",
+      "Teeth Whitening",
+      "Root Canal Therapy",
+      "Pediatric Dentistry",
+      "Emergency Dental Care",
+      "Periodontal Treatment",
+      "Veneers & Crowns"
+    ],
+    "staff_count": 12,
+    "experience_years": 18,
+    "tone": "warm_professional",
+    "tagline": "Where every smile gets the care it deserves",
+    "positioning": "Full-service family dental practice focused on patient comfort, advanced cosmetic work, and long-term relationships",
+    "target_clients": "Families, professionals, and cosmetic patients in Brooklyn and Staten Island",
+    "current_systems": ["Dentrix", "Google Calendar", "Manual phone intake"],
+    "unique_strengths": [
+      "18 years serving Brooklyn community",
+      "Invisalign certified provider",
+      "Same-day emergency appointments",
+      "Multilingual staff (English, Spanish, Russian)",
+      "High Google rating with strong word-of-mouth"
+    ],
+    "chairs": 8,
+    "avg_new_patient_value": 4200,
+    "monthly_call_volume": 420,
+    "missed_call_rate": 0.34,
+    "no_show_rate": 0.13
+  },
+
+  "problems": [
+    {
+      "id": "missed_calls_lost_patients",
+      "title": "34% of Incoming Calls Go Unanswered — Every One Is a Patient Walking to a Competitor",
+      "description": "Dr. Z's front desk handles check-ins, insurance verification, treatment planning conversations, and phone calls simultaneously. During peak hours (8–10 AM and 4–6 PM), calls stack up and go to voicemail. Patients who reach voicemail don't leave messages — they call the next dentist on Google. With an average new patient lifetime value of $4,200 and ~420 calls per month, that's 143 missed calls turning into $600,000+ in annual lost revenue. The front desk isn't failing — they're simply outnumbered by simultaneous demands.",
+      "impact": "$50,000–$75,000/month in missed new patient lifetime value from unanswered calls",
+      "evidence": "Industry data shows 34% missed call rate for dental offices with fewer than 3 front desk staff; voicemail conversion is under 5%"
+    },
+    {
+      "id": "no_show_epidemic",
+      "title": "13% No-Show Rate Costs $3,200/Week in Empty Chair Time",
+      "description": "With 8 chairs and an average appointment value of $310, a 13% no-show rate means roughly 10 empty slots per week — every week. That's $3,200 vanishing from the schedule before the day even starts. The current reminder system is one text sent 48 hours out. No confirmation required. No follow-up if they don't respond. No real-time rebooking when a slot opens.",
+      "impact": "$165,000+ per year in unrecoverable chair time",
+      "evidence": "Single-touch reminders have 60% lower effectiveness vs. multi-touch confirmation sequences; no-show industry avg for dental is 12–17%"
+    },
+    {
+      "id": "after_hours_black_hole",
+      "title": "After-Hours Calls and Web Leads Fall Into a Black Hole",
+      "description": "Toothaches don't wait for business hours. When a patient calls at 7 PM with an emergency or submits a web contact form on Sunday, Dr. Z has no system to capture, qualify, or respond. By Monday morning, that patient has already seen another dentist — or rescheduled elsewhere because they booked themselves through a competitor's online portal. After-hours demand represents 35–40% of all digital dental inquiries.",
+      "impact": "40% of high-intent leads contacted outside business hours are lost before the office opens",
+      "evidence": "Dental Patient Alliance: 68% of patients who don't reach a dental office after hours do not call back"
+    },
+    {
+      "id": "recall_reactivation_gap",
+      "title": "Hundreds of Overdue Patients Sitting in Dentrix — Never Contacted",
+      "description": "Dentrix shows every patient overdue for their 6-month cleaning. But reaching them requires someone manually pulling the list and making calls. That never happens consistently. Patients lapse, relationships fade, and Dr. Z loses the easiest revenue in dentistry: the recall appointment. A hygiene recall doesn't require convincing — it just requires showing up in someone's inbox at the right moment.",
+      "impact": "300–500 overdue patients = $90,000–$150,000 in dormant recall revenue per year",
+      "evidence": "Average dental practice loses 20–30% of its active patient base annually to lapsing; reactivation campaigns average 18% response rate"
+    },
+    {
+      "id": "review_generation_inconsistency",
+      "title": "Happy Patients Leave Without Being Asked for a Review",
+      "description": "New cosmetic patients show off their veneers to friends and family, but never post on Google. After every completed Invisalign case, implant, or smile makeover — the moment of maximum satisfaction — there's no automated prompt to capture that goodwill publicly. Competitors with inferior clinical work outrank Dr. Z on Google Maps simply because they've built a review engine. In cosmetic dentistry, Google ranking is patient acquisition.",
+      "impact": "Every 10-review gap vs. a competitor costs an estimated 3–5 new cosmetic consults per month",
+      "evidence": "93% of patients check online reviews before choosing a dentist; top-ranked NYC/Brooklyn dental practices average 200+ Google reviews"
+    }
+  ],
+
+  "systems": [
+    {
+      "id": "ai_receptionist_agent",
+      "name": "AI Receptionist Agent",
+      "icon": "📞",
+      "priority": "flagship",
+      "problem_it_solves": "34% missed calls during peak hours, after-hours call black hole, and web leads never followed up — combined, this is the #1 revenue leak in the practice",
+      "what_it_does": [
+        "Answers every inbound call instantly — no hold, no voicemail, no missed connection — 24 hours a day, 7 days a week",
+        "Greets callers in the practice's voice: 'Thank you for calling Dr. Z Family Dental, I'm here to help' — warm, human, personalized",
+        "Books new and existing patient appointments directly into Dentrix in real time — no staff involvement required",
+        "Qualifies new patients by insurance, preferred services, and urgency before booking to protect chair time",
+        "Handles dental emergencies with priority routing: captures symptoms, books same-day slots, and texts the doctor a summary",
+        "Responds to after-hours calls and web form submissions instantly — not Monday morning, but within 60 seconds",
+        "Follows up on missed calls automatically with a personalized text: 'Hi, we missed your call at Dr. Z — still need an appointment?'",
+        "Collects patient intake information before the visit so the front desk is prepped and check-in takes under 2 minutes",
+        "Confirms insurance eligibility live on the call, reducing day-of surprises for patients and staff",
+        "Transfers to a live staff member with a full call summary when the patient requests human escalation"
+      ],
+      "example_output": {
+        "new_patient_call": "Dr. Z Family Dental, this is the Dr. Z team — thanks for calling! Are you a new patient or have you been here before?\n\n[Caller: New patient, I have a toothache]\n\nI'm so sorry to hear that — we'll take great care of you. We actually have a same-day slot available today at 3:15 PM, or tomorrow morning at 9:00 AM. Which works better for you?\n\n[Caller: Today at 3:15 please]\n\nPerfect, I've got you booked for today at 3:15 PM with Dr. Z at our Brooklyn office. I'm sending you a text right now with the address and a short intake form — just takes 2 minutes. Can I also confirm your insurance provider so we can verify your coverage before you arrive?",
+        "after_hours_web_lead": "Hi Sarah! This is Dr. Z Dental — we saw your message about scheduling a teeth whitening consultation. We'd love to help! I can book you right now for a free 15-minute consult. Do you prefer mornings or afternoons? Just reply and I'll lock it in — our next available slot is this Thursday at 11 AM. — Dr. Z Team",
+        "missed_call_followup": "Hi, this is Dr. Z Family Dental — we missed your call earlier and want to make sure you get taken care of. If you're still looking to book an appointment or have a dental concern, just reply to this text or call us back at (718) 555-0192. We're happy to help! 😊",
+        "emergency_summary_to_doctor": "🚨 EMERGENCY INTAKE — 6:42 PM\nPatient: Michael Torres | New Patient\nPhone: (347) 555-0187\nSymptom: Severe tooth pain, upper left molar, started this morning\nPain Level: 8/10\nInsurance: Delta Dental PPO\nBooked: Tomorrow 8:00 AM (first slot)\nNotes: No prior dental trauma, no allergies mentioned"
+      },
+      "business_impact_breakdown": {
+        "missed_calls_recovered": "143 missed calls/month → estimated 28 new bookings recovered → $9,800/month additional revenue",
+        "after_hours_capture": "35% of leads arrive after hours → capturing half = 15+ additional bookings/month",
+        "no_show_prevention": "Confirmation sequences reduce no-shows by 45% → $1,440/week returned to schedule",
+        "front_desk_time_freed": "Front desk saves 2.5 hours/day on call handling → redirected to treatment presentation and patient experience"
+      },
+      "system_integrations": ["Dentrix", "Google Calendar", "SMS / Email"],
+      "impact": "Recover $12,000–$18,000/month in previously lost call revenue; answer 100% of calls 24/7; reduce no-shows by 45%; free front desk for high-value patient interactions"
+    },
+    {
+      "id": "smart_recall_reactivation",
+      "name": "Patient Recall & Reactivation Agent",
+      "icon": "🔁",
+      "priority": "high",
+      "problem_it_solves": "Hundreds of overdue patients sitting untouched in Dentrix — the easiest revenue in dentistry, never captured",
+      "what_it_does": [
+        "Syncs with Dentrix daily and identifies every patient overdue for a 6-month cleaning or follow-up",
+        "Sends personalized, sequenced outreach: 'Hi James, it's been a while since your last visit with Dr. Z — your smile misses you!'",
+        "Automatically books patients who respond into available hygiene slots",
+        "Identifies lapsed patients (12+ months inactive) and sends a reactivation offer",
+        "Prioritizes outreach by treatment plan value — patients with open treatment plans worth $1,000+ contacted first",
+        "Tracks response rates and reports weekly: how many patients reactivated, how much revenue recovered"
+      ],
+      "example_output": {
+        "recall_sms": "Hi James! 👋 This is Dr. Z Family Dental — it looks like it's been about 7 months since your last cleaning. We have a few openings this week if you'd like to come in. Reply YES and I'll send you a link to pick your time, or call us at (718) 555-0192. Hope to see you soon! — Dr. Z Team",
+        "lapsed_patient_offer": "Hi Lisa, it's been over a year since your last visit with us — we miss you! As a returning patient, we'd love to welcome you back with a complimentary exam and x-rays (normally $125). We have openings next Tuesday and Thursday. Reply to grab your spot. — Dr. Z Family Dental",
+        "weekly_recall_report": "RECALL REPORT — Week of March 24\n✉️ Outreach sent: 47 patients\n✅ Responded: 11 patients (23% response rate)\n📅 Booked: 8 appointments\n💰 Estimated revenue recovered: $2,480\n📋 Open treatment plans flagged: 14 patients ($18,200 combined)"
+      },
+      "impact": "Reactivate 30–50 dormant patients/month; recover $90,000–$150,000 in annual recall and lapsed-patient revenue"
+    },
+    {
+      "id": "no_show_prevention_system",
+      "name": "No-Show Prevention & Rebooking System",
+      "icon": "📅",
+      "problem_it_solves": "13% no-show rate eliminating $165,000+/year in chair time — a single automated confirmation sequence changes this",
+      "what_it_does": [
+        "Sends a 3-touch confirmation sequence: 72-hour text, 24-hour email + text, and a 2-hour morning-of reminder",
+        "Requires patient confirmation — if no response by 48 hours, automatically sends a 'Can we confirm your appointment?' follow-up",
+        "When a patient cancels, immediately offers the slot to patients on a same-day waitlist",
+        "Detects patients at high risk of no-show (based on history) and applies a 4-touch sequence automatically",
+        "Provides pre-appointment prep instructions customized to the procedure (e.g., 'No eating 2 hours before your extraction')",
+        "Post-appointment follow-up: 'How are you feeling after your procedure?' — catches issues before they become bad reviews"
+      ],
+      "example_output": {
+        "confirmation_sequence_day3": "Hi Amanda! This is a reminder that you have an appointment with Dr. Z on Wednesday, March 27 at 2:00 PM for a cleaning and exam. Please reply YES to confirm or NO if you need to reschedule. — Dr. Z Family Dental 🦷",
+        "cancellation_rebooking": "We understand! Your Wednesday 2:00 PM slot has been released. Would you like to reschedule? We have openings Thursday at 4 PM and Friday at 10 AM. Just reply with your preference and we'll lock it in.",
+        "waitlist_fill": "Hi Marcus! 🎉 Good news — a spot just opened up for today at 2:00 PM at Dr. Z Dental. You were on our waitlist for a cleaning. Want it? Reply YES in the next 30 minutes to claim it. — Dr. Z Team"
+      },
+      "impact": "Reduce no-show rate from 13% to under 6%; recover $80,000+/year in previously lost chair time; fill cancellations same-day via waitlist"
+    },
+    {
+      "id": "cosmetic_consult_pipeline",
+      "name": "Cosmetic Consultation Pipeline Agent",
+      "icon": "✨",
+      "problem_it_solves": "Cosmetic leads (Invisalign, implants, veneers) require fast follow-up and nurturing — a 2-hour response delay kills conversion",
+      "what_it_does": [
+        "Instantly responds to every cosmetic inquiry from the website, Google, or social media",
+        "Qualifies leads by treatment interest, budget comfort, and timeline before booking a consult",
+        "Books free cosmetic consultations directly into Dr. Z's schedule",
+        "Sends a personalized pre-consult package: before/after photos of similar cases, financing options, what to expect",
+        "Follows up with leads who expressed interest but didn't book — sequence over 7 days",
+        "Post-consultation: sends a recap of the treatment plan and next steps to keep momentum"
+      ],
+      "example_output": {
+        "web_lead_response": "Hi Rachel! Thanks for reaching out about Invisalign at Dr. Z Dental 😊 We'd love to show you what your smile could look like. We offer free consultations — usually about 30 minutes — where Dr. Z walks you through the full plan and cost. We have availability this Thursday at 5:30 PM or Saturday at 10 AM. Want to grab one of those slots?",
+        "pre_consult_package": "Your Invisalign Consult is Confirmed! Here's what to expect:\n✅ Free 30-minute consultation with Dr. Z\n✅ Digital scan of your teeth (no impressions!)\n✅ See your projected result on a 3D model\n✅ Transparent pricing + financing options (as low as $149/mo)\n\nBefore/After Gallery: [link] | Questions? Text us anytime."
+      },
+      "impact": "Convert 30–40% more cosmetic inquiries to booked consults; increase Invisalign and implant case starts by $15,000–$25,000/month"
+    },
+    {
+      "id": "google_review_engine",
+      "name": "Post-Visit Review & Reputation Agent",
+      "icon": "⭐",
+      "problem_it_solves": "Happy patients never asked for reviews — competitors rank higher on Google Maps despite inferior care",
+      "what_it_does": [
+        "Sends a personalized review request 3 hours after every appointment via SMS",
+        "Pre-screens satisfaction: unhappy patients are routed to the office manager, not a public review link",
+        "References the specific visit: 'We hope your cleaning went smoothly today!' — not a generic blast",
+        "Follows up once if no review is left within 5 days — gentle, non-pushy",
+        "Auto-responds to all Google reviews within 2 hours in the practice's warm tone",
+        "Sends a weekly reputation report: new reviews, star rating trend, competitor comparison"
+      ],
+      "example_output": {
+        "post_visit_sms": "Hi Amanda! We hope your visit with Dr. Z went well today 🦷 If you have 60 seconds, sharing your experience on Google helps other families in Brooklyn find trusted dental care. Thank you!\n⭐ [Google Review Link]\n\nIf anything wasn't perfect, just reply here first — we'd love to make it right. — Dr. Z Team",
+        "google_response": "Thank you so much, Amanda! It was wonderful seeing you today and we're so glad the experience was comfortable. We look forward to taking care of your family for years to come! — Dr. Z & Team",
+        "weekly_report": "REPUTATION REPORT — Week of March 24\n⭐ New Reviews: 6 (avg 5.0 stars)\n📈 Total Google Reviews: 94 (+6 from last week)\n🏆 Current Rating: 4.9 ⭐\n👀 Nearest Competitor: Brooklyn Smile Co. — 112 reviews\n✅ All reviews responded within 2 hours"
+      },
+      "impact": "3x review velocity within 90 days; reach 150+ Google reviews; rank #1 for 'dentist Brooklyn' and 'Invisalign Brooklyn'; drive 8–12 additional new patients/month from search"
+    }
+  ],
+
+  "personalization": {
+    "brand_tone": "Warm, caring, and professional — patients are neighbors and long-term relationships, not transactions",
+    "messaging_style": "Lead with missed revenue and patient experience gaps — Dr. Z cares about patients, so frame AI as the tool that ensures NO patient falls through the cracks",
+    "hook_question": "How many calls did you miss last Tuesday between 8 and 10 AM — and how many of those patients ended up at a competitor?",
+    "demo_angle": "Open with the AI Receptionist — show a live call simulation where a new patient calls at 7 PM for an emergency. Show the agent book them into Dentrix in real time, send a text confirmation, and alert Dr. Z with a summary. Then show what happens on Monday morning when that same call used to go to voicemail. Pivot to the no-show prevention sequence — ask how much empty chair time cost last month, then show the 3-touch confirmation flow. Close with the recall agent pulling the overdue patient list from Dentrix and showing 40 patients who could be booked this week with zero staff effort.",
+    "value_proposition": "The AI Receptionist is the front desk that never misses a call, never goes to lunch, and works until midnight — so Dr. Z captures every patient, fills every chair, and lets the human team focus on what they do best: patient care.",
+    "key_integrations": ["Dentrix", "Google Business Profile", "SMS", "Email", "Google Calendar"],
+    "roi_summary": {
+      "monthly_recovered_revenue": "$12,000–$18,000 from missed call recovery",
+      "annual_no_show_savings": "$80,000–$165,000 from reduced no-show rate",
+      "annual_recall_revenue": "$90,000–$150,000 from reactivated patients",
+      "cosmetic_pipeline_upside": "$15,000–$25,000/month from faster cosmetic lead conversion",
+      "total_annual_impact": "$350,000–$550,000 in recovered and new revenue"
+    }
+  },
+
+  "generated_at": "2026-03-27T10:00:00Z",
+  "version": "1.0"
+}

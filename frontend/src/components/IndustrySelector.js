@@ -1,6 +1,6 @@
 import { useDemo } from '../context/DemoContext';
 import { getIndustryList } from '../data/industries';
-import { Home, Sparkles, Thermometer, Smile, Car, HardHat, Scale, Building2, TreePine, Waves, Star, MapPin, Trophy, Wind } from 'lucide-react';
+import { Home, Sparkles, Thermometer, Smile, Car, HardHat, Scale, Building2, TreePine, Waves, Star, MapPin, Trophy, Wind, Phone } from 'lucide-react';
 import { getAllSavedProfiles } from '../data/saved-profiles';
 
 const ICON_MAP = { Home, Sparkles, Thermometer, Smile, Car, HardHat, Scale, Building2, TreePine, Waves, Wind };
@@ -161,7 +161,7 @@ export default function IndustrySelector() {
       {/* Saved Profiles Section */}
       {savedProfiles.length > 0 && (
         <div className="w-full max-w-6xl mt-12 animate-fade-up" style={{ opacity: 0, animationFillMode: 'forwards', animationDelay: '0.6s' }}>
-          <div className="flex items-center gap-3 mb-5">
+          <div className="flex items-center gap-3 mb-6">
             <div className="h-px flex-1 bg-white/[0.06]" />
             <div className="flex items-center gap-2 px-3 py-1 rounded-full border border-amber-500/20 bg-amber-500/5">
               <div className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
@@ -170,97 +170,76 @@ export default function IndustrySelector() {
             <div className="h-px flex-1 bg-white/[0.06]" />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {/* ─── ALL PROFILES — unified vertical list, Dr. Z first ─── */}
+          <div className="space-y-3">
             {savedProfiles.map((profile, i) => {
+              const isDrZ = profile.id === 'drzdental.com' || profile.id === 'dr-z-dental' || profile.id === 'drzdental';
               const isIET = profile.website === 'airinspector.com';
               const hasProfileImage = Boolean(profile.profileImage);
-              const accent = isIET ? '#97A07A' : '#E11D48';
-              const ProfileIcon = isIET ? Wind : Scale;
-              const location = isIET ? 'Nashville, TN & Madison, WI' : 'NYC Metro';
-              const badge = isIET ? '20+ years · Mold · Air · EMF' : '7 systems · 25+ years';
-              const highlight = isIET ? '3x review growth potential' : '$10.6M top verdict';
-              const HighlightIcon = isIET ? Star : Trophy;
+              const accent = isDrZ ? '#06B6D4' : isIET ? '#97A07A' : '#E11D48';
+              const ProfileIcon = isDrZ ? Smile : isIET ? Wind : Scale;
+              const badge = isDrZ ? '5 systems · Dental Clinic' : isIET ? '20+ years · Mold · Air · EMF' : '7 systems · 25+ years';
+              const highlight = isDrZ ? 'AI Receptionist · 24/7' : isIET ? '3x review growth potential' : '$10.6M top verdict';
+              const HighlightIcon = isDrZ ? Phone : isIET ? Star : Trophy;
               return (
                 <button
                   key={profile.id}
                   onClick={() => selectSavedProfile(profile.id)}
-                  className="group relative overflow-hidden rounded-2xl border transition-all duration-300 text-left p-5"
+                  className="group w-full relative overflow-hidden rounded-2xl border transition-all duration-300 text-left"
                   style={{
-                    borderColor: `${accent}30`,
-                    background: `linear-gradient(135deg, ${accent}08 0%, rgba(0,0,0,0.6) 100%)`,
-                    animationDelay: `${0.65 + i * 0.05}s`,
+                    borderColor: `${accent}25`,
+                    background: `linear-gradient(135deg, ${accent}06 0%, rgba(0,0,0,0.55) 100%)`,
                   }}
                   data-testid={`saved-profile-card-${profile.id}`}
                 >
                   {/* Glow on hover */}
-                  <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-2xl"
-                    style={{ backgroundColor: accent }}
-                  />
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-[0.06] transition-opacity duration-300 rounded-2xl" style={{ backgroundColor: accent }} />
 
-                  {hasProfileImage && !isIET && (
-                    <div className="absolute inset-x-0 top-0 h-28 overflow-hidden rounded-t-2xl">
-                      <img
-                        src={profile.profileImage}
-                        alt={profile.name}
-                        className="w-full h-full object-cover opacity-45 group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/90" />
-                    </div>
-                  )}
-
-                  {/* Live Profile Badge */}
-                  <div className={`flex items-center justify-between mb-4 ${hasProfileImage && !isIET ? 'mt-20' : ''}`}>
-                    <div
-                      className="flex items-center gap-1.5 px-2 py-0.5 rounded-full border"
-                      style={{ backgroundColor: `${accent}15`, borderColor: `${accent}30` }}
-                    >
-                      <Star size={10} style={{ color: accent }} fill="currentColor" />
-                      <span className="text-[10px] font-mono tracking-wider uppercase" style={{ color: accent }}>Live Profile</span>
-                    </div>
-                    {isIET ? (
-                      <img
-                        src="/iet-logo.webp"
-                        alt="Indoor Environmental Testing"
-                        className="h-8 w-auto object-contain opacity-90"
-                      />
-                    ) : (
-                      <ProfileIcon size={16} style={{ color: `${accent}99` }} />
+                  <div className="flex items-center gap-4 px-5 py-4">
+                    {/* Icon / image */}
+                    {isDrZ && (
+                      <div className="w-16 h-16 rounded-xl shrink-0 flex items-center justify-center" style={{ backgroundColor: `${accent}12`, border: `1px solid ${accent}25` }}>
+                        <Smile size={24} style={{ color: accent }} />
+                      </div>
                     )}
-                  </div>
+                    {!isDrZ && hasProfileImage && !isIET && (
+                      <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0">
+                        <img src={profile.profileImage} alt={profile.name} className="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity" />
+                      </div>
+                    )}
+                    {isIET && (
+                      <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0 flex items-center justify-center bg-white/[0.04] border border-white/[0.07]">
+                        <img src="/iet-logo.webp" alt="IET" className="h-10 w-auto object-contain opacity-80" />
+                      </div>
+                    )}
 
-                  {/* Firm Name */}
-                  <h3 className="text-base font-bold text-white mb-1 transition-colors">
-                    {profile.name}
-                  </h3>
-
-                  {/* Services / Practice Areas */}
-                  {profile.practiceAreas && (
-                    <p className="text-xs text-slate-400 mb-3 line-clamp-1">
-                      {Array.isArray(profile.practiceAreas)
-                        ? profile.practiceAreas.slice(0, 3).join(' · ')
-                        : profile.practiceAreas}
-                    </p>
-                  )}
-
-                  {/* Meta row */}
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="flex items-center gap-1 text-slate-500">
-                      <MapPin size={11} />
-                      <span className="text-[11px]">{location}</span>
+                    {/* Info */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-full border" style={{ backgroundColor: `${accent}12`, borderColor: `${accent}25` }}>
+                          <Star size={9} style={{ color: accent }} fill="currentColor" />
+                          <span className="text-[9px] font-mono tracking-wider uppercase" style={{ color: accent }}>Live Profile</span>
+                        </div>
+                      </div>
+                      <h3 className="text-sm font-bold text-white truncate">{profile.name}</h3>
+                      {profile.practiceAreas && (
+                        <p className="text-xs text-slate-500 truncate mt-0.5">
+                          {Array.isArray(profile.practiceAreas) ? profile.practiceAreas.slice(0, 3).join(' · ') : profile.practiceAreas}
+                        </p>
+                      )}
                     </div>
-                    <div className="flex items-center gap-1" style={{ color: `${accent}bb` }}>
-                      <HighlightIcon size={11} />
-                      <span className="text-[11px] font-semibold">{highlight}</span>
-                    </div>
-                  </div>
 
-                  {/* CTA */}
-                  <div className="flex items-center justify-between pt-3 border-t border-white/[0.06]">
-                    <span className="text-xs text-slate-500">{badge}</span>
-                    <span className="text-xs font-medium transition-colors" style={{ color: accent }}>
-                      Open personalized demo →
-                    </span>
+                    {/* Meta */}
+                    <div className="hidden sm:flex flex-col items-end gap-1 shrink-0">
+                      <div className="flex items-center gap-1" style={{ color: `${accent}bb` }}>
+                        <HighlightIcon size={10} />
+                        <span className="text-[11px] font-semibold">{highlight}</span>
+                      </div>
+                      <span className="text-[10px] text-slate-600">{badge}</span>
+                    </div>
+
+                    {/* Arrow CTA */}
+                    <div className="shrink-0 ml-2 text-xs font-medium" style={{ color: accent }}>→</div>
                   </div>
                 </button>
               );

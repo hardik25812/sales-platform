@@ -1,6 +1,6 @@
 import { useDemo } from '../context/DemoContext';
 import { loadLawFirmProfile, formatProfileForDisplay } from '../utils/profileLoader';
-import { Building2, MapPin, Scale, Trophy, Users, DollarSign, Briefcase, Target, Lightbulb, Zap, Star, TrendingUp, CheckCircle2, Wind } from 'lucide-react';
+import { Building2, MapPin, Scale, Trophy, Users, DollarSign, Briefcase, Target, Lightbulb, Zap, Star, TrendingUp, CheckCircle2, Wind, Smile, Phone } from 'lucide-react';
 
 export default function ProfileView() {
   const { industryConfig, savedProfile: contextProfile } = useDemo();
@@ -27,19 +27,24 @@ export default function ProfileView() {
   }
 
   const isIET = profile.firm.industry_id === 'indoor_environmental';
-  const accentColor = isIET ? 'text-teal-400' : 'text-rose-400';
-  const HeaderIcon = isIET ? Wind : Scale;
+  const isDental = profile.firm.industry_id === 'dental';
+  const accentColor = isDental ? 'text-cyan-400' : isIET ? 'text-teal-400' : 'text-rose-400';
+  const HeaderIcon = isDental ? Smile : isIET ? Wind : Scale;
   const serviceAreas = profile.firm.practice_areas || profile.firm.services || [];
-  const serviceLabel = isIET ? 'Services' : 'Practice Areas';
-  const serviceColorClass = isIET ? 'bg-teal-500/10 text-teal-300 border-teal-500/20' : 'bg-rose-500/10 text-rose-300 border-rose-500/20';
-  const serviceIconColor = isIET ? 'text-teal-400' : 'text-rose-400';
+  const serviceLabel = isDental ? 'Services' : isIET ? 'Services' : 'Practice Areas';
+  const serviceColorClass = isDental
+    ? 'bg-cyan-500/10 text-cyan-300 border-cyan-500/20'
+    : isIET
+    ? 'bg-teal-500/10 text-teal-300 border-teal-500/20'
+    : 'bg-rose-500/10 text-rose-300 border-rose-500/20';
+  const serviceIconColor = isDental ? 'text-cyan-400' : isIET ? 'text-teal-400' : 'text-rose-400';
   const profileImage = profile.firm.profile_image;
 
   return (
     <div className="max-w-6xl mx-auto space-y-6">
       {/* Header */}
       <div className="glass-panel p-8">
-        {!isIET && profileImage && (
+        {!isIET && !isDental && profileImage && (
           <div className="mb-6 overflow-hidden rounded-2xl border border-white/[0.08] relative h-52 md:h-64">
             <img
               src={profileImage}
@@ -53,7 +58,7 @@ export default function ProfileView() {
               </div>
               <div>
                 <p className="text-[11px] font-mono uppercase tracking-[0.25em] text-rose-300">Personal Injury Profile</p>
-                <p className="text-white font-semibold">Omrani & Taub, P.C.</p>
+                <p className="text-white font-semibold">{profile.firm.name}</p>
               </div>
             </div>
           </div>
@@ -101,7 +106,15 @@ export default function ProfileView() {
             <div className="text-lg font-semibold text-white">{displayData.experience || '—'}</div>
           </div>
 
-          {!isIET ? (
+          {isDental ? (
+            <div className="bg-white/[0.03] rounded-lg p-4 border border-white/[0.06]">
+              <div className="flex items-center gap-2 mb-1">
+                <Phone size={16} className="text-cyan-400" />
+                <span className="text-xs text-slate-400 uppercase tracking-wider">Chairs</span>
+              </div>
+              <div className="text-lg font-semibold text-white">{profile.firm.chairs || '—'} Chairs</div>
+            </div>
+          ) : !isIET ? (
             <div className="bg-white/[0.03] rounded-lg p-4 border border-white/[0.06]">
               <div className="flex items-center gap-2 mb-1">
                 <Users size={16} className="text-violet-400" />
@@ -147,7 +160,7 @@ export default function ProfileView() {
       )}
 
       {/* Notable Verdicts — law firm only */}
-      {!isIET && profile.firm.notable_verdicts?.length > 0 && (
+      {!isIET && !isDental && profile.firm.notable_verdicts?.length > 0 && (
         <div className="glass-panel p-6">
           <div className="flex items-center gap-2 mb-4">
             <Trophy size={20} className="text-amber-400" />
@@ -172,7 +185,7 @@ export default function ProfileView() {
       )}
 
       {/* Attorneys — law firm only */}
-      {!isIET && profile.firm.attorneys?.length > 0 && (
+      {!isIET && !isDental && profile.firm.attorneys?.length > 0 && (
         <div className="glass-panel p-6">
           <div className="flex items-center gap-2 mb-4">
             <Users size={20} className="text-violet-400" />

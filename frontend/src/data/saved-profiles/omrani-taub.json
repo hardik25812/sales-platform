@@ -51,18 +51,18 @@
 
   "problems": [
     {
-      "id": "review_generation_timing",
-      "title": "Google Reviews Are Being Left on the Table After Every Settlement",
-      "description": "Omrani & Taub has won $10.5M verdicts and recovered millions for hundreds of clients — but that track record isn't showing up on Google. Reviews mention Mergime, Edwin, and Avi constantly, but those satisfied clients are never systematically asked. Right now, review requests happen by chance, not by system. Every settlement that closes without a follow-up is a missed 5-star review, a missed referral, and a missed intake from someone Googling 'construction accident lawyer NYC' who picks a competitor with 200 more reviews. Personal injury is a reputation game — the firm with the most credible Google presence wins the case before a consultation is ever booked.",
-      "impact": "Losing 50-70% of achievable Google reviews per year — translating directly to lost intakes from high-intent search traffic",
-      "evidence": "Reviews cluster around specific staff names, confirming satisfied clients exist but aren't being captured systematically at the right moment"
-    },
-    {
       "id": "after_hours_intake",
       "title": "High-Value Cases Lost After Hours",
       "description": "Construction accidents happen at 6 AM. Car accidents happen at 11 PM. When a seriously injured victim searches 'construction accident lawyer NYC' at 2 AM, they're calling the first firm that answers. With $5M+ cases on the line, every missed call is catastrophic.",
       "impact": "$500K-$5M+ in lost case value per missed high-severity intake",
       "evidence": "Firm handles construction and vehicle accidents - both peak outside business hours"
+    },
+    {
+      "id": "review_generation_timing",
+      "title": "Google Reviews Are Being Left on the Table After Every Settlement",
+      "description": "Omrani & Taub has won $10.5M verdicts and recovered millions for hundreds of clients — but that track record isn't showing up on Google. Reviews mention Mergime, Edwin, and Avi constantly, but those satisfied clients are never systematically asked. Right now, review requests happen by chance, not by system. Every settlement that closes without a follow-up is a missed 5-star review, a missed referral, and a missed intake from someone Googling 'construction accident lawyer NYC' who picks a competitor with 200 more reviews. Personal injury is a reputation game — the firm with the most credible Google presence wins the case before a consultation is ever booked.",
+      "impact": "Losing 50-70% of achievable Google reviews per year — translating directly to lost intakes from high-intent search traffic",
+      "evidence": "Reviews cluster around specific staff names, confirming satisfied clients exist but aren't being captured systematically at the right moment"
     },
     {
       "id": "case_qualification_inconsistency",

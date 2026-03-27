@@ -1,11 +1,17 @@
 // Saved Profiles
 // Pre-analyzed business profiles that can be loaded for personalized demos
 
+import drZDental from './dr-z-dental.json';
 import omraniTaub from './omrani-taub.json';
 import indoorEnvironmentalTesting from './indoor-environmental-testing.json';
 
 // Map of saved profiles by domain/identifier
+// Dr. Z is listed first so it appears at the top of the saved profiles section
 export const SAVED_PROFILES = {
+  'drzdental.com': drZDental,
+  'drzdental': drZDental,
+  'dr-z-dental': drZDental,
+  'dr-z': drZDental,
   'omranitaub.com': omraniTaub,
   'omranitaub': omraniTaub,
   'omrani-taub': omraniTaub,
