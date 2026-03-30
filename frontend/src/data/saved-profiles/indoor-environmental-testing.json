@@ -23,18 +23,25 @@
       "evidence": "Owner-operator workflow + multi-step inspection/report/remediation cycle creates obvious automation opportunities across intake, follow-up, payments, and updates"
     },
     {
-      "id": "review_stagnation",
-      "title": "Google Reviews Not Keeping Pace with Completed Jobs",
-      "description": "Indoor Environmental Testing has 20+ years of experience and hundreds of satisfied families — but that track record isn't fully visible on Google. Every job ends with a grateful homeowner who finally has answers after months of unexplained symptoms. Those are perfect review moments. But without a systematic ask at the right time (24–48 hours after the report lands, when relief is highest), most clients never think to leave a review. Meanwhile, newer competitors with fewer qualifications are building larger review counts simply because they ask every single time. In a niche where trust is everything and families are scared, Google reviews are the #1 intake driver.",
-      "impact": "Losing 40–60% of achievable reviews per year — directly reducing visibility in 'mold testing near me' and 'air quality testing Nashville' searches",
-      "evidence": "High satisfaction implied by referral volume, but review count lags behind service output"
-    },
-    {
       "id": "missed_after_hours_inquiries",
       "title": "After-Hours Inquiries Going Unanswered",
       "description": "Health anxiety doesn't follow business hours. A parent Googling 'mold inspector Nashville' at 10pm after seeing black spots near the baby's room is a high-intent, emotionally ready buyer. As a small owner-operator business, there's no staff to respond until the next morning — by which time the prospect has already booked with whoever responded first. The owner-inspector is often in the field during business hours too, creating the same gap during peak calling windows.",
-      "impact": "Estimated 30–40% of web inquiries arrive outside business hours — most book with the first responder",
+      "impact": "Estimated 20–30% of web inquiries arrive outside business hours — most book with the first responder",
       "evidence": "Owner-operator model with no after-hours coverage; field schedule during core business hours creates double exposure"
+    },
+    {
+      "id": "report_delivery_no_followthrough",
+      "title": "Leads, Payments, and Client Updates Still Depend on Manual Chasing",
+      "description": "Once an inquiry comes in, the follow-through is still manual. Prospects who asked questions but did not book are easy to lose. Open invoices depend on someone remembering to follow up. Clients waiting on lab results, reports, or next steps often call in because there is no proactive update sequence. That creates avoidable admin load and a weaker client experience.",
+      "impact": "Warm leads cool off, cash collection slows down, and clients feel uncertain while waiting for answers",
+      "evidence": "Owner-operator workflow + report delivery cycle means follow-up, payment reminders, and status updates are easy to delay without automation"
+    },
+    {
+      "id": "review_stagnation",
+      "title": "Google Reviews Not Keeping Pace with Completed Jobs",
+      "description": "Indoor Environmental Testing has 20+ years of experience and hundreds of satisfied families — but that track record isn't fully visible on Google. Every job ends with a grateful homeowner who finally has answers after months of unexplained symptoms. Those are perfect review moments. But without a systematic ask at the right time (24–48 hours after the report lands, when relief is highest), most clients never think to leave a review. Meanwhile, newer competitors with fewer qualifications are building larger review counts simply because they ask every single time. In a niche where trust is everything and families are scared, Google reviews are a strong secondary growth lever.",
+      "impact": "Review growth is slower than it should be, reducing visibility in local search over time",
+      "evidence": "High satisfaction implied by referral volume, but review count lags behind service output"
     },
     {
       "id": "referral_pipeline_untracked",
@@ -42,13 +49,6 @@
       "description": "Real estate agents, pediatricians, allergists, and remediation contractors are the highest-value referral sources in this niche — one active realtor partner can send 15–20 inspections per year. But referral relationships die from neglect. Without a system sending monthly educational content, referral thank-yous, and outcome updates to partners, the referral channel is entirely dependent on personal relationships that fade over time.",
       "impact": "Referral channel producing far below potential — untapped 2–3x growth opportunity",
       "evidence": "Dual-market operation (Nashville + Madison) requires scalable partner outreach — can't rely on in-person relationship maintenance"
-    },
-    {
-      "id": "report_delivery_no_followthrough",
-      "title": "Reports Delivered Without a Clear Next Step",
-      "description": "When a report shows elevated mold counts or concerning air quality, clients need immediate guidance on what to do next. Without an automated next-step sequence, clients sit with a confusing technical PDF and no clear action plan. They delay remediation, don't book clearance tests, and don't refer neighbors — all because the moment of highest urgency passed without a systematic response.",
-      "impact": "Clearance retest conversion rate well below potential; remediation referral revenue not captured",
-      "evidence": "Mold remediation referral and post-remediation clearance testing are natural high-margin follow-on services"
     },
     {
       "id": "seasonal_demand_not_leveraged",
@@ -85,9 +85,49 @@
       "impact": "A real trial AI team Martine can use immediately — recovering revenue across intake, follow-up, payments, and communication"
     },
     {
+      "id": "inquiry_capture_system",
+      "name": "24/7 Inquiry Capture & Booking System",
+      "tagline": "Never miss a worried family — answer every inquiry instantly, day or night",
+      "role": "Lead Capture & Appointment Booking",
+      "what_it_does": [
+        "Responds to every website form, call, and referral inquiry within 60–90 seconds — 24/7",
+        "Triages service type: mold vs air quality vs EMF vs commercial",
+        "Asks health-aware qualification questions without sounding clinical",
+        "Quotes price range to set expectations and prevent no-shows",
+        "Books site assessment directly into the inspection calendar",
+        "Sends pre-visit prep packet with inspector bio and what to expect"
+      ],
+      "example_outputs": [
+        "SMS: 'Hi Jennifer, thank you for reaching out to Indoor Environmental Testing. We understand how concerning this is. I've booked you for a mold inspection Thursday at 10am. Here's what to expect: [LINK]'",
+        "Owner alert: '🏠 New Booking: Jennifer Martinez — Mold Inspection — 2,200 sq ft Nashville home — Child with respiratory symptoms — Thu 10am'"
+      ],
+      "impact": "Capture more of the inquiries that currently go unanswered after hours or during field work"
+    },
+    {
+      "id": "report_next步_system",
+      "name": "Lead Follow-Up, Payments & Client Update System",
+      "tagline": "Keep warm leads moving, invoices getting paid, and clients updated without manual chasing",
+      "role": "Follow-Up, Collections & Client Communication",
+      "what_it_does": [
+        "Follows up with leads who asked questions but never booked",
+        "Sends invoice reminders with a secure payment link when balances are still open",
+        "Updates clients automatically when reports are in progress, delivered, or awaiting a next step",
+        "Reminds clients about remediation, clearance tests, and open action items",
+        "Cuts inbound status-check calls by proactively answering the next obvious question",
+        "Keeps Martine out of repetitive follow-up work across the full client journey"
+      ],
+      "example_outputs": [
+        "Lead reactivation: 'Hi Sarah — just checking in after your question about air quality testing. If you'd still like answers, we have 2 openings tomorrow and can get your report back within 48 hours.'",
+        "Payment reminder: 'Hi Sarah — your invoice for the inspection completed on March 22 is still open. You can pay securely here: [LINK]. Reply if you'd like us to resend the report or answer any questions.'",
+        "Client update: 'Your lab results are in and your report is being finalized now. We'll have your full summary and recommended next steps to you by 4 PM today.'"
+      ],
+      "impact": "Fewer warm leads lost, faster collections, and a calmer client experience without manual chasing"
+    },
+    {
       "id": "review_reputation_system",
       "name": "Google Review & Reputation Engine",
-      "tagline": "Systematically capture 5-star reviews at peak gratitude — after every report",
+      "priority": "secondary",
+      "tagline": "Systematically capture 5-star reviews once the core follow-up systems are already in place",
       "role": "Review Generation & Reputation Management",
       "what_it_does": [
         "Sends personalized review request 24 hours after report delivery — the highest-satisfaction window",
@@ -104,45 +144,7 @@
         "Google review response: 'Thank you so much, Jennifer. Helping families in Nashville breathe easier is exactly why we do this work. We're thrilled your daughter is feeling better.'",
         "Weekly competitor report: 'IET: 47 reviews (4.9★) | Nashville Air Pros: 89 reviews (4.7★) — Gap: 42 reviews. Projected catch-up: 4 months at current velocity.'"
       ],
-      "impact": "3x review volume within 90 days — ranking improvement for 'mold testing Nashville' and 'air quality testing Madison'"
-    },
-    {
-      "id": "inquiry_capture_system",
-      "name": "24/7 Inquiry Capture & Booking System",
-      "tagline": "Never miss a worried family — answer every inquiry instantly, day or night",
-      "role": "Lead Capture & Appointment Booking",
-      "what_it_does": [
-        "Responds to every website form, call, and referral inquiry within 60 seconds — 24/7",
-        "Triages service type: mold vs air quality vs EMF vs commercial",
-        "Asks health-aware qualification questions without sounding clinical",
-        "Quotes price range to set expectations and prevent no-shows",
-        "Books site assessment directly into the inspection calendar",
-        "Sends pre-visit prep packet with inspector bio and what to expect"
-      ],
-      "example_outputs": [
-        "SMS: 'Hi Jennifer, thank you for reaching out to Indoor Environmental Testing. We understand how concerning this is. I've booked you for a mold inspection Thursday at 10am. Here's what to expect: [LINK]'",
-        "Owner alert: '🏠 New Booking: Jennifer Martinez — Mold Inspection — 2,200 sq ft Nashville home — Child with respiratory symptoms — Thu 10am'"
-      ],
-      "impact": "Capture 30–40% more inquiries that currently go unanswered after hours or during field work"
-    },
-    {
-      "id": "report_next步_system",
-      "name": "Report Delivery & Action System",
-      "tagline": "Every report lands with urgency, clarity, and a clear next step — not just a PDF",
-      "role": "Post-Inspection Results Communication & Remediation Referral",
-      "what_it_does": [
-        "Delivers completed report with plain-language summary alongside the technical PDF",
-        "Flags urgency: 'Action Recommended' vs 'Monitor' vs 'Clearance Achieved'",
-        "Sends matched remediation contractor referrals when action is needed",
-        "Automatically pre-schedules post-remediation clearance test 3–4 weeks out",
-        "Triggers review request sequence 24 hours after report is opened",
-        "Captures client testimonial at peak relief and gratitude"
-      ],
-      "example_outputs": [
-        "Report summary SMS: '🔴 ACTION RECOMMENDED — Elevated mold confirmed in basement. Full report attached. Here are 2 certified Nashville remediation contractors we trust: [LINK]. Your clearance test is pre-scheduled for April 18.'",
-        "Clearance booking: 'Hi Jennifer — your remediation is complete. We have your clearance test scheduled for April 18 at 10am. This confirms your home is safe for your family.'"
-      ],
-      "impact": "41% clearance retest conversion; remediation referral revenue captured on every high-urgency result"
+      "impact": "A strong secondary growth lever once intake, follow-up, payments, and updates are already running cleanly"
     },
     {
       "id": "referral_partner_system",

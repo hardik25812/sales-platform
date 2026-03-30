@@ -25,14 +25,14 @@ const defaultDiscoveryOutcomeLabels = {
 
 const discoveryOutcomeLabelsByIndustry = {
   indoor_environmental: {
-    currentLoss: 'Missed Assessment Revenue',
+    currentLoss: 'Missed Revenue',
     response: 'Avg Inquiry Response',
-    goingCold: 'Families Going Cold',
+    goingCold: 'Leads Going Cold',
     closeRate: 'Current Booking Rate',
-    gain: 'Recovered Revenue',
+    gain: 'Revenue Lift',
     projectedResponse: 'First Response Speed',
     projectedClose: 'Projected Booking Rate',
-    fte: 'Admin Load Recovered',
+    fte: 'Admin Time Recovered',
   },
 };
 
@@ -315,15 +315,15 @@ function buildPoolsPainCards(metrics) {
 }
 
 function buildIndoorEnvironmentalPainCards(metrics) {
-  const missedInquiryLoss = (metrics.missedCallsEstimate || 0) * (metrics.avgJobValue || 0) * 0.55;
-  const reviewGapLoss = (metrics.monthlyLeads || 0) * (metrics.avgJobValue || 0) * 0.06;
-  const noRetestLoss = (metrics.monthlyLeads || 0) * (metrics.avgJobValue || 0) * 0.35;
-  const referralLeakage = (metrics.monthlyLeads || 0) * (metrics.avgJobValue || 0) * 0.18;
+  const missedInquiryLoss = (metrics.missedCallsEstimate || 0) * (metrics.avgJobValue || 0) * 0.3;
+  const leadFollowUpLoss = (metrics.monthlyLeads || 0) * Math.max(0, 1 - (metrics.currentCloseRate || 0)) * (metrics.avgJobValue || 0) * 0.12;
+  const paymentDelayLoss = (metrics.monthlyLeads || 0) * (metrics.avgJobValue || 0) * 0.05;
+  const clientUpdateLoss = (metrics.monthlyLeads || 0) * (metrics.avgJobValue || 0) * 0.04;
   return [
-    { icon: 'PhoneOff', title: 'AFTER-HOURS INQUIRIES LOST', highlight: `${metrics.missedCallsEstimate || 0}`, description: 'health-concern inquiries go unanswered while the inspector is in the field or off the clock.', calculation: 'Worried families book with the first inspector who responds — usually within minutes of their search.', cost: missedInquiryLoss, costLabel: 'in missed after-hours and field-time inquiries going to competitors', barPercent: Math.min(100, Math.round(((metrics.missedCallsEstimate || 0) / Math.max(metrics.monthlyLeads || 1, 1)) * 100)) },
-    { icon: 'TrendingDown', title: 'GOOGLE REVIEWS NOT KEEPING PACE', highlight: '40–60%', description: 'of satisfied clients are never systematically asked for a review — leaving Google presence far below what completed jobs deserve.', calculation: 'Trust-based niches like IAQ live and die by Google reviews. Every job without a review is visibility handed to a competitor.', cost: reviewGapLoss, costLabel: 'in lost monthly intakes from stagnant Google review presence', barPercent: 58 },
-    { icon: 'FileX', title: 'CLEARANCE RETESTS NOT BOOKED', highlight: `${Math.round(Math.max(0, 1 - (metrics.currentCloseRate || 0)) * 100)}%`, description: 'of clients who receive an action-required report never follow up with a clearance test without a structured prompt.', calculation: 'Post-remediation clearance tests are a natural, high-margin follow-on — but they require the right message at the right time.', cost: noRetestLoss, costLabel: 'in clearance and follow-up tests not booked after action-required results', barPercent: Math.round(Math.max(0, 1 - (metrics.currentCloseRate || 0)) * 100) },
-    { icon: 'UserX', title: 'REFERRAL PIPELINE UNTAPPED', highlight: 'Realtors + MDs', description: 'realtor, pediatrician, and remediation contractor referral partners are not being systematically nurtured — the highest-ROI growth channel is sitting idle.', calculation: 'One active realtor partner can send 15–20 inspections per year. Without a system, those relationships fade.', cost: referralLeakage, costLabel: 'in untapped referral revenue from unworked partner relationships', barPercent: 42 },
+    { icon: 'PhoneOff', title: 'AFTER-HOURS INQUIRIES LOST', highlight: `${metrics.missedCallsEstimate || 0}`, description: 'health-concern inquiries go unanswered while the inspector is in the field or off the clock.', calculation: 'Worried families usually book with the first inspector who responds.', cost: missedInquiryLoss, costLabel: 'in missed after-hours and field-time inquiries going to competitors', barPercent: Math.min(100, Math.round(((metrics.missedCallsEstimate || 0) / Math.max(metrics.monthlyLeads || 1, 1)) * 100)) },
+    { icon: 'TrendingDown', title: 'LEADS GOING COLD', highlight: `${Math.round(Math.max(0, 1 - (metrics.currentCloseRate || 0)) * 100)}%`, description: 'of enquiries that do not book on the first touch often fade without consistent follow-up.', calculation: 'Without structured follow-up, warm prospects drift to a competitor or put the decision off.', cost: leadFollowUpLoss, costLabel: 'in warm enquiries that go cold without follow-up', barPercent: Math.round(Math.max(0, 1 - (metrics.currentCloseRate || 0)) * 100) },
+    { icon: 'DollarSign', title: 'PAYMENTS CHASED MANUALLY', highlight: 'Open invoices', description: 'invoice reminders still depend on someone remembering to follow up after the job is done.', calculation: 'Slow collections create admin drag and delay cash already earned.', cost: paymentDelayLoss, costLabel: 'tied up in slower collections and manual payment chasing', barPercent: 36 },
+    { icon: 'MessageSquareX', title: 'CLIENTS ASKING FOR UPDATES', highlight: 'Status calls', description: 'clients waiting on reports or next steps call in because no proactive update flow is running.', calculation: 'A simple update sequence removes uncertainty and cuts repetitive office interruptions.', cost: clientUpdateLoss, costLabel: 'lost to admin time and friction from reactive client updates', barPercent: 32 },
   ];
 }
 
@@ -428,7 +428,7 @@ function buildIndoorEnvironmentalStats(roi, metrics) {
     { label: 'Monthly Revenue Lift', value: roi.gains.totalMonthlyGain, type: 'currency', color: 'text-emerald-400', icon: 'TrendingUp' },
     { label: 'Projected Booking Rate', value: roi.projectedCloseRate * 100, type: 'percent', color: 'text-teal-400', icon: 'Target' },
     { label: 'First Response Speed', display: roi.projectedResponseTime, color: 'text-cyan-400', icon: 'Zap' },
-    { label: 'Clearance Retests Booked', value: Math.round((metrics.monthlyLeads || 0) * 0.41), type: 'number', suffix: ' /mo', color: 'text-violet-400', icon: 'RefreshCw' },
+    { label: 'Follow-Ups Automated', value: Math.round((metrics.monthlyLeads || 0) * 0.22), type: 'number', suffix: ' /mo', color: 'text-violet-400', icon: 'RefreshCw' },
   ];
 }
 

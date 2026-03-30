@@ -11,21 +11,44 @@ export function calculateROI(metrics, industry) {
   const missedCallsEstimate = metrics.missedCallsEstimate ?? 0;
 
   const roi = industry.roi;
+  const assumptions = industry?.id === 'indoor_environmental'
+    ? {
+        slowResponseLeadShare: 0.18,
+        slowResponseValueShare: 0.06,
+        missedCallConversionShare: 0.45,
+        noFollowUpValueShare: 0.04,
+        noShowValueShare: 0.45,
+        laborBase: 4200,
+        laborWasteShare: 0.08,
+        recoveredLeadShare: 0.25,
+        noShowRecoveryShare: 0.45,
+      }
+    : {
+        slowResponseLeadShare: 0.35,
+        slowResponseValueShare: 0.10,
+        missedCallConversionShare: 1,
+        noFollowUpValueShare: 0.08,
+        noShowValueShare: 1,
+        laborBase: 5000,
+        laborWasteShare: 0.15,
+        recoveredLeadShare: 0.40,
+        noShowRecoveryShare: 0.70,
+      };
 
   // MONEY BEING LOST
-  const slowResponseLoss = monthlyLeads * 0.35 * avgJobValue * 0.10;
-  const missedCallLoss = missedCallsEstimate * avgJobValue * currentCloseRate;
-  const noFollowUpLoss = monthlyLeads * (1 - currentCloseRate) * avgJobValue * 0.08;
-  const noShowLoss = (noShowRate / 100) * monthlyLeads * currentCloseRate * avgJobValue;
-  const manualLaborWaste = employees * 5000 * 0.15;
+  const slowResponseLoss = monthlyLeads * assumptions.slowResponseLeadShare * avgJobValue * assumptions.slowResponseValueShare;
+  const missedCallLoss = missedCallsEstimate * avgJobValue * currentCloseRate * assumptions.missedCallConversionShare;
+  const noFollowUpLoss = monthlyLeads * (1 - currentCloseRate) * avgJobValue * assumptions.noFollowUpValueShare;
+  const noShowLoss = (noShowRate / 100) * monthlyLeads * currentCloseRate * avgJobValue * assumptions.noShowValueShare;
+  const manualLaborWaste = employees * assumptions.laborBase * assumptions.laborWasteShare;
 
   const totalMonthlyLoss = slowResponseLoss + missedCallLoss + noFollowUpLoss + noShowLoss + manualLaborWaste;
 
   // MONEY GAINED WITH AI
   const conversionLift = monthlyLeads * roi.conversionLift * avgJobValue;
-  const recoveredLeads = (slowResponseLoss + missedCallLoss) * 0.40;
-  const fteSavings = employees * 5000 * 0.15;
-  const noShowReduction = noShowLoss * 0.70;
+  const recoveredLeads = (slowResponseLoss + missedCallLoss) * assumptions.recoveredLeadShare;
+  const fteSavings = employees * assumptions.laborBase * assumptions.laborWasteShare;
+  const noShowReduction = noShowLoss * assumptions.noShowRecoveryShare;
 
   const totalMonthlyGain = conversionLift + recoveredLeads + fteSavings + noShowReduction;
 
@@ -38,7 +61,7 @@ export function calculateROI(metrics, industry) {
   const projectedResponseTime = roi.avgResponseTimeAfter;
 
   // FTE equivalent
-  const fteEquivalent = fteSavings > 0 ? Math.round((fteSavings / 5000) * 10) / 10 : 0;
+  const fteEquivalent = fteSavings > 0 ? Math.round((fteSavings / assumptions.laborBase) * 10) / 10 : 0;
 
   // 12-month projection
   const monthlyProjection = Array.from({ length: 12 }, (_, i) => {
@@ -56,7 +79,7 @@ export function calculateROI(metrics, industry) {
   // Current vs projected comparison
   const currentMonthlyRevenue = monthlyLeads * currentCloseRate * avgJobValue;
   const projectedMonthlyRevenue = monthlyLeads * projectedCloseRate * avgJobValue;
-  const currentOperationalCost = employees * 5000;
+  const currentOperationalCost = employees * assumptions.laborBase;
   const projectedOperationalCost = currentOperationalCost - fteSavings;
 
   return {

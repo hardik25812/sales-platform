@@ -142,12 +142,6 @@ function DepartmentHeader({ dept, accent, metrics, unitLabel }) {
   );
 }
 
-const REVIEW_AGENT_NAMES = ['review agent', 'review & reputation', 'reputation', 'google review'];
-
-function isReviewAgent(agent) {
-  return REVIEW_AGENT_NAMES.some(n => (agent.name || '').toLowerCase().includes(n));
-}
-
 export default function CommandCenter() {
   const { industryConfig, selectedIndustryId, metrics, roi, companyName, savedProfile } = useDemo();
   const [feedIndex, setFeedIndex] = useState(0);
@@ -233,7 +227,7 @@ export default function CommandCenter() {
                     index={deptIdx * 3 + agentIdx}
                     onClick={setSelectedAgent}
                     metrics={metrics}
-                    isFlagship={!!savedProfile && isReviewAgent(agent)}
+                    isFlagship={!!savedProfile && agent.priority === 'flagship'}
                   />
                 ))}
               </div>

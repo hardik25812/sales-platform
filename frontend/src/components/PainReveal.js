@@ -42,9 +42,11 @@ export default function PainReveal() {
     icon: cardIconMap[card.icon] || Clock,
   }));
 
-  const isDental = savedProfile?.firm?.industry_id === 'dental';
+  const savedIndustryId = savedProfile?.firm?.industry_id;
+  const isDental = savedIndustryId === 'dental';
+  const isLawFirm = savedIndustryId === 'law_firm';
 
-  const reputationCard = savedProfile && !isDental ? {
+  const reputationCard = savedProfile && isLawFirm ? {
     icon: Star,
     title: 'GOOGLE REVIEWS LEFT ON THE TABLE',
     highlight: '50–70%',
@@ -71,7 +73,10 @@ export default function PainReveal() {
   const flagshipCard = unansweredCallsCard || reputationCard;
   const painCards = flagshipCard
     ? [flagshipCard, ...basePainCards.slice(0, 3)]
-    : basePainCards;
+    : basePainCards.map((card, index) => ({
+        ...card,
+        isFlagship: index === 0,
+      }));
 
   const totalMonthlyLoss = painCards.reduce((acc, card) => acc + card.cost, 0);
   const annualLoss = totalMonthlyLoss * 12;

@@ -18,14 +18,85 @@ const ICON_MAP = {
   Sun, Filter, Bell, Key, CheckCircle, Activity
 };
 
+function buildSavedProfileWorkflow(savedProfile, fallbackWorkflow) {
+  const savedIndustryId = savedProfile?.firm?.industry_id;
+  if (savedIndustryId !== 'indoor_environmental') return fallbackWorkflow;
+
+  const systems = savedProfile?.systems || [];
+  const getSystemName = (id, fallback) => systems.find((system) => system.id === id)?.name || fallback;
+
+  return [
+    {
+      step: 'Inbound Enquiry',
+      system: getSystemName('inquiry_capture_system', '24/7 Inquiry Capture & Booking System'),
+      icon: 'PhoneIncoming',
+      before: 'New enquiries sit in voicemail, email, or web forms until someone is free to respond.',
+      after: 'Inbound enquiries are answered automatically and moved straight into booking.',
+      beforeTime: 'Hours later',
+      afterTime: 'Within 60–90 seconds',
+      dropoff: { before: 30, after: 6 },
+    },
+    {
+      step: 'Booking',
+      system: getSystemName('free_trial_ai_team', '7-Day Free Trial AI Operations Team'),
+      icon: 'CalendarCheck',
+      before: 'Booking requires phone tag and manual back-and-forth to find an inspection slot.',
+      after: 'Assessments are booked automatically with confirmations and reminders sent out instantly.',
+      beforeTime: '1-2 days',
+      afterTime: '2 minutes',
+      dropoff: { before: 20, after: 4 },
+    },
+    {
+      step: 'Lead Follow-Up',
+      system: getSystemName('report_next步_system', 'Lead Follow-Up, Payments & Client Update System'),
+      icon: 'RefreshCw',
+      before: 'People who asked questions but did not book are rarely followed up in a consistent way.',
+      after: 'Warm leads are followed up automatically until they book or clearly opt out.',
+      beforeTime: 'Often never',
+      afterTime: 'Same day',
+      dropoff: { before: 18, after: 8 },
+    },
+    {
+      step: 'Payments',
+      system: getSystemName('report_next步_system', 'Lead Follow-Up, Payments & Client Update System'),
+      icon: 'FileText',
+      before: 'Open invoices depend on the office manually remembering to chase payment.',
+      after: 'Invoice reminders and secure payment links go out automatically until balances are cleared.',
+      beforeTime: 'Delayed',
+      afterTime: 'Same day',
+      dropoff: { before: 12, after: 4 },
+    },
+    {
+      step: 'Client Updates',
+      system: getSystemName('report_next步_system', 'Lead Follow-Up, Payments & Client Update System'),
+      icon: 'MessageCircle',
+      before: 'Clients call in for report status, next steps, and follow-up timing because updates are reactive.',
+      after: 'Clients receive proactive updates when reports are in progress, delivered, or waiting on next steps.',
+      beforeTime: 'Reactive',
+      afterTime: 'Real-time',
+      dropoff: { before: 25, after: 5 },
+    },
+    {
+      step: 'Reviews',
+      system: getSystemName('review_reputation_system', 'Google Review & Reputation Engine'),
+      icon: 'Star',
+      before: 'Review requests happen inconsistently, if they happen at all.',
+      after: 'Review requests are sent after the core intake and follow-up workflows are already running cleanly.',
+      beforeTime: 'Occasional',
+      afterTime: 'After each completed job',
+      dropoff: { before: 10, after: 3 },
+    },
+  ];
+}
+
 export default function WorkflowVisualizer() {
-  const { industryConfig, companyName } = useDemo();
+  const { industryConfig, companyName, savedProfile } = useDemo();
   const [showAfter, setShowAfter] = useState(false);
 
   if (!industryConfig) return null;
 
   const accent = industryConfig.color;
-  const workflow = industryConfig.workflow || [];
+  const workflow = buildSavedProfileWorkflow(savedProfile, industryConfig.workflow || []);
   const workflowLabel = industryConfig.usesSystemsApproach ? 'system' : 'agent';
   const summaryLabel = industryConfig.usesSystemsApproach ? 'Total Workflow Friction Reduction' : 'Total Lead Dropoff Reduction';
 
