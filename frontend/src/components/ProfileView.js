@@ -1,6 +1,34 @@
 import { useDemo } from '../context/DemoContext';
 import { loadLawFirmProfile, formatProfileForDisplay } from '../utils/profileLoader';
-import { Building2, MapPin, Scale, Trophy, Users, DollarSign, Briefcase, Target, Lightbulb, Zap, Star, TrendingUp, CheckCircle2, Wind, Smile, Phone } from 'lucide-react';
+import { Building2, MapPin, Scale, Trophy, Users, DollarSign, Briefcase, Target, Lightbulb, Zap, Star, TrendingUp, CheckCircle2, Wind, Smile, Phone, Activity, Heart, Clock, TrendingDown, Sparkles } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+
+const BARIATRIC_METRICS = [
+  { label: 'Avg Surgery Revenue', value: '$20,000', color: '#2E86C1' },
+  { label: 'Weekend Blackout', value: '60 hrs', color: '#E74C3C' },
+  { label: 'Pre-Op Dropout', value: '40%', color: '#E74C3C' },
+  { label: 'Post-Op Gone Yr 2', value: '93.5%', color: '#E74C3C' },
+  { label: 'GLP-1 Volume Drop', value: '−46%', color: '#E67E22' },
+  { label: 'No-Show Rate', value: '22%', color: '#E74C3C' },
+  { label: 'Body Contouring Upside', value: '$50K+/yr', color: '#27AE60' },
+  { label: 'Decision Timeline', value: '3–6 months', color: '#2E86C1' },
+];
+
+function BariatricMetricsTicker() {
+  const [active, setActive] = useState(0);
+  const ref = useRef(null);
+  useEffect(() => {
+    ref.current = setInterval(() => setActive(p => (p + 1) % BARIATRIC_METRICS.length), 2200);
+    return () => clearInterval(ref.current);
+  }, []);
+  const m = BARIATRIC_METRICS[active];
+  return (
+    <div className="flex items-center gap-2 h-6 overflow-hidden">
+      <span className="text-lg font-bold transition-all duration-500" style={{ color: m.color }}>{m.value}</span>
+      <span className="text-xs text-slate-400 transition-all duration-500">{m.label}</span>
+    </div>
+  );
+}
 
 export default function ProfileView() {
   const { industryConfig, savedProfile: contextProfile } = useDemo();
@@ -28,23 +56,56 @@ export default function ProfileView() {
 
   const isIET = profile.firm.industry_id === 'indoor_environmental';
   const isDental = profile.firm.industry_id === 'dental';
-  const accentColor = isDental ? 'text-cyan-400' : isIET ? 'text-teal-400' : 'text-rose-400';
-  const HeaderIcon = isDental ? Smile : isIET ? Wind : Scale;
+  const isBariatric = profile.firm.industry_id === 'bariatric_surgery';
+  const accentColor = isDental ? 'text-cyan-400' : isIET ? 'text-teal-400' : isBariatric ? 'text-blue-400' : 'text-rose-400';
+  const HeaderIcon = isDental ? Smile : isIET ? Wind : isBariatric ? Activity : Scale;
   const serviceAreas = profile.firm.practice_areas || profile.firm.services || [];
-  const serviceLabel = isDental ? 'Services' : isIET ? 'Services' : 'Practice Areas';
+  const serviceLabel = isDental ? 'Services' : isIET ? 'Services' : isBariatric ? 'Services' : 'Practice Areas';
   const serviceColorClass = isDental
     ? 'bg-cyan-500/10 text-cyan-300 border-cyan-500/20'
     : isIET
     ? 'bg-teal-500/10 text-teal-300 border-teal-500/20'
+    : isBariatric
+    ? 'bg-blue-500/10 text-blue-300 border-blue-500/20'
     : 'bg-rose-500/10 text-rose-300 border-rose-500/20';
-  const serviceIconColor = isDental ? 'text-cyan-400' : isIET ? 'text-teal-400' : 'text-rose-400';
+  const serviceIconColor = isDental ? 'text-cyan-400' : isIET ? 'text-teal-400' : isBariatric ? 'text-blue-400' : 'text-rose-400';
   const profileImage = profile.firm.profile_image;
 
   return (
     <div className="max-w-6xl mx-auto space-y-6">
       {/* Header */}
       <div className="glass-panel p-8">
-        {!isIET && !isDental && profileImage && (
+
+        {/* SFSBI — Bariatric brand header */}
+        {isBariatric && (
+          <div className="mb-6 rounded-2xl border border-blue-500/20 overflow-hidden relative" style={{ background: 'linear-gradient(135deg, #0D2B4E 0%, #1B4F8A 50%, #0D2B4E 100%)' }}>
+            <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 70% 50%, rgba(46,134,193,0.25) 0%, transparent 70%)' }} />
+            <div className="flex items-center justify-between px-8 py-6 relative z-10">
+              <div className="flex items-center gap-6">
+                <div className="w-28 h-16 rounded-xl bg-white/[0.95] flex items-center justify-center p-2 border border-white/30">
+                  <img src="/sfsbi-logo.webp" alt="SFSBI" className="w-full h-full object-contain" />
+                </div>
+                <div>
+                  <p className="text-[11px] font-mono uppercase tracking-[0.25em] text-blue-300 mb-1">Bariatric Surgery Profile</p>
+                  <p className="text-white font-bold text-xl">{profile.firm.name}</p>
+                  <p className="text-blue-200/70 text-sm mt-0.5">{profile.firm.positioning}</p>
+                </div>
+              </div>
+              <div className="hidden md:flex flex-col items-end gap-2">
+                <div className="text-right">
+                  <div className="text-2xl font-bold text-white">$20K–$35K</div>
+                  <div className="text-xs text-blue-300">Avg Surgery Value</div>
+                </div>
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-500/20 border border-blue-400/30">
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="text-[10px] font-mono text-blue-200 tracking-wider">BARIATRIC + COSMETIC</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {!isIET && !isDental && !isBariatric && profileImage && (
           <div className="mb-6 overflow-hidden rounded-2xl border border-white/[0.08] relative h-52 md:h-64">
             <img
               src={profileImage}
@@ -68,17 +129,27 @@ export default function ProfileView() {
           <div>
             <div className="flex items-center gap-3 mb-2">
               <HeaderIcon size={32} className={accentColor} />
-              <h1 className="text-3xl font-bold text-white">{profile.firm.name}</h1>
+              <h1 className="text-3xl font-bold text-white">{isBariatric ? profile.firm.short_name || profile.firm.name : profile.firm.name}</h1>
             </div>
             <p className="text-lg text-slate-300">{displayData.tagline}</p>
             {profile.firm.tagline && (
               <p className="text-sm text-slate-500 mt-1 italic">"{profile.firm.tagline}"</p>
+            )}
+            {isBariatric && (
+              <div className="mt-3">
+                <BariatricMetricsTicker />
+              </div>
             )}
           </div>
           {displayData.topVerdict ? (
             <div className="text-right">
               <div className={`text-3xl font-bold ${accentColor}`}>{displayData.topVerdict}</div>
               <div className="text-sm text-slate-400">Top Verdict</div>
+            </div>
+          ) : isBariatric ? (
+            <div className="text-right">
+              <div className="text-3xl font-bold text-blue-400">9</div>
+              <div className="text-sm text-slate-400">AI Systems</div>
             </div>
           ) : (
             <div className="text-right">
@@ -88,14 +159,49 @@ export default function ProfileView() {
           )}
         </div>
 
-        {/* Quick Stats */}
+        {/* Bariatric Quick Stats */}
+        {isBariatric && (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+            <div className="bg-blue-500/5 rounded-lg p-4 border border-blue-500/15">
+              <div className="flex items-center gap-2 mb-1">
+                <MapPin size={16} className="text-blue-400" />
+                <span className="text-xs text-slate-400 uppercase tracking-wider">Location</span>
+              </div>
+              <div className="text-lg font-semibold text-white">Miami, FL</div>
+            </div>
+            <div className="bg-blue-500/5 rounded-lg p-4 border border-blue-500/15">
+              <div className="flex items-center gap-2 mb-1">
+                <Phone size={16} className="text-blue-400" />
+                <span className="text-xs text-slate-400 uppercase tracking-wider">Phone</span>
+              </div>
+              <div className="text-lg font-semibold text-white">{profile.firm.phone}</div>
+            </div>
+            <div className="bg-red-500/5 rounded-lg p-4 border border-red-500/15">
+              <div className="flex items-center gap-2 mb-1">
+                <Clock size={16} className="text-red-400" />
+                <span className="text-xs text-slate-400 uppercase tracking-wider">Weekend Gap</span>
+              </div>
+              <div className="text-lg font-semibold text-red-300">60 hrs dark</div>
+            </div>
+            <div className="bg-emerald-500/5 rounded-lg p-4 border border-emerald-500/15">
+              <div className="flex items-center gap-2 mb-1">
+                <Sparkles size={16} className="text-emerald-400" />
+                <span className="text-xs text-slate-400 uppercase tracking-wider">Cosmetic Upsell</span>
+              </div>
+              <div className="text-lg font-semibold text-emerald-300">$50K+/yr</div>
+            </div>
+          </div>
+        )}
+
+        {/* Non-bariatric Quick Stats */}
+        {!isBariatric && (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-white/[0.03] rounded-lg p-4 border border-white/[0.06]">
             <div className="flex items-center gap-2 mb-1">
               <MapPin size={16} className="text-blue-400" />
               <span className="text-xs text-slate-400 uppercase tracking-wider">Locations</span>
             </div>
-            <div className="text-lg font-semibold text-white">{(profile.firm.locations || []).join(', ') || profile.firm.service_area}</div>
+            <div className="text-lg font-semibold text-white">{(profile.firm.locations?.length ? profile.firm.locations.join(', ') : null) || profile.firm.service_area || '—'}</div>
           </div>
 
           <div className="bg-white/[0.03] rounded-lg p-4 border border-white/[0.06]">
@@ -112,7 +218,7 @@ export default function ProfileView() {
                 <Phone size={16} className="text-cyan-400" />
                 <span className="text-xs text-slate-400 uppercase tracking-wider">Chairs</span>
               </div>
-              <div className="text-lg font-semibold text-white">{profile.firm.chairs || '—'} Chairs</div>
+              <div className="text-lg font-semibold text-white">{profile.firm.chairs ? `${profile.firm.chairs} Chairs` : '—'}</div>
             </div>
           ) : !isIET ? (
             <div className="bg-white/[0.03] rounded-lg p-4 border border-white/[0.06]">
@@ -140,6 +246,7 @@ export default function ProfileView() {
             <div className="text-lg font-semibold text-white">{displayData.systemCount} Systems</div>
           </div>
         </div>
+        )}
       </div>
 
       {/* Services / Practice Areas */}
@@ -160,7 +267,7 @@ export default function ProfileView() {
       )}
 
       {/* Notable Verdicts — law firm only */}
-      {!isIET && !isDental && profile.firm.notable_verdicts?.length > 0 && (
+      {!isIET && !isDental && !isBariatric && profile.firm.notable_verdicts?.length > 0 && (
         <div className="glass-panel p-6">
           <div className="flex items-center gap-2 mb-4">
             <Trophy size={20} className="text-amber-400" />
@@ -185,7 +292,7 @@ export default function ProfileView() {
       )}
 
       {/* Attorneys — law firm only */}
-      {!isIET && !isDental && profile.firm.attorneys?.length > 0 && (
+      {!isIET && !isDental && !isBariatric && profile.firm.attorneys?.length > 0 && (
         <div className="glass-panel p-6">
           <div className="flex items-center gap-2 mb-4">
             <Users size={20} className="text-violet-400" />
@@ -200,6 +307,34 @@ export default function ProfileView() {
                 <div className="text-white font-medium">{attorney}</div>
               </div>
             ))}
+          </div>
+        </div>
+      )}
+
+      {/* SFSBI Team — bariatric only */}
+      {isBariatric && profile.firm.team?.length > 0 && (
+        <div className="glass-panel p-6">
+          <div className="flex items-center gap-2 mb-4">
+            <Users size={20} className="text-blue-400" />
+            <h2 className="text-xl font-bold text-white">Clinical Team</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {profile.firm.team.map((member, idx) => {
+              const isDoc = member.includes('MD');
+              const isRDN = member.includes('RDN');
+              const role = isDoc ? 'Bariatric Surgeon' : isRDN ? 'Registered Dietitian · CSOWM' : 'Clinical Staff';
+              const roleColor = isDoc ? 'text-blue-400' : isRDN ? 'text-emerald-400' : 'text-slate-400';
+              const bgColor = isDoc ? 'bg-blue-500/10 border-blue-500/20' : isRDN ? 'bg-emerald-500/10 border-emerald-500/20' : 'bg-white/[0.03] border-white/[0.06]';
+              return (
+                <div key={idx} className={`p-4 rounded-lg border text-center ${bgColor}`}>
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2 ${isDoc ? 'bg-blue-500/15' : isRDN ? 'bg-emerald-500/15' : 'bg-white/[0.05]'}`}>
+                    <Users size={20} className={roleColor} />
+                  </div>
+                  <div className="text-white font-semibold text-sm">{member}</div>
+                  <div className={`text-xs mt-1 ${roleColor}`}>{role}</div>
+                </div>
+              );
+            })}
           </div>
         </div>
       )}

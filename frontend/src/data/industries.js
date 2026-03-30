@@ -1183,6 +1183,130 @@ export const INDUSTRIES = {
     ]
   },
 
+  bariatric_surgery: {
+    id: "bariatric_surgery",
+    name: "Bariatric Surgery",
+    icon: "Activity",
+    color: "#1B4F8A",
+    colorSecondary: "#2E86C1",
+    gradient: "from-blue-800 to-blue-500",
+    glow: "rgba(27,79,138,0.35)",
+    tagline: "Protect every lead through a 6-month journey to the OR",
+    subtitle: "9 operational systems",
+    usesSystemsApproach: true,
+    heroImage: "https://images.unsplash.com/photo-1631815588090-d4bfec5b1b89?w=1200&q=80",
+
+    savedProfiles: [
+      {
+        id: "sfsbi",
+        name: "South Florida Surgery, Bariatric & Cosmetic Institute",
+        website: "sfsbi.com",
+        location: "Miami, FL",
+        specialty: "Bariatric Surgery + Body Contouring",
+        preview: "Concierge weight loss surgery — boutique Miami clinic, dual bariatric + cosmetic"
+      }
+    ],
+
+    agents: [
+      { name: "24/7 Inquiry Agent", icon: "PhoneIncoming", dept: "Patient Acquisition", description: "Responds to every bariatric inquiry in 60 seconds — including the 60-hour weekend blackout window", status: "active", tasks: ["Answers web forms, calls, and texts instantly 24/7", "Qualifies: BMI, insurance carrier, GLP-1 history", "Books free confidential consultation", "Alerts team to high-priority leads"], kpis: { primary: "Inquiries Captured", secondary: "Response Time" }, metric: { value: 97, unit: "%", label: "Capture Rate" } },
+      { name: "GLP-1 Education Agent", icon: "BookOpen", dept: "Patient Acquisition", description: "Wins the Ozempic conversation with data before the consultation even starts", status: "active", tasks: ["Sends Surgery vs. GLP-1 comparison to every prospect", "Tailors messaging: naive, current user, or GLP-1 failure", "Re-engages 'I'll try Ozempic first' patients at 3 and 6 months", "Arms patient with questions for the surgeon"], kpis: { primary: "GLP-1 Re-Engagement", secondary: "Pre-Consult Open Rate" }, metric: { value: 58, unit: "%", label: "Open Rate" } },
+      { name: "Appointment Concierge", icon: "CalendarCheck", dept: "Patient Journey", description: "Eliminates the 22% consultation no-show rate with multi-touch reminder sequences", status: "active", tasks: ["Multi-touch confirmation: 72hr, 24hr, 2hr reminders", "Waitlist fills cancelled slots same-day", "No-show recovery within 2 hours", "Rescheduling via SMS without staff involvement"], kpis: { primary: "Show Rate", secondary: "Waitlist Fill Rate" }, metric: { value: 88, unit: "%", label: "Show Rate" } },
+      { name: "Pre-Op Journey Agent", icon: "ClipboardList", dept: "Patient Journey", description: "Keeps patients on track through 6 months of supervised diet, psych clearance, and medical sign-offs", status: "active", tasks: ["Tracks each patient's exact pre-op stage", "Stage-specific nudges — never generic", "Flags 14-day-silent patients for human follow-up", "Coordinates with dietitian check-in schedule"], kpis: { primary: "Pipeline Retention", secondary: "Drop-Off Prevention" }, metric: { value: 80, unit: "%", label: "Retention" } },
+      { name: "Insurance Navigator", icon: "FileCheck", dept: "Patient Journey", description: "Turns the pre-auth maze into a checklist patients can actually follow — stops abandonment at the paperwork wall", status: "active", tasks: ["Plain-English explanation of insurance requirements", "Personalized documentation checklist", "5-day follow-up with insurance carrier", "Auto-drafts appeal letters on denial"], kpis: { primary: "Pre-Auth Success", secondary: "Appeal Win Rate" }, metric: { value: 68, unit: "%", label: "Appeal Win Rate" } },
+      { name: "Post-Op Lifecycle Agent", icon: "Heart", dept: "Post-Op Lifecycle", description: "Turns the 93.5% post-op dropout into a lifetime patient relationship — lab compliance, milestone check-ins, reactivation", status: "active", tasks: ["Automated check-ins: 2wk, 1mo, 3mo, 6mo, 12mo, annual", "Lab work reminders: B12, iron, protein, calcium", "Lapsed patient reactivation after 60-day silence", "Seeds body contouring conversation at 12–18 months"], kpis: { primary: "12-Month Compliance", secondary: "Lapsed Reactivation" }, metric: { value: 50, unit: "%", label: "12-Month Target" } },
+      { name: "Body Contouring Agent", icon: "Sparkles", dept: "Post-Op Lifecycle", description: "Introduces the natural next chapter at exactly the right moment — completing the transformation", status: "active", tasks: ["Triggers at 12–18 months post-op when weight stabilizes", "Next chapter framing — not a sales pitch", "Educates on panniculectomy, arm lift, thigh lift, tummy tuck", "Books complimentary cosmetic consultation"], kpis: { primary: "Upsell Conversion", secondary: "Avg Procedure Value" }, metric: { value: 20, unit: "%", label: "Conversion Target" } },
+      { name: "Reputation Agent", icon: "Star", dept: "Reputation & Growth", description: "Captures transformational reviews at peak satisfaction milestones — 6-month and 12-month post-op", status: "active", tasks: ["Milestone-triggered review requests (3mo, 6mo, 12mo)", "Pre-screens satisfaction — unhappy patients get callback", "HIPAA-compliant Google review responses", "Weekly competitor tracking vs. Miami bariatric programs"], kpis: { primary: "Review Velocity", secondary: "Avg Rating" }, metric: { value: 4.9, unit: "stars", label: "Avg Rating" } },
+      { name: "Pipeline Dashboard", icon: "BarChart2", dept: "Reputation & Growth", description: "Full lead-to-body-contouring pipeline visibility with revenue forecast for Dr. Valladares", status: "active", tasks: ["Tracks all 8 pipeline stages in real time", "Flags drop-off risks before they cost $20K", "30/60/90-day surgery revenue forecast", "Monday morning summary for the surgical team"], kpis: { primary: "Pipeline Visibility", secondary: "Forecast Accuracy" }, metric: { value: 96, unit: "%", label: "Stage Coverage" } }
+    ],
+
+    workflow: [
+      { step: "Inquiry", system: "Inquiry Agent", icon: "PhoneIncoming", before: "60-hr blackout Fri–Mon, leads go cold or call competitors", after: "<60 sec response 24/7 — concierge-level message", beforeTime: "60+ hrs", afterTime: "60 seconds", dropoff: { before: 55, after: 5 } },
+      { step: "GLP-1 Objection", system: "GLP-1 Education", icon: "BookOpen", before: "'I'll try Ozempic first' — 70% never come back", after: "Pre-consult education: surgery 5x outcomes, cost math", beforeTime: "Lost to GLP-1s", afterTime: "Educated pre-consult", dropoff: { before: 30, after: 8 } },
+      { step: "Consultation", system: "Appt Concierge", icon: "CalendarCheck", before: "22% no-show rate — surgeries that never start", after: "Multi-touch reminders + waitlist fill", beforeTime: "22% no-show", afterTime: "<10% no-show", dropoff: { before: 22, after: 8 } },
+      { step: "6-Month Pre-Op", system: "Pre-Op Journey Agent", icon: "ClipboardList", before: "40% drop off during supervised diet and clearances", after: "Stage nudges, Sheena check-ins, 14-day silence alerts", beforeTime: "40% dropout", afterTime: "20% dropout", dropoff: { before: 40, after: 20 } },
+      { step: "Insurance Pre-Auth", system: "Insurance Navigator", icon: "FileCheck", before: "Patients overwhelmed by documentation — abandon", after: "Checklist, tracking, appeal drafts — stay on track", beforeTime: "15% abandon", afterTime: "5% abandon", dropoff: { before: 15, after: 5 } },
+      { step: "Surgery", system: "All Systems", icon: "Activity", before: "40–60% of consultations never reach the OR", after: "Protected pipeline from inquiry to surgery", beforeTime: "40% conversion", afterTime: "65% conversion", dropoff: { before: 5, after: 1 } },
+      { step: "Post-Op Care", system: "Post-Op Agent", icon: "Heart", before: "93.5% gone by year 2 — lab work missed, regain risk", after: "Automated lifetime schedule — 2wk through annual", beforeTime: "6.5% at 24mo", afterTime: "50% at 12mo", dropoff: { before: 70, after: 25 } },
+      { step: "Body Contouring", system: "Body Contouring Agent", icon: "Sparkles", before: "Upsell never introduced — $50K+/yr left on the table", after: "Natural next chapter at 12–18 months post-op", beforeTime: "Never offered", afterTime: "12–18mo trigger", dropoff: { before: 0, after: 0 } },
+      { step: "Reviews", system: "Reputation Agent", icon: "Star", before: "Thin review profile vs. Baptist Health (287 reviews)", after: "Milestone-triggered transformational reviews", beforeTime: "Rarely asked", afterTime: "Every milestone", dropoff: { before: 0, after: 0 } }
+    ],
+
+    roi: { leadResponseImprovement: 0.88, conversionLift: 0.25, missedLeadRecovery: 0.30, avgResponseTimeBefore: "60+ hours (weekends)", avgResponseTimeAfter: "60 seconds", reviewIncreasePercent: 300 },
+
+    defaults: {
+      monthlyLeads: 40,
+      avgJobValue: 20000,
+      avgSurgeryRevenue: 20000,
+      avgBodyContouringRevenue: 10000,
+      employees: 5,
+      currentCloseRate: 0.40,
+      currentResponseTime: 12.0,
+      monthlyAdSpend: 3000,
+      noShowRate: 22,
+      missedCallsEstimate: 20,
+      freeConsultsPerMonth: 20,
+      postOpPatients: 150,
+      insuranceDeclineRate: 15,
+      preOpDropoffRate: 40,
+      consultToSurgeryRate: 40
+    },
+
+    caseStudies: [
+      { company: "Gulf Coast Bariatric Center", location: "Tampa, FL", employees: 6, result: "Pre-op dropout reduced from 45% to 18% in 90 days", savings: "$48,000/month in protected pipeline revenue", detail: "Pre-Op Journey Agent with 14-day silence alerts recovered 27% of patients who had gone cold mid-pipeline. Weekend inquiry capture added 6 additional consultations per month.", metrics: { closeBefore: 40, closeAfter: 62, days: 90, monthlySavings: 48000 } },
+      { company: "South Texas Weight Loss Specialists", location: "San Antonio, TX", employees: 8, result: "Body contouring upsell generated $62K in first 6 months", savings: "$62,000 in new cosmetic revenue from existing patients", detail: "12–18 month post-op trigger introduced body contouring to 24% of surgical patients. Same-surgeon framing drove 3x the conversion rate of external referrals.", metrics: { closeBefore: 35, closeAfter: 55, days: 180, monthlySavings: 10333 } }
+    ],
+
+    integrations: ["DrChrono", "NextGen Healthcare", "Kareo", "Salesforce Health Cloud", "Google Business"],
+
+    painPoints: [
+      { title: "60-Hour Weekend Blackout", stat: "60 hrs", description: "SFSBI closes Friday at 12:30 PM — every weekend inquiry goes cold or finds a competitor who answers Sunday night", icon: "PhoneOff" },
+      { title: "GLP-1 Drugs Stealing Patients", stat: "46% drop", description: "bariatric surgery volume decline since Ozempic/Wegovy — every prospect is now comparing surgery vs. medication", icon: "TrendingDown" },
+      { title: "3–6 Month Pipeline Dropout", stat: "40%+", description: "of consultations never reach surgery — patients ghost during the supervised diet and clearance marathon", icon: "UserMinus" },
+      { title: "Post-Op Follow-Up Collapse", stat: "93.5%", description: "of patients gone by year 2 — lab work missed, weight regain, and $50K+ in body contouring revenue untouched", icon: "Activity" }
+    ],
+
+    liveFeedExamples: [
+      { type: "lead", text: "Sunday 10:47 PM — web inquiry captured: 'BMI 44, tried Ozempic, ready to discuss surgery'", time: "2 min ago" },
+      { type: "education", text: "Surgery vs. GLP-1 comparison sent to 3 pre-consult patients", time: "8 min ago" },
+      { type: "pipeline", text: "Pre-op alert: Maria G. silent 14 days — Stage: Month 3 diet. Sheena flagged.", time: "15 min ago" },
+      { type: "insurance", text: "Pre-auth appeal drafted for Johnson case — denial overturned in 12 days", time: "22 min ago" },
+      { type: "postop", text: "6-month milestone reached: Carlos R. — lab reminders sent, review request triggered", time: "31 min ago" },
+      { type: "upsell", text: "Body contouring consult booked: 14-month post-op patient, Dr. Valladares — $9,800 est.", time: "44 min ago" },
+      { type: "review", text: "⭐ 5-star review: 'Dr. Valladares changed my life — down 97 lbs in 14 months'", time: "1 hr ago" }
+    ],
+
+    personalization: {
+      tone: "concierge-clinical",
+      toneDescription: "Warm, trustworthy, expert — Dr. Valladares is not a factory surgeon. Every patient gets the boutique experience.",
+      demoAngle: "Open with the GLP-1 crisis: 'Your volume is down because of Ozempic. AI doesn't fix that directly — but it fixes every leak in your pipeline so you convert more of the leads you do get.' Walk through the math: 20 consultations × 40% dropout × $20K = $160K/month leaving the pipeline.",
+      hookQuestion: "If 40% of your consultations never make it to surgery, and each surgery is worth $20,000 — what does that cost you every single month?",
+      painPoint: "The pipeline is 3–6 months long with friction at every step — every stage is a drop-off point, every drop-off is $20K lost.",
+      valueProposition: "Protect every lead from the Sunday-night inquiry through surgery and into the body contouring chapter — automatically."
+    },
+
+    dayStory: {
+      before: [
+        { time: "10:47 PM Sunday", event: "Maria searches 'weight loss surgery Miami' after a health scare", detail: "BMI 44, tried Ozempic for 6 months, plateau'd and stopped. Scared. Ready to act tonight.", icon: "🔍" },
+        { time: "10:48 PM", event: "Fills out SFSBI's contact form", detail: "High urgency — emotional decision point, ready to book", icon: "📝" },
+        { time: "10:48 PM", event: "Form sits in the inbox", detail: "Clinic closed Friday at 12:30 PM. Won't be seen until Monday morning.", icon: "⚠️", status: "warning" },
+        { time: "10:51 PM", event: "Maria submits the same inquiry to two other Miami bariatric clinics", detail: "Whoever responds first gets the consult.", icon: "😫", status: "warning" },
+        { time: "11:02 PM", event: "Baptist Health Bariatric's chat bot responds", detail: "'Hi Maria, we'd love to schedule your free consultation. I have Thursday 10 AM available.'", icon: "📞", status: "danger" },
+        { time: "11:04 PM", event: "Maria books with Baptist Health", detail: "$20,000 surgery — gone to the hospital system.", icon: "❌", status: "lost" },
+        { time: "Monday 9:00 AM", event: "SFSBI front desk sees the web form inquiry", detail: "Calls back. 'Sorry, I went ahead and booked somewhere else.'", icon: "💸", status: "lost" },
+        { time: "RESULT", event: "$20,000 surgery — LOST to Baptist Health", detail: "Because SFSBI was closed for 60 hours.", icon: "💸", status: "lost" }
+      ],
+      after: [
+        { time: "10:47 PM Sunday", event: "Maria searches 'weight loss surgery Miami' after a health scare", detail: "BMI 44, tried Ozempic for 6 months, plateau'd and stopped. Scared. Ready to act tonight.", icon: "🔍" },
+        { time: "10:48 PM", event: "Fills out SFSBI's contact form", detail: "High urgency — emotional decision point, ready to book", icon: "📝" },
+        { time: "10:48 PM", event: "SFSBI Concierge Agent responds in 60 seconds", detail: "'Hi Maria — thank you for reaching out. Dr. Valladares offers free confidential consultations. I have Thursday 10 AM or Friday 9 AM...'", icon: "⚡", status: "active" },
+        { time: "10:50 PM", event: "Maria qualifies and books Thursday 10 AM", detail: "BMI, insurance, GLP-1 history collected. Consultation confirmed.", icon: "📅", status: "success" },
+        { time: "10:52 PM", event: "Pre-consult packet sent", detail: "Surgeon bios, what to bring, Surgery vs. GLP-1 comparison — SFSBI branded concierge experience", icon: "📧", status: "success" },
+        { time: "10:52 PM", event: "Team alert sent to Dr. Valladares", detail: "'HIGH PRIORITY — Maria G., BMI 44, Aetna PPO, GLP-1 failure. Consult Thu 10 AM. Pre-qualified.'", icon: "🔔", status: "success" },
+        { time: "RESULT", event: "$20,000 surgery — PIPELINE STARTED", detail: "At 10:50 PM Sunday. While the clinic was technically closed.", icon: "✅", status: "won" }
+      ]
+    }
+  },
+
   indoor_environmental: {
     id: "indoor_environmental",
     name: "Indoor Air Quality",

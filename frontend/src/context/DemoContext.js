@@ -61,7 +61,7 @@ export function DemoProvider({ children }) {
       setMetrics({ ...config.defaults, ...(profile.metrics || {}) });
       setSavedProfile(profile);
       setCompanyName(profile.firm.name);
-      setActiveTab(industryId === 'indoor_environmental' ? 'discovery' : 'profile');
+      setActiveTab((industryId === 'indoor_environmental') ? 'discovery' : 'profile');
     }
   }, []);
 

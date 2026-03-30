@@ -1,0 +1,373 @@
+{
+  "firm": {
+    "name": "South Florida Surgery, Bariatric & Cosmetic Institute",
+    "short_name": "SFSBI",
+    "industry_id": "bariatric_surgery",
+    "website": "sfsbi.com",
+    "schedule_url": "sfsbi.com/schedule",
+    "profile_image": null,
+    "phone": "305-631-5355",
+    "locations": ["Miami, FL"],
+    "address": "351 NW 42nd Ave Suite 303, Miami, FL 33126",
+    "hours": {
+      "mon_thu": "9:00 AM – 4:30 PM",
+      "fri": "9:00 AM – 12:30 PM",
+      "weekend": "Closed"
+    },
+    "team": [
+      "Dr. Eric Valladares MD",
+      "Dr. Jose G. Valladares MD",
+      "Sheena Acosta RDN CSOWM"
+    ],
+    "positioning": "Board Certified Weight Loss & Concierge Specialists — dual bariatric + cosmetic",
+    "tagline": "Concierge weight loss surgery — bariatric + body contouring",
+    "services": [
+      "Gastric Sleeve (Sleeve Gastrectomy)",
+      "Gastric Bypass (Roux-en-Y)",
+      "Revisional Bariatric Surgery",
+      "Free Confidential Consultations",
+      "Nutritional Counseling (RDN CSOWM)",
+      "Body Contouring After Weight Loss",
+      "Panniculectomy",
+      "Brachioplasty (Arm Lift)",
+      "Thigh Lift",
+      "Tummy Tuck (Abdominoplasty)"
+    ],
+    "unique_strengths": [
+      "Family-run boutique clinic — two Valladares physicians",
+      "Concierge positioning in competitive Miami market",
+      "Dual bariatric + cosmetic capability (natural body contouring upsell)",
+      "On-staff RDN CSOWM dietitian (Sheena Acosta) for full patient journey",
+      "Free confidential consultations with online scheduling",
+      "Board-certified weight loss specialists"
+    ],
+    "tone": "compassionate_clinical",
+    "target_clients": "Adults with BMI 35+ in Miami metro seeking surgical weight loss, GLP-1 failures, and post-bariatric body contouring patients"
+  },
+
+  "metrics": {
+    "monthlyLeads": 40,
+    "freeConsultsPerMonth": 20,
+    "avgSurgeryRevenue": 20000,
+    "avgBodyContouringRevenue": 10000,
+    "postOpPatients": 150,
+    "noShowRate": 22,
+    "insuranceDeclineRate": 15,
+    "preOpDropoffRate": 40,
+    "consultToSurgeryRate": 40,
+    "postOpFollowUpAt24Months": 6.5,
+    "weekendCoverageGapHours": 60
+  },
+
+  "discoveryMetricLabels": {
+    "monthlyLeads": "Monthly Bariatric Inquiries",
+    "freeConsultsPerMonth": "Free Consultations / Month",
+    "avgSurgeryRevenue": "Avg Surgery Revenue",
+    "avgBodyContouringRevenue": "Avg Body Contouring Revenue",
+    "postOpPatients": "Total Post-Op Patients (Active)",
+    "noShowRate": "Consultation No-Show Rate (%)",
+    "insuranceDeclineRate": "Insurance Pre-Auth Decline Rate (%)",
+    "preOpDropoffRate": "Pre-Op Pipeline Drop-Off Rate (%)"
+  },
+
+  "problems": [
+    {
+      "id": "weekend_lead_loss",
+      "title": "60-Hour Weekend Gap — Leads Die While the Clinic Is Closed",
+      "description": "People decide to pursue bariatric surgery late at night and on weekends — moments of peak emotional motivation after seeing themselves in a photo, hitting a health scare, or failing another diet. SFSBI is closed Friday at 12:30 PM until Monday at 9 AM — a 60+ hour blackout window. Web forms sit unanswered. Calls go to voicemail. The competitor who responds at 10 PM Sunday owns that patient.",
+      "impact": "Practices responding within 5 minutes are 21x more likely to convert than those waiting 30 minutes. At $20K avg surgery revenue, every 3 missed leads = $60K lost.",
+      "evidence": "SFSBI hours: Mon–Thu 9–4:30, Fri 9–12:30, closed all weekend. Online scheduling exists but no AI response layer captures or engages inquiries outside business hours."
+    },
+    {
+      "id": "preop_pipeline_ghosting",
+      "title": "3–6 Month Pre-Op Journey Has No System — Patients Ghost",
+      "description": "Insurance requires 6 months of supervised diet documentation, psych clearance, nutritional counseling, and multiple medical clearances. That's 6 months of friction where patients can quit, pivot to GLP-1s, or simply lose momentum. Without proactive nurture at every stage, 40–60% of consultations never reach surgery. Each lost patient mid-pipeline is $15,000–$35,000 of revenue that disappears after they've already met the surgeon.",
+      "impact": "Losing 1 patient per week mid-pipeline at $20K avg = $80K/month in pipeline leakage. Even a 20% recovery = $16K/month recaptured.",
+      "evidence": "Bariatric surgery industry average: ~40–60% of consulted patients never reach the operating table without active journey management."
+    },
+    {
+      "id": "insurance_navigation_nightmare",
+      "title": "Insurance Navigation Nightmare — Patients Abandon at the Paperwork Wall",
+      "description": "Pre-authorization for bariatric surgery is brutal: BMI criteria documentation, 6-month supervised diet records, psychological evaluation, multiple physician letters of medical necessity, and a 4–8 week wait for approval. Patients who don't understand what's required — or who hit a denial — abandon the process entirely. Staff spend hours on insurance phone calls and appeals instead of clinical work.",
+      "impact": "Each insurance abandonment = $20K surgery lost. Pre-auth errors add 2–4 weeks per denial round. Documentation errors cost $0 to fix but derail the entire timeline.",
+      "evidence": "Pre-authorization alone takes 2–4 weeks. Re-submissions after denials add another 2–4 weeks. 15% denial rate means ~3 patients/month hitting the paperwork wall."
+    },
+    {
+      "id": "postop_followup_collapse",
+      "title": "Post-Op Follow-Up Collapse — 93.5% of Patients Gone by Year 2",
+      "description": "By 24 months post-op, only 6.5% of bariatric patients are still attending follow-up appointments. By 12 months it's already 29.6%. This isn't just a clinical failure — it's a revenue failure. Lapsed patients miss critical lab work (B12, iron, protein), don't get body contouring consultations, and represent a massive dormant revenue opportunity. SFSBI has both bariatric AND cosmetic capabilities — making this gap even more costly.",
+      "impact": "50 reactivated post-op patients/year at $500/visit = $25K recovered. Body contouring upsell to 20% of surgical patients at $10K avg = $50K+ additional annual revenue.",
+      "evidence": "PubMed: Postoperative Follow-up Compliance: The Achilles' Heel of Bariatric Surgery. 12-month compliance: 29.6%. 24-month: 6.5%."
+    },
+    {
+      "id": "glp1_objection_handling",
+      "title": "GLP-1 Objection Handling — Every Prospect Is Now Comparing Surgery vs. Ozempic",
+      "description": "Bariatric surgery volume dropped 46.4% from Q4 2022 to Q3 2025 because of GLP-1 drugs. Every prospect SFSBI speaks to is now evaluating surgery vs. Ozempic/Wegovy. Staff have no consistent messaging. Prospects who leave 'to try Ozempic first' almost never come back — until they fail. Surgery produces 5x more weight loss than GLP-1s (58 lbs vs 12 lbs at 2 years). The clinic that educates before the consult wins the patient.",
+      "impact": "Every prospect lost to GLP-1s represents $20K in delayed or lost revenue. Capturing GLP-1 failures is the fastest-growing bariatric segment right now.",
+      "evidence": "Surgery vs GLP-1s — Johns Hopkins Medicine. Bariatric surgery volumes continue falling amid GLP-1 boom — Becker's. STAT News: bariatric surgery volume down 46.4%."
+    },
+    {
+      "id": "consultation_no_shows",
+      "title": "22% Consultation No-Show Rate — $20K+ Surgeries Never Start",
+      "description": "Specialty clinic no-show rates run 18–30%. A missed free consultation is not just an empty slot — it's a $15,000–$35,000 surgery that never gets started. With 20 monthly consultations and a 22% no-show rate, that's 4–5 surgeries per month that never begin. A multi-touch reminder sequence and waitlist system would recover most of these.",
+      "impact": "4–5 missed consultations/month × $20K avg surgery = $80K–$100K/month in pipeline revenue that never starts.",
+      "evidence": "Specialty clinic no-show rate benchmark: 18–30%. DialogHealth patient no-show statistics. Each free consultation is the entry point to a $15K–$35K procedure."
+    },
+    {
+      "id": "thin_review_profile",
+      "title": "Thin Review Profile in a High-Stakes Decision Market",
+      "description": "Choosing bariatric surgery is one of the most consequential health decisions a person makes. Patients obsessively research reviews before ever calling. Miami has major hospital bariatric programs and established clinics with hundreds of reviews. SFSBI's boutique positioning is a strength — but a thin Google review footprint undermines trust before the first call. A patient posting 'Dr. Valladares changed my life — I'm down 95 lbs' is worth 10 routine reviews in this space.",
+      "impact": "Thin review profile = prospects choosing hospital systems or larger clinics. In Miami's competitive cosmetic/bariatric market, trust signals drive the first call.",
+      "evidence": "High-stakes healthcare decisions: patients average 5–7 sources of research before first call. Miami market: competing against major hospital bariatric programs."
+    },
+    {
+      "id": "body_contouring_upsell_ignored",
+      "title": "The Body Contouring Upsell Is Being Left on the Table",
+      "description": "Massive weight loss (80–150 lbs) leaves excess skin. Virtually every surgical patient becomes a candidate for body contouring — panniculectomy, brachioplasty, thigh lift, tummy tuck. SFSBI performs cosmetic surgery. But without a system to introduce this at the right time (12–18 months post-op when weight stabilizes), they're leaving $8K–$15K+ per patient untouched. If only 20% of surgical patients convert to body contouring at $10K avg — that's significant recurring revenue from patients they already have.",
+      "impact": "25 surgeries/year × 20% body contouring conversion × $10K avg = $50K additional annual revenue from existing patients.",
+      "evidence": "SFSBI offers full cosmetic surgery including body contouring. Standard bariatric timeline: weight stabilizes at 12–18 months, creating the ideal body contouring window."
+    }
+  ],
+
+  "systems": [
+    {
+      "id": "inquiry_agent",
+      "name": "24/7 Inquiry & Lead Capture Agent",
+      "icon": "📞",
+      "priority": "flagship",
+      "department": "Patient Acquisition",
+      "problem_it_solves": "60-hour weekend gap — inquiries dying while the clinic is closed Friday to Monday",
+      "what_it_does": [
+        "Responds to every web form, call, and text within 60 seconds — 24/7 including weekends",
+        "Sends warm, concierge-level response aligned with SFSBI's boutique positioning",
+        "Qualifies: BMI range, insurance carrier, previous weight loss attempts, GLP-1 history",
+        "Books free confidential consultation directly into the scheduling system",
+        "Sends pre-consult preparation packet: what to bring, what to expect, surgeon bios",
+        "Alerts Dr. Valladares team to high-priority leads (BMI 40+, prior surgery, urgent health concern)"
+      ],
+      "example_output": {
+        "weekend_inquiry_sms": "Hi Maria — thank you for reaching out to South Florida Surgery, Bariatric & Cosmetic Institute. We received your message and we're here to help. Dr. Valladares and his team offer free confidential consultations and we'd love to get you scheduled. I have availability this Thursday at 10 AM or Friday at 9 AM. Which works best for you? — SFSBI Concierge Team",
+        "owner_alert": "🚨 New Bariatric Inquiry — Sunday 9:43 PM\nName: Maria Gonzalez | Phone: 305-555-0182\nBMI: ~42 (self-reported) | Insurance: Aetna PPO\nPrevious attempts: 3 diets, tried Ozempic 6 months (stopped — side effects)\nNotes: Ready to move forward. HIGH PRIORITY — pre-qualified candidate."
+      },
+      "impact": "Recover 60+ hours of weekend dead time. At 3 leads/weekend × $20K avg surgery — that's $60K/month recaptured from the blackout window alone."
+    },
+    {
+      "id": "glp1_education_agent",
+      "name": "GLP-1 Objection & Education Agent",
+      "icon": "💊",
+      "priority": "high",
+      "department": "Patient Acquisition",
+      "problem_it_solves": "Every prospect is now comparing surgery vs. Ozempic — inconsistent staff messaging loses patients to GLP-1s",
+      "what_it_does": [
+        "Sends every prospect a personalized 'Surgery vs. GLP-1' comparison before their consultation",
+        "Tailors messaging to their situation: GLP-1 naive, current GLP-1 user, or GLP-1 failure",
+        "Provides the data: surgery = 58 lbs avg vs GLP-1 = 12 lbs avg at 2 years (Johns Hopkins)",
+        "Delivers the cost math: $10K–$16K/year forever on GLP-1s vs one-time $17K–$23K surgery",
+        "Arms the patient with the right questions to ask Dr. Valladares",
+        "Re-engages patients who said 'I'll try Ozempic first' at 3-month and 6-month intervals"
+      ],
+      "example_output": {
+        "pre_consult_education": "Hi Maria — your free consultation with Dr. Valladares is Thursday at 10 AM. Before you come in, here's something worth knowing:\n\n📊 Surgery vs. Ozempic — The Real Numbers:\n• Average weight loss at 2 years: Surgery 58 lbs vs. GLP-1s 12 lbs\n• Long-term cost: GLP-1s $10,000–$16,000/year forever vs. surgery one-time\n• 60% of GLP-1 patients regain weight within 1 year of stopping\n\nIf you've already tried GLP-1s, you're in good company — many of Dr. Valladares' best outcomes came from patients who tried medication first.\n\nSee you Thursday! — SFSBI Team",
+        "glp1_reengagement_3mo": "Hi Maria — it's been 3 months since we spoke. We know you were exploring Ozempic first, which makes total sense. If you're seeing results, wonderful! If you've hit a plateau or experienced side effects (you wouldn't be alone — 40%+ of patients stop within 6 months), we'd love to revisit the conversation. Dr. Valladares has helped many GLP-1 patients find a permanent solution. Free consult still open whenever you're ready."
+      },
+      "impact": "Convert 15–25% more 'I'll try Ozempic first' prospects to consultations. Capture the GLP-1 failure segment — the fastest-growing bariatric patient group."
+    },
+    {
+      "id": "preop_journey_agent",
+      "name": "Pre-Op Journey Agent",
+      "icon": "🗓️",
+      "priority": "flagship",
+      "department": "Patient Journey",
+      "problem_it_solves": "3–6 month pre-op pipeline has no system — patients ghost at every stage of the supervised diet and clearance process",
+      "what_it_does": [
+        "Tracks each patient's exact stage: supervised diet month 1–6, psych clearance, cardiology, pre-auth",
+        "Sends the right nudge at the right time — never a generic blast",
+        "Flags patients silent for 14+ days for a human touch from Sheena Acosta or the front desk",
+        "Sends motivational milestones: 'You're 4 months in — surgery is 8 weeks away if your paperwork is complete'",
+        "Shares patient success stories timed to drop-off moments",
+        "Coordinates with Sheena Acosta's nutrition check-in schedule"
+      ],
+      "example_output": {
+        "month2_nudge": "Hi Maria — you're 2 months into your supervised diet program. You're on track! 🎉 Here's where you stand:\n\n✅ Month 1 weigh-in — complete\n✅ Month 2 nutrition check — due this week\n⏳ Psych clearance — not yet scheduled\n⏳ Cardiology clearance — not yet scheduled\n\nWant to schedule your Month 2 check-in with Sheena? Reply YES and I'll send you available times. — SFSBI Team",
+        "silent_patient_flag": "⚠️ STAFF ALERT — Maria Gonzalez has not responded to 2 check-ins (14 days silent)\nStage: Month 3 supervised diet\nLast contact: March 12\nAction: Personal call from Sheena Acosta recommended\nRisk: Pre-op dropout. Surgery value at risk: ~$20,000"
+      },
+      "impact": "Recover 20% of pre-op dropoffs = 2–4 additional surgeries/month. At $20K avg = $40K–$80K/month in protected pipeline revenue."
+    },
+    {
+      "id": "insurance_navigator",
+      "name": "Insurance Navigation Agent",
+      "icon": "📋",
+      "priority": "high",
+      "department": "Patient Journey",
+      "problem_it_solves": "Insurance pre-authorization complexity causes patient abandonment — patients overwhelmed by documentation requirements and denial appeals",
+      "what_it_does": [
+        "Explains insurance requirements step-by-step in plain English — not medical jargon",
+        "Sends personalized checklist: 'You need these 5 things before we can submit your pre-auth'",
+        "Tracks documentation collection status with automated reminders for missing items",
+        "Monitors pre-auth submission status and follows up with insurance carrier every 5 days",
+        "Auto-drafts prior authorization appeal letters when denied — reduces staff time on appeals",
+        "Sends patient updates so they feel supported through the bureaucracy, not abandoned"
+      ],
+      "example_output": {
+        "preauth_checklist": "Hi Maria — your insurance pre-authorization is the final step before we can schedule surgery. Here's your personalized checklist:\n\n✅ 6-month supervised diet documentation — COMPLETE\n✅ Psychological evaluation — COMPLETE\n✅ Letter of medical necessity (Dr. Valladares) — SUBMITTED\n⏳ Cardiology clearance letter — PENDING (we'll follow up)\n❌ Pulmonology clearance — NOT YET SCHEDULED\n\nOnce the cardiology and pulmonology letters are in, we submit. Estimated timeline to insurance decision: 3–4 weeks. I'll update you every step of the way. — SFSBI Team",
+        "appeal_draft": "PRIOR AUTHORIZATION APPEAL\n\nRe: [Patient Name] — Laparoscopic Sleeve Gastrectomy\nPolicy #: [Number] | Group #: [Number]\n\nDear Medical Director,\n\nWe are writing to appeal the denial dated [Date] for laparoscopic sleeve gastrectomy for [Patient Name]. The patient meets all criteria outlined in your policy: BMI of [X], documented 6-month supervised weight management program, psychological clearance, and comorbidities including [conditions].\n\n[Auto-generated clinical summary with dates and documentation attached]\n\nWe respectfully request reconsideration within 30 days..."
+      },
+      "impact": "Reduce insurance abandonment by 30%. Each recovered patient = $20K surgery. Reduce staff time on pre-auth calls by 50% — free the front desk for clinical support."
+    },
+    {
+      "id": "appointment_concierge",
+      "name": "Appointment Concierge Agent",
+      "icon": "📅",
+      "priority": "high",
+      "department": "Patient Journey",
+      "problem_it_solves": "22% consultation no-show rate — $80K–$100K/month in surgeries that never start",
+      "what_it_does": [
+        "Multi-touch confirmation sequence: immediate booking confirm, 72hr, 24hr, and 2hr reminders",
+        "Requires confirmation — flags non-responders at 48 hours for staff follow-up",
+        "Pre-consult checklist: what to bring (insurance card, ID, medication list, previous diet records)",
+        "Waitlist management: fills cancelled consultation slots same-day",
+        "No-show follow-up: 'We missed you today — Dr. Valladares has limited availability, want to reschedule?'",
+        "Handles rescheduling via SMS without staff involvement"
+      ],
+      "example_output": {
+        "confirmation_sms": "Hi Maria! Your free confidential consultation with Dr. Valladares at SFSBI is confirmed for Thursday, April 3 at 10:00 AM.\n\n📍 351 NW 42nd Ave Suite 303, Miami, FL 33126\n📋 Please bring: Insurance card, photo ID, list of current medications, any previous diet program records\n\nReply YES to confirm or call 305-631-5355 to reschedule. — SFSBI",
+        "noshow_recovery": "Hi Maria — we missed you at your consultation today. We completely understand life gets busy. Dr. Valladares' next available slot is Monday at 9 AM — this is a free, completely confidential appointment with no pressure. Want to grab that time? Reply YES and it's yours. — SFSBI Concierge"
+      },
+      "impact": "Reduce no-show rate from 22% to under 10% = 2–3 additional consultations/month captured. At 40–60% consult-to-surgery rate = $16K–$24K/month in recovered surgery revenue."
+    },
+    {
+      "id": "postop_followup_agent",
+      "name": "Post-Op Lifecycle Agent",
+      "icon": "🏃",
+      "priority": "flagship",
+      "department": "Post-Op Lifecycle",
+      "problem_it_solves": "93.5% of patients gone by year 2 — critical lab work missed, weight regain risk, dormant body contouring revenue untouched",
+      "what_it_does": [
+        "Automated check-in schedule: 2-week, 1-month, 3-month, 6-month, 12-month, annual",
+        "Lab work reminders: iron, B12, protein, calcium — the critical post-bariatric nutritional markers",
+        "Nutrition tips and recipes timed to each recovery stage with Sheena Acosta's guidance",
+        "Milestone celebrations: '6 months since surgery — how many pounds have you lost?'",
+        "Re-engages lapsed patients: 'It's been 8 months since your last visit — how are you doing?'",
+        "Introduces body contouring at 12–18 months post-op when weight stabilizes"
+      ],
+      "example_output": {
+        "6month_checkin": "Hi Maria! 🎉 6 months since your surgery with Dr. Valladares — incredible milestone. At this stage:\n\n📊 WHAT WE NEED TO CHECK:\n• B12 and iron labs (critical at 6 months)\n• Protein intake review with Sheena\n• Weight and blood pressure check\n\n⏰ Your 6-month appointment is due. Want to schedule? Reply YES for available times.\n\nYou're changing your life. We want to make sure your body has everything it needs. — Dr. Valladares & Team",
+        "lapsed_reengagement": "Hi Maria — it's been 10 months since your last visit at SFSBI. We think about our patients long after surgery. This isn't a sales call — it's a health check-in. Post-bariatric patients can develop nutritional deficiencies silently. A quick lab draw and check-in with Sheena could catch something early. Can we get you in this week? No charge for the consultation. — Dr. Valladares Team"
+      },
+      "impact": "Improve 12-month compliance from 29.6% to 50%. Recover $25K+ annually from lapsed patient visits. Unlock body contouring pipeline from existing patients."
+    },
+    {
+      "id": "body_contouring_upsell",
+      "name": "Body Contouring Journey Agent",
+      "icon": "✨",
+      "priority": "high",
+      "department": "Post-Op Lifecycle",
+      "problem_it_solves": "Missed body contouring upsell — every surgical patient is a potential cosmetic candidate but no system introduces it at the right time",
+      "what_it_does": [
+        "Tracks weight stabilization milestones — at 12–18 months post-op triggers body contouring conversation",
+        "Sends 'next chapter' messaging: completing the transformation, not a sales pitch",
+        "Provides before/after photo gallery of SFSBI body contouring cases",
+        "Books complimentary cosmetic consultation as natural next chapter in their journey",
+        "Educates on which procedures are most common after major weight loss: panniculectomy, arm lift, thigh lift",
+        "Handles insurance questions — some body contouring post-bariatric is insurance-covered (panniculectomy)"
+      ],
+      "example_output": {
+        "body_contouring_intro": "Hi Maria — it's been 14 months since your surgery and you've done something remarkable. Many of our patients at this stage start thinking about the next chapter: addressing the excess skin that's left behind after major weight loss.\n\nDr. Valladares performs body contouring procedures — tummy tuck, arm lift, thigh lift — right here at SFSBI. You wouldn't be starting over with a new surgeon. He already knows your body and your journey.\n\nWould you like a complimentary cosmetic consultation? No pressure — just a conversation about your options. Reply YES or call 305-631-5355. — SFSBI",
+        "insurance_note": "PS: Did you know that panniculectomy (removal of the hanging abdominal skin panel) is often covered by insurance after bariatric surgery? We can check your benefits as part of the consultation."
+      },
+      "impact": "20% of surgical patients × $10K avg body contouring = $50K+ additional annual revenue. From patients SFSBI already has."
+    },
+    {
+      "id": "reputation_agent",
+      "name": "Reputation & Review Agent",
+      "icon": "⭐",
+      "priority": "high",
+      "department": "Reputation & Growth",
+      "problem_it_solves": "Thin review profile in Miami's high-competition bariatric/cosmetic market undermines trust before the first call",
+      "what_it_does": [
+        "Triggered at 3-month, 6-month, and 12-month post-op milestones — peak satisfaction moments",
+        "Pre-screens satisfaction first: frustrated patients get a personal callback, not a review link",
+        "Captures transformation story testimonials for the website — not just star ratings",
+        "Auto-responds to all Google reviews with personalized, HIPAA-compliant replies",
+        "Tracks star rating trend vs. Miami bariatric competitors weekly",
+        "Identifies patients likely to leave transformational reviews based on engagement patterns"
+      ],
+      "example_output": {
+        "6month_review_request": "Hi Maria — 6 months ago you trusted Dr. Valladares with something deeply personal. If your experience has been positive, would you share it on Google? Your story doesn't just help us — it helps the next person in Miami who is scared, researching at midnight, trying to figure out who to trust.\n\n⭐ Share Your Story: [GOOGLE REVIEW LINK]\n\nIf anything hasn't been perfect, please reply here first and we'll make it right personally. — Dr. Valladares & SFSBI Team",
+        "google_review_response": "Thank you so much, Maria. Watching your transformation has been one of the reasons we do this work. Dr. Valladares and the entire team are so proud of what you've accomplished. Wishing you continued health and strength. — South Florida Surgery, Bariatric & Cosmetic Institute",
+        "weekly_report": "SFSBI REPUTATION REPORT — Week of March 30\n\n⭐ New Reviews: 3 (avg 5.0 stars)\n📈 Total Google Reviews: 41 (+3)\n🏆 Current Rating: 4.9 stars\n👀 Miami Bariatric Center (Baptist Health): 287 reviews\n👀 Nicholson Clinic Coral Gables: 94 reviews\n\n✅ All 3 reviews responded within 2 hours\n📬 4 review requests pending (sent post-6-month milestone)"
+      },
+      "impact": "3x review velocity within 90 days. Compete with hospital bariatric programs on trust signals. Drive 20–30% more first calls from patients researching online."
+    },
+    {
+      "id": "reporting_agent",
+      "name": "Pipeline & Revenue Dashboard",
+      "icon": "📊",
+      "priority": "medium",
+      "department": "Reputation & Growth",
+      "problem_it_solves": "No real-time visibility into the lead-to-surgery pipeline, where patients are dropping off, and what the revenue forecast looks like",
+      "what_it_does": [
+        "Tracks every patient from first inquiry through surgery and post-op follow-up",
+        "Shows live pipeline: leads → consultations → pre-op journey → insurance → surgery → post-op → body contouring",
+        "Identifies drop-off stages: where are patients ghosting the most?",
+        "Revenue forecast: how many surgeries are 30/60/90 days out based on pre-auth status",
+        "Body contouring pipeline: how many patients are in the 12–18 month window",
+        "Weekly summary for Dr. Valladares: leads in, consultations held, drop-offs flagged, surgeries scheduled"
+      ],
+      "example_output": {
+        "weekly_pipeline": "SFSBI WEEKLY PIPELINE REPORT\n\n📊 NEW THIS WEEK:\n• Inquiries: 11 | Consultations booked: 6 | No-shows: 2\n\n🔄 PRE-OP PIPELINE (48 active patients):\n• Month 1–2 supervised diet: 14 patients\n• Month 3–4 supervised diet: 11 patients\n• Month 5–6 + clearances: 9 patients\n• Pre-auth submitted/pending: 8 patients\n• Surgery scheduled: 6 patients\n\n⚠️ FLAGGED — 4 patients silent 14+ days (dropout risk)\n\n💰 REVENUE FORECAST:\n• Surgeries next 30 days: 4 ($80,000)\n• Surgeries next 60 days: 9 ($180,000)\n• Body contouring pipeline: 12 patients in 12–18mo window\n\n📈 BODY CONTOURING: 2 consults booked this week"
+      },
+      "impact": "Full pipeline visibility. Identify leaks before they cost $20K each. Give Dr. Valladares a Monday morning dashboard instead of guessing."
+    }
+  ],
+
+  "personalization": {
+    "brand_colors": {
+      "primary": "#1B4F8A",
+      "secondary": "#2E86C1",
+      "accent": "#85C1E9",
+      "background": "#F0F7FF",
+      "text_dark": "#0D2B4E",
+      "highlight": "#E8F4FD"
+    },
+    "brand_tone": "Concierge, compassionate, clinical — Dr. Valladares is not a factory surgeon. Every patient gets the boutique experience.",
+    "messaging_style": "Lead with the pipeline math. SFSBI is losing revenue at every stage of a 3–6 month journey. Show the numbers, then show the fix.",
+    "hook_question": "If 40% of your consultations never make it to surgery, and each surgery is worth $20,000 — what's that costing you every month?",
+    "demo_angle": "Open with the GLP-1 crisis: 'Your volume is down because of Ozempic. AI doesn't fix that directly — but it fixes every leak in your pipeline so you convert more of the leads you do get.' Then walk through the math: 20 monthly inquiries × 40% drop-off × $20K = $160K/month walking out. Show the 24/7 Inquiry Agent catching the Sunday night leads. Show the Pre-Op Journey Agent keeping patients in the pipeline for 6 months. Close with the body contouring upsell — they already have the patients, they're just not introducing the next chapter.",
+    "value_proposition": "Protect every lead from the Sunday-night inquiry through surgery and into the body contouring chapter — automatically. Cover the 60-hour weekend blackout, stop the 40% pre-op dropout, and unlock $50K+/yr in body contouring revenue from patients SFSBI already has.",
+    "the_concierge_angle": "They already call themselves 'concierge specialists.' The AI is the 24/7 concierge layer that makes that promise real — responding to a scared patient at 11 PM on Saturday the same way the team would Monday morning.",
+    "key_differentiators": [
+      "Family-run boutique — not a bariatric factory",
+      "Board-certified dual bariatric + cosmetic capability",
+      "On-staff RDN dietitian (Sheena Acosta) for the full journey",
+      "Concierge positioning in a market dominated by hospital programs",
+      "Free confidential consultations with online scheduling"
+    ]
+  },
+
+  "pitch_math": {
+    "monthly_pipeline_at_risk": {
+      "calculation": "20 monthly inquiries × 40% drop-off rate × $20K avg surgery",
+      "result": "$160,000/month falling out of the pipeline",
+      "label": "Monthly Pipeline at Risk"
+    },
+    "weekend_gap_cost": {
+      "calculation": "3 leads/weekend × 52 weekends × $20K avg surgery",
+      "result": "$3.1M/year in potential weekend leads",
+      "label": "Annual Weekend Lead Opportunity"
+    },
+    "body_contouring_opportunity": {
+      "calculation": "25 surgeries/year × 20% conversion × $10K avg",
+      "result": "$50,000+ additional annual revenue",
+      "label": "Body Contouring Revenue from Existing Patients"
+    },
+    "postop_reactivation": {
+      "calculation": "50 lapsed patients reactivated × $500 avg visit",
+      "result": "$25,000 annual recovered revenue",
+      "label": "Post-Op Reactivation Revenue"
+    }
+  },
+
+  "generated_at": "2026-03-30T10:30:00Z",
+  "version": "1.0"
+}

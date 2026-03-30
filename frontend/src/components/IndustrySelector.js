@@ -1,9 +1,55 @@
 import { useDemo } from '../context/DemoContext';
 import { getIndustryList } from '../data/industries';
-import { Home, Sparkles, Thermometer, Smile, Car, HardHat, Scale, Building2, TreePine, Waves, Star, MapPin, Trophy, Wind, Phone } from 'lucide-react';
+import { Home, Sparkles, Thermometer, Smile, Car, HardHat, Scale, Building2, TreePine, Waves, Star, MapPin, Trophy, Wind, Phone, Activity, TrendingUp, Heart } from 'lucide-react';
 import { getAllSavedProfiles } from '../data/saved-profiles';
+import { useEffect, useRef, useState } from 'react';
 
-const ICON_MAP = { Home, Sparkles, Thermometer, Smile, Car, HardHat, Scale, Building2, TreePine, Waves, Wind };
+const ICON_MAP = { Home, Sparkles, Thermometer, Smile, Car, HardHat, Scale, Building2, TreePine, Waves, Wind, Activity };
+
+// Sliding metrics for SFSBI card
+const SFSBI_METRICS = [
+  { label: 'Avg Surgery Value', value: '$20,000', icon: '💰', color: '#2E86C1' },
+  { label: 'Weekend Lead Blackout', value: '60 hrs', icon: '⏰', color: '#E74C3C' },
+  { label: 'Pre-Op Dropout Rate', value: '40%', icon: '📉', color: '#E74C3C' },
+  { label: 'Post-Op Gone by Yr 2', value: '93.5%', icon: '🚪', color: '#E74C3C' },
+  { label: 'GLP-1 Volume Drop', value: '−46%', icon: '💊', color: '#E67E22' },
+  { label: 'Body Contouring Upside', value: '$50K+/yr', icon: '✨', color: '#27AE60' },
+  { label: 'No-Show Rate', value: '22%', icon: '📅', color: '#E74C3C' },
+  { label: 'Decision Timeline', value: '3–6 months', icon: '🗓️', color: '#2E86C1' },
+];
+
+function SFSBISlidingMetrics() {
+  const [active, setActive] = useState(0);
+  const intervalRef = useRef(null);
+
+  useEffect(() => {
+    intervalRef.current = setInterval(() => {
+      setActive(prev => (prev + 1) % SFSBI_METRICS.length);
+    }, 2200);
+    return () => clearInterval(intervalRef.current);
+  }, []);
+
+  return (
+    <div className="flex items-center gap-2 overflow-hidden" style={{ minWidth: 0 }}>
+      {SFSBI_METRICS.map((m, i) => (
+        <div
+          key={i}
+          className="flex items-center gap-1.5 shrink-0 transition-all duration-500"
+          style={{
+            opacity: i === active ? 1 : 0,
+            transform: i === active ? 'translateY(0)' : 'translateY(6px)',
+            position: i === active ? 'relative' : 'absolute',
+            pointerEvents: 'none',
+          }}
+        >
+          <span className="text-base">{m.icon}</span>
+          <span className="text-[11px] font-semibold" style={{ color: m.color }}>{m.value}</span>
+          <span className="text-[10px] text-slate-500">{m.label}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 // Industry-specific hero images
 const INDUSTRY_IMAGES = {
@@ -18,6 +64,7 @@ const INDUSTRY_IMAGES = {
   landscaping: "https://images.unsplash.com/photo-1558904541-efa843a96f01?w=600&q=80",
   pools: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&q=80",
   indoor_environmental: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+  bariatric_surgery: "https://images.unsplash.com/photo-1631815588090-d4bfec5b1b89?w=600&q=80",
 };
 
 // Industry-specific taglines (pain-first approach)
@@ -33,12 +80,14 @@ const INDUSTRY_TAGLINES = {
   landscaping: "Fill your spring schedule by February",
   pools: "Close more pool builds, automatically",
   indoor_environmental: "Capture every health inquiry, 24/7",
+  bariatric_surgery: "Protect every lead through a 6-month journey to the OR",
 };
 
 export default function IndustrySelector() {
   const { selectIndustry, selectSavedProfile, companyName, setCompanyName } = useDemo();
   const industries = getIndustryList();
   const savedProfiles = getAllSavedProfiles().filter((p, i, arr) => arr.findIndex(x => x.name === p.name) === i);
+  const sfsbiProfile = savedProfiles.find(p => p.website === 'sfsbi.com' || p.name?.includes('South Florida'));
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4 py-12 relative z-10" data-testid="industry-selector">
@@ -175,12 +224,71 @@ export default function IndustrySelector() {
             {savedProfiles.map((profile, i) => {
               const isDrZ = profile.id === 'drzdental.com' || profile.id === 'dr-z-dental' || profile.id === 'drzdental';
               const isIET = profile.website === 'airinspector.com';
+              const isSFSBI = profile.website === 'sfsbi.com' || profile.name?.includes('South Florida');
               const hasProfileImage = Boolean(profile.profileImage);
-              const accent = isDrZ ? '#06B6D4' : isIET ? '#97A07A' : '#E11D48';
-              const ProfileIcon = isDrZ ? Smile : isIET ? Wind : Scale;
-              const badge = isDrZ ? '5 systems · Dental Clinic' : isIET ? '20+ years · Mold · Air · EMF' : '7 systems · 25+ years';
-              const highlight = isDrZ ? 'AI Receptionist · 24/7' : isIET ? '3x review growth potential' : '$10.6M top verdict';
-              const HighlightIcon = isDrZ ? Phone : isIET ? Star : Trophy;
+              const accent = isDrZ ? '#06B6D4' : isIET ? '#97A07A' : isSFSBI ? '#2E86C1' : '#E11D48';
+              const ProfileIcon = isDrZ ? Smile : isIET ? Wind : isSFSBI ? Activity : Scale;
+              const badge = isDrZ ? '5 systems · Dental Clinic' : isIET ? '20+ years · Mold · Air · EMF' : isSFSBI ? '9 systems · Bariatric + Cosmetic' : '7 systems · 25+ years';
+              const highlight = isDrZ ? 'AI Receptionist · 24/7' : isIET ? '3x review growth potential' : isSFSBI ? '$20K avg surgery value' : '$10.6M top verdict';
+              const HighlightIcon = isDrZ ? Phone : isIET ? Star : isSFSBI ? Heart : Trophy;
+
+              if (isSFSBI) {
+                return (
+                  <button
+                    key={profile.id}
+                    onClick={() => selectSavedProfile(profile.id)}
+                    className="group w-full relative overflow-hidden rounded-2xl border transition-all duration-300 text-left"
+                    style={{
+                      borderColor: '#2E86C125',
+                      background: 'linear-gradient(135deg, #1B4F8A0a 0%, rgba(0,0,0,0.55) 100%)',
+                    }}
+                    data-testid="saved-profile-card-sfsbi"
+                  >
+                    {/* Animated blue glow on hover */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-[0.07] transition-opacity duration-300 rounded-2xl" style={{ backgroundColor: '#1B4F8A' }} />
+
+                    <div className="flex items-start gap-4 px-5 py-4">
+                      {/* SFSBI Logo */}
+                      <div className="w-20 h-16 rounded-xl overflow-hidden shrink-0 flex items-center justify-center bg-white/[0.96] border border-white/20 p-1.5">
+                        <img src="/sfsbi-logo.webp" alt="SFSBI" className="w-full h-full object-contain" />
+                      </div>
+
+                      {/* Info */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-full border" style={{ backgroundColor: '#2E86C112', borderColor: '#2E86C125' }}>
+                            <Star size={9} style={{ color: '#2E86C1' }} fill="currentColor" />
+                            <span className="text-[9px] font-mono tracking-wider uppercase" style={{ color: '#2E86C1' }}>Live Profile</span>
+                          </div>
+                          <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-full border border-emerald-500/20 bg-emerald-500/5">
+                            <span className="text-[9px] font-mono tracking-wider uppercase text-emerald-400">Bariatric Surgery</span>
+                          </div>
+                        </div>
+                        <h3 className="text-sm font-bold text-white">South Florida Surgery, Bariatric &amp; Cosmetic Institute</h3>
+                        <p className="text-xs text-slate-500 mt-0.5">Miami, FL · sfsbi.com · Dr. Valladares MD · Sheena Acosta RDN</p>
+
+                        {/* Sliding Metrics Ticker */}
+                        <div className="mt-2 relative h-5 flex items-center">
+                          <SFSBISlidingMetrics />
+                        </div>
+                      </div>
+
+                      {/* Meta */}
+                      <div className="hidden sm:flex flex-col items-end gap-1 shrink-0">
+                        <div className="flex items-center gap-1" style={{ color: '#2E86C1bb' }}>
+                          <TrendingUp size={10} />
+                          <span className="text-[11px] font-semibold">$20K avg surgery</span>
+                        </div>
+                        <span className="text-[10px] text-slate-600">9 systems · Bariatric + Cosmetic</span>
+                      </div>
+
+                      {/* Arrow CTA */}
+                      <div className="shrink-0 ml-2 text-xs font-medium" style={{ color: '#2E86C1' }}>→</div>
+                    </div>
+                  </button>
+                );
+              }
+
               return (
                 <button
                   key={profile.id}

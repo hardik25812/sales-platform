@@ -38,6 +38,7 @@ function MetricInput({ label, value, onChange, min, max, step = 1, prefix = '', 
 export default function DiscoveryPanel() {
   const { industryConfig, metrics, updateMetric, roi, companyName, setActiveTab, liveMode, liveData, setLiveData, liveLoading, setLiveLoading, selectedIndustryId, savedProfile } = useDemo();
   const isIET = savedProfile?.firm?.industry_id === 'indoor_environmental';
+  const isBariatric = savedProfile?.firm?.industry_id === 'bariatric_surgery';
   
   const [lookupForm, setLookupForm] = useState({
     businessName: '',
@@ -160,6 +161,38 @@ export default function DiscoveryPanel() {
 
   return (
     <div className="space-y-6" data-testid="discovery-panel">
+      {isBariatric && (
+        <div className="rounded-2xl border border-blue-500/20 overflow-hidden relative" style={{ background: 'linear-gradient(135deg, #0D2B4E 0%, #1B4F8A 50%, #0D2B4E 100%)' }}>
+          <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 70% 50%, rgba(46,134,193,0.25) 0%, transparent 70%)' }} />
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 px-6 py-5 relative z-10">
+            <div className="flex items-center gap-5">
+              <div className="w-28 h-14 rounded-xl bg-white/[0.95] flex items-center justify-center p-2 border border-white/30 shrink-0">
+                <img src="/sfsbi-logo.webp" alt="SFSBI" className="w-full h-full object-contain" />
+              </div>
+              <div>
+                <p className="text-[11px] font-mono uppercase tracking-[0.25em] text-blue-300 mb-0.5">Bariatric Surgery Profile</p>
+                <h2 className="text-lg md:text-xl font-bold text-white leading-tight">South Florida Surgery, Bariatric &amp; Cosmetic Institute</h2>
+                <p className="text-sm text-blue-200/60 mt-0.5">Board Certified Weight Loss &amp; Concierge Specialists · Miami, FL</p>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-2 md:flex-col md:items-end md:gap-1.5">
+              <div className="text-right hidden md:block">
+                <div className="text-2xl font-bold text-white">$20K–$35K</div>
+                <div className="text-xs text-blue-300">Avg Surgery Value</div>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <span className="px-2.5 py-1 rounded-full text-[10px] font-mono border border-blue-400/25 bg-blue-500/15 text-blue-200">305-631-5355</span>
+                <span className="px-2.5 py-1 rounded-full text-[10px] font-mono border border-blue-400/25 bg-blue-500/15 text-blue-200">sfsbi.com</span>
+                <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/25">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse inline-block" />
+                  <span className="text-[10px] font-mono text-emerald-300">BARIATRIC + COSMETIC</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {isIET && (
         <div className="glass-panel p-5 md:p-6 border" style={{ borderColor: `${accent}35`, background: `linear-gradient(135deg, ${accent}10 0%, rgba(255,255,255,0.02) 100%)` }}>
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">

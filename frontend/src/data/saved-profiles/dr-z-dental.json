@@ -5,7 +5,7 @@
     "website": "https://drzdental.com",
     "profile_image": null,
     "phone": "(718) 555-0192",
-    "locations": ["Brooklyn", "Staten Island"],
+    "locations": [],
     "services": [
       "General Dentistry",
       "Cosmetic Dentistry",
@@ -18,25 +18,19 @@
       "Periodontal Treatment",
       "Veneers & Crowns"
     ],
-    "staff_count": 12,
-    "experience_years": 18,
+    "staff_count": null,
+    "experience_years": null,
     "tone": "warm_professional",
     "tagline": "Where every smile gets the care it deserves",
-    "positioning": "Full-service family dental practice focused on patient comfort, advanced cosmetic work, and long-term relationships",
-    "target_clients": "Families, professionals, and cosmetic patients in Brooklyn and Staten Island",
+    "positioning": "Family dental practice",
+    "target_clients": "Dental patients",
     "current_systems": ["Dentrix", "Google Calendar", "Manual phone intake"],
-    "unique_strengths": [
-      "18 years serving Brooklyn community",
-      "Invisalign certified provider",
-      "Same-day emergency appointments",
-      "Multilingual staff (English, Spanish, Russian)",
-      "High Google rating with strong word-of-mouth"
-    ],
-    "chairs": 8,
-    "avg_new_patient_value": 4200,
-    "monthly_call_volume": 420,
-    "missed_call_rate": 0.34,
-    "no_show_rate": 0.13
+    "unique_strengths": [],
+    "chairs": null,
+    "avg_new_patient_value": null,
+    "monthly_call_volume": null,
+    "missed_call_rate": null,
+    "no_show_rate": null
   },
 
   "problems": [

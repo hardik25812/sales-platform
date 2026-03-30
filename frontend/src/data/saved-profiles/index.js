@@ -4,6 +4,7 @@
 import drZDental from './dr-z-dental.json';
 import omraniTaub from './omrani-taub.json';
 import indoorEnvironmentalTesting from './indoor-environmental-testing.json';
+import sfsbi from './sfsbi.json';
 
 // Map of saved profiles by domain/identifier
 // Dr. Z is listed first so it appears at the top of the saved profiles section
@@ -18,6 +19,9 @@ export const SAVED_PROFILES = {
   'airinspector.com': indoorEnvironmentalTesting,
   'airinspector': indoorEnvironmentalTesting,
   'indoor-environmental-testing': indoorEnvironmentalTesting,
+  'sfsbi.com': sfsbi,
+  'sfsbi': sfsbi,
+  'south-florida-surgery': sfsbi,
 };
 
 // Get a saved profile by website URL or identifier

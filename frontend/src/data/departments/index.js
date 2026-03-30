@@ -8,6 +8,7 @@ import { lawFirmSystems } from './law-systems';
 import { constructionSystems, constructionMetrics, constructionProblems, constructionWorkflow, constructionPersonalization } from './construction-systems';
 import { landscapingSystems, landscapingMetrics, landscapingProblems, landscapingWorkflow, landscapingPersonalization } from './landscaping-systems';
 import { indoorEnvironmentalDepartments } from './indoor-environmental';
+import { bariatricSystems, bariatricMetrics, bariatricProblems, bariatricWorkflow, bariatricPersonalization } from './bariatric-systems';
 
 // Map industry IDs to their department configurations
 const DEPARTMENT_MAP = {
@@ -26,30 +27,35 @@ const SYSTEMS_MAP = {
   law_firm: lawFirmSystems,
   construction: constructionSystems,
   landscaping: landscapingSystems,
+  bariatric_surgery: bariatricSystems,
 };
 
 // Industry-specific metrics (replaces generic leads/employees)
 const METRICS_MAP = {
   construction: constructionMetrics,
   landscaping: landscapingMetrics,
+  bariatric_surgery: bariatricMetrics,
 };
 
 // Industry-specific problems (personalized pain points)
 const PROBLEMS_MAP = {
   construction: constructionProblems,
   landscaping: landscapingProblems,
+  bariatric_surgery: bariatricProblems,
 };
 
 // Industry-specific workflows (real operational flows)
 const WORKFLOW_MAP = {
   construction: constructionWorkflow,
   landscaping: landscapingWorkflow,
+  bariatric_surgery: bariatricWorkflow,
 };
 
 // Industry-specific personalization
 const PERSONALIZATION_MAP = {
   construction: constructionPersonalization,
   landscaping: landscapingPersonalization,
+  bariatric_surgery: bariatricPersonalization,
 };
 
 function mapSystemToAgent(system) {
