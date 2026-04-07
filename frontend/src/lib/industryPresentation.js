@@ -24,6 +24,16 @@ const defaultDiscoveryOutcomeLabels = {
 };
 
 const discoveryOutcomeLabelsByIndustry = {
+  ecommerce_needlepoint: {
+    currentLoss: 'Abandoned Cart Revenue',
+    response: 'Cart Recovery Rate',
+    goingCold: 'Orders Lost / Month',
+    closeRate: 'Repeat Customer Rate',
+    gain: 'Recovered Revenue',
+    projectedResponse: 'Recovery Speed',
+    projectedClose: 'Projected Repeat Rate',
+    fte: 'Hours Automated / Month',
+  },
   indoor_environmental: {
     currentLoss: 'Missed Revenue',
     response: 'Avg Inquiry Response',
@@ -163,6 +173,20 @@ const discoveryConfig = {
     optional: [
       { key: 'missedCallsEstimate', label: 'After-Hours Inquiries Missed / Month', min: 0, max: 120, step: 1, format: 'number' },
       { key: 'noShowRate', label: 'Report-to-Clearance Drop-Off Rate', min: 0, max: 60, step: 1, format: 'percentageNumber' },
+    ],
+  },
+  ecommerce_needlepoint: {
+    primary: [
+      { key: 'monthlyOrders', label: 'Monthly Orders', min: 50, max: 2000, step: 10, format: 'number' },
+      { key: 'avgOrderValue', label: 'Average Order Value', min: 25, max: 500, step: 5, format: 'currency' },
+      { key: 'cartAbandonmentRate', label: 'Cart Abandonment Rate', min: 40, max: 90, step: 1, format: 'percentageNumber' },
+      { key: 'repeatCustomerRate', label: 'Current Repeat Customer Rate', min: 5, max: 70, step: 1, format: 'percentageNumber' },
+      { key: 'emailListSize', label: 'Email Subscriber List Size', min: 500, max: 100000, step: 100, format: 'number' },
+      { key: 'monthlyAdSpend', label: 'Monthly Ad / Marketing Spend', min: 0, max: 20000, step: 100, format: 'currency' },
+    ],
+    optional: [
+      { key: 'googleReviewCount', label: 'Current Google Review Count', min: 0, max: 500, step: 1, format: 'number' },
+      { key: 'emailOpenRate', label: 'Email Open Rate', min: 5, max: 60, step: 1, format: 'percentageNumber' },
     ],
   },
 };
@@ -327,7 +351,27 @@ function buildIndoorEnvironmentalPainCards(metrics) {
   ];
 }
 
+function buildNeedlepointPainCards(metrics) {
+  const monthlyOrders = metrics.monthlyOrders || 320;
+  const avgOrderValue = metrics.avgOrderValue || 85;
+  const cartAbandonRate = metrics.cartAbandonmentRate || 68;
+  const repeatRate = metrics.repeatCustomerRate || 28;
+  const emailListSize = metrics.emailListSize || 12000;
+  const cartRevenueLost = Math.round(monthlyOrders * (cartAbandonRate / 100) * avgOrderValue);
+  const repeatGap = Math.max(0, 45 - repeatRate);
+  const repeatRevenueLost = Math.round(monthlyOrders * (repeatGap / 100) * avgOrderValue);
+  const reviewGap = Math.max(0, 200 - (metrics.googleReviewCount || 47));
+  const emailLost = Math.round(emailListSize * 0.0015 * avgOrderValue);
+  return [
+    { icon: 'ShoppingCart', title: 'ABANDONED CARTS NEVER RECOVERED', highlight: `${cartAbandonRate}%`, description: `of shoppers add to cart and leave — with no automated follow-up sequence to bring them back.`, calculation: '3-touch recovery (1hr / 24hr / 72hr) with social proof recovers 8–15% of abandoned carts.', cost: cartRevenueLost, costLabel: 'lost every month in unrecovered abandoned carts', barPercent: cartAbandonRate },
+    { icon: 'TrendingDown', title: 'REPEAT PURCHASE RATE UNDERPERFORMING', highlight: `${repeatRate}% repeat rate`, description: `customers complete their first kit and disappear — no project-timed outreach or next-kit recommendation.`, calculation: 'Post-purchase nurture timed to project completion (4–12 weeks) drives repeat rate to 45%+.', cost: repeatRevenueLost, costLabel: 'left on the table from one-time buyers who never returned', barPercent: Math.min(100, Math.round((repeatGap / 45) * 100)) },
+    { icon: 'Star', title: 'REVIEW COLLECTION GAP', highlight: `${metrics.googleReviewCount || 47} reviews`, description: 'review requests go out randomly or not at all — no sentiment screening, no milestone timing.', calculation: 'Sentiment-gated review requests at project completion (3wk + 10wk) drive 3x review velocity.', cost: Math.round(reviewGap * avgOrderValue * 0.4), costLabel: 'in lost organic trust and search visibility from thin review base', barPercent: Math.min(100, Math.round((reviewGap / 200) * 100)) },
+    { icon: 'Mail', title: 'EMAIL LIST UNDERMONETIZED', highlight: `${emailListSize.toLocaleString()} subscribers`, description: `generic newsletters sent to the full list — no skill-level segmentation, no project-timed sends.`, calculation: 'Segmented, personalized email generates 2–3x the revenue per send vs. blasted newsletters.', cost: emailLost, costLabel: 'lost monthly from non-personalized batch email to the full list', barPercent: Math.min(100, Math.round((1 - (metrics.emailOpenRate || 22) / 45) * 100)) },
+  ];
+}
+
 export function getPainCards(industryId, metrics) {
+  if (industryId === 'ecommerce_needlepoint') return buildNeedlepointPainCards(metrics);
   if (industryId === 'medspa') return buildMedspaPainCards(metrics);
   if (industryId === 'hvac') return buildHvacPainCards(metrics);
   if (industryId === 'construction') return buildConstructionPainCards(metrics);
@@ -432,7 +476,21 @@ function buildIndoorEnvironmentalStats(roi, metrics) {
   ];
 }
 
+function buildNeedlepointStats(roi, metrics) {
+  const monthlyOrders = metrics.monthlyOrders || 320;
+  const avgOrderValue = metrics.avgOrderValue || 85;
+  const cartAbandonRate = metrics.cartAbandonmentRate || 68;
+  const cartRecovered = Math.round(monthlyOrders * (cartAbandonRate / 100) * avgOrderValue * 0.12);
+  return [
+    { label: 'Cart Revenue Recovered', value: cartRecovered, type: 'currency', color: 'text-emerald-400', icon: 'TrendingUp' },
+    { label: 'Repeat Rate Target', value: 45, type: 'percent', color: 'text-amber-400', icon: 'Target' },
+    { label: 'Review Velocity', display: '3x growth', color: 'text-cyan-400', icon: 'Star' },
+    { label: 'Email Automation', value: Math.round((metrics.emailListSize || 12000) * 0.08), type: 'number', suffix: ' sends/mo', color: 'text-violet-400', icon: 'Mail' },
+  ];
+}
+
 export function getCommandStats(industryId, roi, metrics) {
+  if (industryId === 'ecommerce_needlepoint') return buildNeedlepointStats(roi, metrics);
   if (industryId === 'construction') return buildConstructionStats(roi, metrics);
   if (industryId === 'medspa') return buildMedspaStats(roi, metrics);
   if (industryId === 'hvac') return buildHvacStats(roi, metrics);
@@ -555,7 +613,23 @@ function buildIndoorEnvironmentalPipeline(metrics, roi) {
   ];
 }
 
+function buildNeedlepointPipeline(metrics, roi) {
+  const visitors = metrics.monthlyWebVisitors || 18000;
+  const orders = metrics.monthlyOrders || 320;
+  const abandoned = Math.round(orders * ((metrics.cartAbandonmentRate || 68) / 100));
+  const recovered = Math.round(abandoned * 0.12);
+  const repeatOrders = Math.round(orders * ((metrics.repeatCustomerRate || 28) / 100));
+  return [
+    { name: 'Site Visitors', value: visitors, pct: 100 },
+    { name: 'Add to Cart', value: Math.round(visitors * 0.05), pct: 5 },
+    { name: 'Checkout Started', value: Math.round(visitors * 0.025), pct: 2.5 },
+    { name: 'Orders Placed', value: orders, pct: Math.round((orders / visitors) * 100) },
+    { name: 'Repeat Buyers', value: repeatOrders, pct: metrics.repeatCustomerRate || 28 },
+  ];
+}
+
 export function getPipelineStages(industryId, metrics, roi) {
+  if (industryId === 'ecommerce_needlepoint') return buildNeedlepointPipeline(metrics, roi);
   if (industryId === 'medspa') return buildMedspaPipeline(metrics, roi);
   if (industryId === 'hvac') return buildHvacPipeline(metrics, roi);
   if (industryId === 'construction') return buildConstructionPipeline(metrics, roi);
@@ -631,6 +705,14 @@ export function getTrialBenefits(industryId, roi, teamCount, teamUnitLabel) {
       { icon: 'CalendarCheck', text: 'Design consults, project updates, and service schedules stay coordinated', detail: `${teamCount} ${teamUnitLabel} active` },
       { icon: 'Mail', text: 'Proposal follow-up and post-build lifecycle campaigns keep running', detail: 'Consult + service nurture automated' },
       { icon: 'BarChart3', text: 'Pipeline value, build progress, and retention stay visible', detail: 'Project dashboard live' },
+    ];
+  }
+  if (industryId === 'ecommerce_needlepoint') {
+    return [
+      { icon: 'ShoppingCart', text: 'Abandoned carts recovered with 3-touch sequence — 1hr, 24hr, 72hr', detail: '8–12% cart recovery rate' },
+      { icon: 'Star', text: 'Sentiment-screened review requests sent at project completion', detail: '3x review velocity in 90 days' },
+      { icon: 'Mail', text: 'Skill-segmented email with project-timed next-kit recommendations', detail: `${teamCount} ${teamUnitLabel} running` },
+      { icon: 'TrendingUp', text: 'Repeat purchase rate climbs from 28% to 45% with nurture sequences', detail: 'Post-purchase lifecycle automated' },
     ];
   }
   if (industryId === 'indoor_environmental') {

@@ -39,6 +39,7 @@ export default function DiscoveryPanel() {
   const { industryConfig, metrics, updateMetric, roi, companyName, setActiveTab, liveMode, liveData, setLiveData, liveLoading, setLiveLoading, selectedIndustryId, savedProfile } = useDemo();
   const isIET = savedProfile?.firm?.industry_id === 'indoor_environmental';
   const isBariatric = savedProfile?.firm?.industry_id === 'bariatric_surgery';
+  const isNeedlepoint = savedProfile?.firm?.industry_id === 'ecommerce_needlepoint' || selectedIndustryId === 'ecommerce_needlepoint';
   
   const [lookupForm, setLookupForm] = useState({
     businessName: '',
@@ -212,6 +213,38 @@ export default function DiscoveryPanel() {
               <span className="px-3 py-1 rounded-full text-[11px] font-mono border" style={{ borderColor: `${accent}30`, backgroundColor: `${accent}12`, color: accent }}>Nashville, TN</span>
               <span className="px-3 py-1 rounded-full text-[11px] font-mono border" style={{ borderColor: `${accent}30`, backgroundColor: `${accent}12`, color: accent }}>Madison, WI</span>
               <span className="px-3 py-1 rounded-full text-[11px] font-mono border text-slate-300 border-white/10 bg-white/[0.03]">20+ years</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isNeedlepoint && (
+        <div className="rounded-2xl border border-amber-500/20 overflow-hidden relative" style={{ background: 'linear-gradient(135deg, #3D1C1C 0%, #8B1A1A 40%, #5A2D0C 100%)' }}>
+          <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 70% 50%, rgba(196,163,90,0.20) 0%, transparent 70%)' }} />
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 px-6 py-5 relative z-10">
+            <div className="flex items-center gap-5">
+              <div className="w-28 h-14 rounded-xl bg-white/[0.95] flex items-center justify-center p-2 border border-white/30 shrink-0">
+                <img src="/artneedlepoint-logo.png" alt="Art Needlepoint" className="w-full h-full object-contain" />
+              </div>
+              <div>
+                <p className="text-[11px] font-mono uppercase tracking-[0.25em] text-amber-300 mb-0.5">Ecommerce · Needlepoint</p>
+                <h2 className="text-lg md:text-xl font-bold text-white leading-tight">The Art Needlepoint Company</h2>
+                <p className="text-sm text-amber-200/60 mt-0.5">Family-Owned · artneedlepoint.com · Doreen (Owner) · WooCommerce</p>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-2 md:flex-col md:items-end md:gap-1.5">
+              <div className="text-right hidden md:block">
+                <div className="text-2xl font-bold text-white">$85 AOV</div>
+                <div className="text-xs text-amber-300">Avg Order Value</div>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <span className="px-2.5 py-1 rounded-full text-[10px] font-mono border border-amber-400/25 bg-amber-500/15 text-amber-200">68% cart abandon</span>
+                <span className="px-2.5 py-1 rounded-full text-[10px] font-mono border border-amber-400/25 bg-amber-500/15 text-amber-200">12,000 subscribers</span>
+                <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/25">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse inline-block" />
+                  <span className="text-[10px] font-mono text-emerald-300">FAMILY-OWNED ECOM</span>
+                </span>
+              </div>
             </div>
           </div>
         </div>

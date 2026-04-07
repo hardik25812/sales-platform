@@ -82,6 +82,27 @@ const DEFAULT_DAY_STORIES = {
       { time: 'RESULT', event: '$4,500 repair + $8K replacement — SECURED', detail: 'Customer for life. All while you slept.', icon: '✅', status: 'won' },
     ],
   },
+  ecommerce_needlepoint: {
+    before: [
+      { time: '2:14 PM', event: 'Sarah finishes her rose garden needlepoint kit', detail: 'Took 8 weeks — she loved every stitch', icon: '🔍' },
+      { time: '2:15 PM', event: 'Visits artneedlepoint.com looking for her next project', detail: 'Adds a floral canvas to cart — $95', icon: '📝' },
+      { time: '2:17 PM', event: 'Gets distracted, closes the tab', detail: 'Cart abandoned. No follow-up sent.', icon: '⚠️', status: 'warning' },
+      { time: 'Next day', event: 'Sarah forgets about the cart', detail: 'No reminder, no email, no nudge.', icon: '😫', status: 'warning' },
+      { time: '1 week later', event: 'Sarah finds a similar canvas on Etsy', detail: 'Books there instead. $95 gone.', icon: '❌', status: 'lost' },
+      { time: '6 months later', event: 'Sarah never comes back', detail: 'No review. No repeat. No referral.', icon: '💸', status: 'lost' },
+      { time: 'RESULT', event: '$285+ lifetime value — LOST', detail: 'This happens to 68% of your carts every day.', icon: '💸', status: 'lost' },
+    ],
+    after: [
+      { time: '2:14 PM', event: 'Sarah finishes her rose garden needlepoint kit', detail: 'Took 8 weeks — she loved every stitch', icon: '🔍' },
+      { time: '2:15 PM', event: 'Visits artneedlepoint.com, adds floral canvas to cart', detail: '$95 — perfect next project', icon: '📝' },
+      { time: '2:17 PM', event: 'Gets distracted, closes the tab', detail: 'Cart Recovery Agent activates instantly', icon: '⚡', status: 'active' },
+      { time: '3:17 PM', event: '"Sarah, you left something beautiful behind…"', detail: 'Personalized email with her exact cart item + photo reviews', icon: '📧', status: 'success' },
+      { time: 'Next morning', event: 'Sarah clicks the recovery link and completes purchase', detail: '$95 order placed. 12% of carts recovered like this every month.', icon: '✅', status: 'won' },
+      { time: '11 weeks later', event: 'Nurture Agent: "Your project should be almost done!"', detail: '"Ready for your next adventure? Here are 3 kits picked for you…"', icon: '📱', status: 'success' },
+      { time: '11 weeks + 1 day', event: 'Sentiment check sent — Sarah rates experience 5/5', detail: 'Review request auto-sent to Google. She leaves a glowing review.', icon: '⭐', status: 'success' },
+      { time: 'RESULT', event: '$285+ lifetime value — SECURED', detail: 'Repeat buyer. Public advocate. All automated.', icon: '✅', status: 'won' },
+    ],
+  },
   dental: {
     before: [
       { time: '6 months ago', event: 'Patient completes cleaning', detail: 'Hygienist says "See you in 6 months!"', icon: '🔍' },
@@ -108,7 +129,7 @@ export default function DayInYourLife() {
   if (!industryConfig) return null;
 
   // Get day story from config or use default
-  const dayStory = industryConfig.dayStory || DEFAULT_DAY_STORIES[industryConfig.id] || DEFAULT_DAY_STORIES.roofing;
+  const dayStory = industryConfig.dayStory || DEFAULT_DAY_STORIES[industryConfig.id] || DEFAULT_DAY_STORIES.dental;
   const story = viewMode === 'before' ? dayStory.before : dayStory.after;
 
   const getStatusStyles = (status) => {
@@ -269,13 +290,27 @@ export default function DayInYourLife() {
           {viewMode === 'before' ? (
             <>
               <div className="text-red-400 font-semibold">THIS HAPPENS EVERY DAY</div>
-              <p className="text-slate-400 text-sm">
-                Based on your numbers, you're losing approximately{' '}
-                <span className="text-red-400 font-bold">
-                  {formatCurrency(metrics.avgJobValue * 3)} - {formatCurrency(metrics.avgJobValue * 5)}
-                </span>{' '}
-                per week to scenarios exactly like this.
-              </p>
+              {industryConfig.id === 'ecommerce_needlepoint' ? (
+                <p className="text-slate-400 text-sm">
+                  Based on your numbers,{' '}
+                  <span className="text-red-400 font-bold">
+                    {Math.round((metrics.cartAbandonmentRate || 68))}% of your carts
+                  </span>{' '}
+                  are abandoned with no recovery — that's{' '}
+                  <span className="text-red-400 font-bold">
+                    {formatCurrency(Math.round((metrics.monthlyOrders || 320) * ((metrics.cartAbandonmentRate || 68) / 100) * (metrics.avgOrderValue || 85)))}
+                  </span>{' '}
+                  in lost cart revenue every month.
+                </p>
+              ) : (
+                <p className="text-slate-400 text-sm">
+                  Based on your numbers, you're losing approximately{' '}
+                  <span className="text-red-400 font-bold">
+                    {formatCurrency(metrics.avgJobValue * 3)} - {formatCurrency(metrics.avgJobValue * 5)}
+                  </span>{' '}
+                  per week to scenarios exactly like this.
+                </p>
+              )}
             </>
           ) : (
             <>
