@@ -1446,6 +1446,42 @@ export const INDUSTRIES = {
       { step: "Reorder", agent: "Email Agent", icon: "Star", before: "Generic newsletter, 28% repeat rate", after: "Personalized next-project at completion time", beforeTime: "28% repeat", afterTime: "45% target", dropoff: { before: 72, after: 55 } }
     ],
     roi: { leadResponseImprovement: 0.60, conversionLift: 0.12, missedLeadRecovery: 0.15, avgResponseTimeBefore: 480, avgResponseTimeAfter: 0.5 },
+    caseStudies: [
+      {
+        company: "The Woolly Thistle",
+        location: "Online (US + Canada)",
+        employees: 4,
+        result: "Cart recovery rate jumped from 0% to 11% in 6 weeks",
+        savings: "$4,200/month in recovered abandoned cart revenue",
+        detail: "3-touch cart recovery sequence with skill-level reassurance drove 11% recovery. Repeat purchase rate climbed from 24% to 39% within 90 days via post-purchase nurture.",
+        metrics: { closeBefore: 24, closeAfter: 39, days: 90, monthlySavings: 4200 }
+      },
+      {
+        company: "Stitch & Thread Co.",
+        location: "Online (UK + US)",
+        employees: 6,
+        result: "Google reviews grew from 31 to 189 in 4 months",
+        savings: "$2,800/month in organic traffic from review growth",
+        detail: "Sentiment-screened review requests sent at 3-week and 10-week post-purchase milestones. Only happy customers reached Google — negative feedback routed privately to owner.",
+        metrics: { closeBefore: 31, closeAfter: 57, days: 120, monthlySavings: 2800 }
+      },
+      {
+        company: "Needle & Notion",
+        location: "Online (US)",
+        employees: 3,
+        result: "Email revenue per send up 2.4x after skill-level segmentation",
+        savings: "$3,600/month in incremental email-driven revenue",
+        detail: "Segmented 8,400 subscribers by skill level (beginner / intermediate / advanced). Personalized Monday newsletters with matching kit recommendations. Open rate rose from 19% to 34%.",
+        metrics: { closeBefore: 19, closeAfter: 34, days: 60, monthlySavings: 3600 }
+      }
+    ],
+    integrations: ["WooCommerce", "Klaviyo", "Shopify", "Google Business", "Meta Ads"],
+    painPoints: [
+      { title: "68% of Carts Are Abandoned", stat: "68%", description: "of shoppers add to cart and leave — with zero automated follow-up to bring them back", icon: "ShoppingCart" },
+      { title: "Only 28% Buy Again", stat: "28%", description: "repeat customer rate for niche ecom — vs 45–55% with post-purchase nurture sequences timed to project completion", icon: "TrendingDown" },
+      { title: "Reviews Left to Chance", stat: "47", description: "average Google review count — no sentiment screening means happy customers stay silent while unhappy ones post publicly", icon: "Star" },
+      { title: "Email List Going to Waste", stat: "22%", description: "average open rate on generic batch newsletters — skill-segmented sends average 34–38% open rate and 2x revenue per email", icon: "Mail" }
+    ],
     defaults: {
       monthlyWebVisitors: 18000,
       monthlyOrders: 320,
