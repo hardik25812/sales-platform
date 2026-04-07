@@ -311,7 +311,22 @@
       "Approachable, affordable, achievable for every skill level",
       "Deep emotional connection — needlepoint as family tradition and heritage",
       "Buy 3 Get 1 Free community incentive"
-    ]
+    ],
+    "closer_note": {
+      "headline": "How to Run This Demo — Closer's Playbook",
+      "steps": [
+        "1. OPEN with the hook question: 'Doreen, you have thousands of happy customers who spent 40–200 hours on a project and felt real joy when they finished. Are you capturing that emotion as a Google review?' Let her answer. She will say no.",
+        "2. GO TO Profile → Recommended Systems → Positive Review Collector (the flagship ⭐ system). Walk through the sentiment-gating flow: satisfaction check FIRST, then route happy customers to Google and unhappy ones privately to Doreen's inbox. This is her #1 pain — lean into it.",
+        "3. SHOW the Sentiment Analysis Engine immediately after — explain it's the intelligence layer behind the review collector. It's what ensures no bad review ever slips through accidentally.",
+        "4. TRANSITION naturally: 'Now that we've protected your brand and started building reviews — let's look at the revenue you're losing every single day on the sales side.'",
+        "5. GO TO Problems tab → lead with ABANDONED CARTS (68%). Show the $5.7K/month number. Ask: 'Do you have any automated follow-up running right now when someone abandons?' She doesn't.",
+        "6. GO BACK TO Profile → Cart Recovery Agent. Walk the 3-touch sequence: 1hr / 24hr / 72hr with the real example output. Mention the Buy 3 Get 1 Free trigger built into the recovery email.",
+        "7. SHOW Post-Purchase Nurture Agent next — the 8–12 week project timer that fires when the kit should be done. This is the repeat rate play: 28% → 45%.",
+        "8. CLOSE with the pitch math: Cart recovery ($5.7K) + repeat rate lift ($4.6K) + email improvement ($3.2K) = $13K+/month in new revenue from customers she already has. Zero new ad spend.",
+        "9. HANDLE OBJECTION ('I'm a small business'): 'That's exactly why this works — you already have the customers and the goodwill. The AI just makes sure every one of them gets the follow-up they deserve, not just the ones who happen to call.'",
+        "10. ASK for the close: 'Would it make sense to start with the Review Collector and Cart Recovery — those two alone pay for the whole system in the first month?'"
+      ]
+    }
   },
 
   "pitch_math": {

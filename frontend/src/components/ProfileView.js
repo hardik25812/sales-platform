@@ -611,6 +611,53 @@ export default function ProfileView() {
           )}
         </div>
       </div>
+
+      {/* Closer's Playbook */}
+      {profile.personalization.closer_note && (
+        <div className="glass-panel p-6 border-2 border-amber-500/30" style={{ background: 'linear-gradient(135deg, rgba(196,163,90,0.06) 0%, rgba(0,0,0,0.4) 100%)' }}>
+          <div className="flex items-center gap-3 mb-5">
+            <div className="w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-500/30 flex items-center justify-center shrink-0">
+              <Zap size={16} className="text-amber-400" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h2 className="text-xl font-bold text-white">{profile.personalization.closer_note.headline}</h2>
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-mono bg-amber-500/15 border border-amber-500/30 text-amber-300 uppercase tracking-wider">Internal Only</span>
+              </div>
+              <p className="text-xs text-slate-500 mt-0.5">Step-by-step navigation guide for this demo session</p>
+            </div>
+          </div>
+          <div className="space-y-3">
+            {profile.personalization.closer_note.steps.map((step, idx) => {
+              const isOpen = idx === 0;
+              const isClose = idx === profile.personalization.closer_note.steps.length - 1;
+              const isObjHandling = step.includes('OBJECTION') || step.includes('HANDLE');
+              const stepColor = isOpen
+                ? 'border-l-amber-400 bg-amber-500/5'
+                : isClose
+                ? 'border-l-emerald-400 bg-emerald-500/5'
+                : isObjHandling
+                ? 'border-l-red-400 bg-red-500/5'
+                : 'border-l-slate-600 bg-white/[0.02]';
+              const numColor = isOpen ? 'text-amber-400' : isClose ? 'text-emerald-400' : isObjHandling ? 'text-red-400' : 'text-slate-500';
+              const parts = step.replace(/^\d+\.\s*/, '').split(':');
+              const label = parts.length > 1 ? parts[0] : null;
+              const body = parts.length > 1 ? parts.slice(1).join(':').trim() : step.replace(/^\d+\.\s*/, '');
+              return (
+                <div key={idx} className={`flex gap-3 p-3 rounded-lg border-l-2 ${stepColor}`}>
+                  <div className={`text-xs font-bold font-mono shrink-0 mt-0.5 w-5 text-right ${numColor}`}>{idx + 1}</div>
+                  <div className="flex-1 min-w-0">
+                    {label && (
+                      <span className={`text-xs font-bold uppercase tracking-wider mr-1.5 ${numColor}`}>{label}:</span>
+                    )}
+                    <span className="text-sm text-slate-300 leading-relaxed">{body}</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
