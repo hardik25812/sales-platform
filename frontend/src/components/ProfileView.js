@@ -14,6 +14,19 @@ const BARIATRIC_METRICS = [
   { label: 'Decision Timeline', value: '3–6 months', color: '#2E86C1' },
 ];
 
+const NEEDLEPOINT_METRICS = [
+  { label: 'Avg Order Value', value: '$85', color: '#C4A35A' },
+  { label: 'Cart Abandonment', value: '68%', color: '#E74C3C' },
+  { label: 'Repeat Customer Rate', value: '28%', color: '#E74C3C' },
+  { label: 'Google Reviews', value: '47', color: '#E67E22' },
+  { label: 'Email Open Rate', value: '22%', color: '#E67E22' },
+  { label: 'Monthly Orders', value: '320', color: '#C4A35A' },
+  { label: 'Support Tickets/Mo', value: '180', color: '#E74C3C' },
+  { label: 'Email Subscribers', value: '12,000', color: '#27AE60' },
+  { label: 'Cart Recovery Opportunity', value: '$5.7K/mo', color: '#27AE60' },
+  { label: 'Repeat Rate Target', value: '45%', color: '#27AE60' },
+];
+
 function BariatricMetricsTicker() {
   const [active, setActive] = useState(0);
   const ref = useRef(null);
@@ -22,6 +35,22 @@ function BariatricMetricsTicker() {
     return () => clearInterval(ref.current);
   }, []);
   const m = BARIATRIC_METRICS[active];
+  return (
+    <div className="flex items-center gap-2 h-6 overflow-hidden">
+      <span className="text-lg font-bold transition-all duration-500" style={{ color: m.color }}>{m.value}</span>
+      <span className="text-xs text-slate-400 transition-all duration-500">{m.label}</span>
+    </div>
+  );
+}
+
+function NeedlepointMetricsTicker() {
+  const [active, setActive] = useState(0);
+  const ref = useRef(null);
+  useEffect(() => {
+    ref.current = setInterval(() => setActive(p => (p + 1) % NEEDLEPOINT_METRICS.length), 2200);
+    return () => clearInterval(ref.current);
+  }, []);
+  const m = NEEDLEPOINT_METRICS[active];
   return (
     <div className="flex items-center gap-2 h-6 overflow-hidden">
       <span className="text-lg font-bold transition-all duration-500" style={{ color: m.color }}>{m.value}</span>
@@ -57,18 +86,21 @@ export default function ProfileView() {
   const isIET = profile.firm.industry_id === 'indoor_environmental';
   const isDental = profile.firm.industry_id === 'dental';
   const isBariatric = profile.firm.industry_id === 'bariatric_surgery';
-  const accentColor = isDental ? 'text-cyan-400' : isIET ? 'text-teal-400' : isBariatric ? 'text-blue-400' : 'text-rose-400';
-  const HeaderIcon = isDental ? Smile : isIET ? Wind : isBariatric ? Activity : Scale;
+  const isNeedlepoint = profile.firm.industry_id === 'ecommerce_needlepoint';
+  const accentColor = isNeedlepoint ? 'text-amber-400' : isDental ? 'text-cyan-400' : isIET ? 'text-teal-400' : isBariatric ? 'text-blue-400' : 'text-rose-400';
+  const HeaderIcon = isNeedlepoint ? Sparkles : isDental ? Smile : isIET ? Wind : isBariatric ? Activity : Scale;
   const serviceAreas = profile.firm.practice_areas || profile.firm.services || [];
-  const serviceLabel = isDental ? 'Services' : isIET ? 'Services' : isBariatric ? 'Services' : 'Practice Areas';
-  const serviceColorClass = isDental
+  const serviceLabel = isNeedlepoint ? 'Products & Services' : isDental ? 'Services' : isIET ? 'Services' : isBariatric ? 'Services' : 'Practice Areas';
+  const serviceColorClass = isNeedlepoint
+    ? 'bg-amber-500/10 text-amber-300 border-amber-500/20'
+    : isDental
     ? 'bg-cyan-500/10 text-cyan-300 border-cyan-500/20'
     : isIET
     ? 'bg-teal-500/10 text-teal-300 border-teal-500/20'
     : isBariatric
     ? 'bg-blue-500/10 text-blue-300 border-blue-500/20'
     : 'bg-rose-500/10 text-rose-300 border-rose-500/20';
-  const serviceIconColor = isDental ? 'text-cyan-400' : isIET ? 'text-teal-400' : isBariatric ? 'text-blue-400' : 'text-rose-400';
+  const serviceIconColor = isNeedlepoint ? 'text-amber-400' : isDental ? 'text-cyan-400' : isIET ? 'text-teal-400' : isBariatric ? 'text-blue-400' : 'text-rose-400';
   const profileImage = profile.firm.profile_image;
 
   return (
@@ -105,7 +137,36 @@ export default function ProfileView() {
           </div>
         )}
 
-        {!isIET && !isDental && !isBariatric && profileImage && (
+        {/* Art Needlepoint — Ecommerce brand header */}
+        {isNeedlepoint && (
+          <div className="mb-6 rounded-2xl border border-amber-500/20 overflow-hidden relative" style={{ background: 'linear-gradient(135deg, #3D1C1C 0%, #8B1A1A 40%, #5A2D0C 100%)' }}>
+            <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 70% 50%, rgba(196,163,90,0.20) 0%, transparent 70%)' }} />
+            <div className="flex items-center justify-between px-8 py-6 relative z-10">
+              <div className="flex items-center gap-6">
+                <div className="w-36 h-16 rounded-xl bg-white/[0.95] flex items-center justify-center p-2 border border-white/30">
+                  <img src="/artneedlepoint-logo.png" alt="Art Needlepoint" className="w-full h-full object-contain" />
+                </div>
+                <div>
+                  <p className="text-[11px] font-mono uppercase tracking-[0.25em] text-amber-300 mb-1">Ecommerce Profile</p>
+                  <p className="text-white font-bold text-xl">{profile.firm.name}</p>
+                  <p className="text-amber-200/70 text-sm mt-0.5">{profile.firm.positioning}</p>
+                </div>
+              </div>
+              <div className="hidden md:flex flex-col items-end gap-2">
+                <div className="text-right">
+                  <div className="text-2xl font-bold text-white">$85</div>
+                  <div className="text-xs text-amber-300">Avg Order Value</div>
+                </div>
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/20 border border-amber-400/30">
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="text-[10px] font-mono text-amber-200 tracking-wider">FAMILY-OWNED ECOM</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {!isIET && !isDental && !isBariatric && !isNeedlepoint && profileImage && (
           <div className="mb-6 overflow-hidden rounded-2xl border border-white/[0.08] relative h-52 md:h-64">
             <img
               src={profileImage}
@@ -129,7 +190,7 @@ export default function ProfileView() {
           <div>
             <div className="flex items-center gap-3 mb-2">
               <HeaderIcon size={32} className={accentColor} />
-              <h1 className="text-3xl font-bold text-white">{isBariatric ? profile.firm.short_name || profile.firm.name : profile.firm.name}</h1>
+              <h1 className="text-3xl font-bold text-white">{(isBariatric || isNeedlepoint) ? profile.firm.short_name || profile.firm.name : profile.firm.name}</h1>
             </div>
             <p className="text-lg text-slate-300">{displayData.tagline}</p>
             {profile.firm.tagline && (
@@ -138,6 +199,11 @@ export default function ProfileView() {
             {isBariatric && (
               <div className="mt-3">
                 <BariatricMetricsTicker />
+              </div>
+            )}
+            {isNeedlepoint && (
+              <div className="mt-3">
+                <NeedlepointMetricsTicker />
               </div>
             )}
           </div>
@@ -149,6 +215,11 @@ export default function ProfileView() {
           ) : isBariatric ? (
             <div className="text-right">
               <div className="text-3xl font-bold text-blue-400">9</div>
+              <div className="text-sm text-slate-400">AI Systems</div>
+            </div>
+          ) : isNeedlepoint ? (
+            <div className="text-right">
+              <div className="text-3xl font-bold text-amber-400">7</div>
               <div className="text-sm text-slate-400">AI Systems</div>
             </div>
           ) : (
@@ -193,8 +264,42 @@ export default function ProfileView() {
           </div>
         )}
 
-        {/* Non-bariatric Quick Stats */}
-        {!isBariatric && (
+        {/* Needlepoint Quick Stats */}
+        {isNeedlepoint && (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+            <div className="bg-amber-500/5 rounded-lg p-4 border border-amber-500/15">
+              <div className="flex items-center gap-2 mb-1">
+                <Phone size={16} className="text-amber-400" />
+                <span className="text-xs text-slate-400 uppercase tracking-wider">Phone</span>
+              </div>
+              <div className="text-lg font-semibold text-white">{profile.firm.phone}</div>
+            </div>
+            <div className="bg-amber-500/5 rounded-lg p-4 border border-amber-500/15">
+              <div className="flex items-center gap-2 mb-1">
+                <Star size={16} className="text-amber-400" />
+                <span className="text-xs text-slate-400 uppercase tracking-wider">Reviews</span>
+              </div>
+              <div className="text-lg font-semibold text-white">47 reviews</div>
+            </div>
+            <div className="bg-red-500/5 rounded-lg p-4 border border-red-500/15">
+              <div className="flex items-center gap-2 mb-1">
+                <TrendingDown size={16} className="text-red-400" />
+                <span className="text-xs text-slate-400 uppercase tracking-wider">Cart Abandon</span>
+              </div>
+              <div className="text-lg font-semibold text-red-300">68%</div>
+            </div>
+            <div className="bg-emerald-500/5 rounded-lg p-4 border border-emerald-500/15">
+              <div className="flex items-center gap-2 mb-1">
+                <TrendingUp size={16} className="text-emerald-400" />
+                <span className="text-xs text-slate-400 uppercase tracking-wider">Recovery Opp.</span>
+              </div>
+              <div className="text-lg font-semibold text-emerald-300">$5.7K/mo</div>
+            </div>
+          </div>
+        )}
+
+        {/* Non-bariatric/non-needlepoint Quick Stats */}
+        {!isBariatric && !isNeedlepoint && (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-white/[0.03] rounded-lg p-4 border border-white/[0.06]">
             <div className="flex items-center gap-2 mb-1">
@@ -267,7 +372,7 @@ export default function ProfileView() {
       )}
 
       {/* Notable Verdicts — law firm only */}
-      {!isIET && !isDental && !isBariatric && profile.firm.notable_verdicts?.length > 0 && (
+      {!isIET && !isDental && !isBariatric && !isNeedlepoint && profile.firm.notable_verdicts?.length > 0 && (
         <div className="glass-panel p-6">
           <div className="flex items-center gap-2 mb-4">
             <Trophy size={20} className="text-amber-400" />
@@ -292,7 +397,7 @@ export default function ProfileView() {
       )}
 
       {/* Attorneys — law firm only */}
-      {!isIET && !isDental && !isBariatric && profile.firm.attorneys?.length > 0 && (
+      {!isIET && !isDental && !isBariatric && !isNeedlepoint && profile.firm.attorneys?.length > 0 && (
         <div className="glass-panel p-6">
           <div className="flex items-center gap-2 mb-4">
             <Users size={20} className="text-violet-400" />

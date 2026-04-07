@@ -1412,6 +1412,54 @@ export const INDUSTRIES = {
         { time: "RESULT", event: "$385 inspection — CAPTURED at 8:51 PM", detail: "While owner was watching TV. Family has peace of mind tonight.", icon: "✅", status: "won" }
       ]
     }
+  },
+
+  ecommerce_needlepoint: {
+    id: "ecommerce_needlepoint",
+    name: "Ecommerce (Needlepoint)",
+    icon: "Sparkles",
+    color: "#8B1A1A",
+    colorSecondary: "#C4A35A",
+    gradient: "from-red-800 to-amber-600",
+    glow: "rgba(139,26,26,0.3)",
+    tagline: "Turn happy stitchers into public advocates",
+    subtitle: "7 AI systems available",
+    usesSystemsApproach: true,
+    savedProfiles: [
+      { id: 'artneedlepoint.com', name: 'The Art Needlepoint Company', website: 'artneedlepoint.com' }
+    ],
+    agents: [
+      { name: "Positive Review Collector", icon: "Star", dept: "Reputation", description: "Captures reviews from happy customers at peak satisfaction moments", status: "active", tasks: ["Triggers review requests at project milestones", "Pre-screens satisfaction before asking", "Routes happy customers to Google review", "Requests photo reviews for gallery"], kpis: { primary: "Review Velocity", secondary: "Star Rating" }, metric: { value: 3, unit: "x", label: "Review Growth" } },
+      { name: "Sentiment Analysis Engine", icon: "Star", dept: "Reputation", description: "Scores customer sentiment to route reviews intelligently", status: "active", tasks: ["Analyzes customer interactions", "Routes happy to reviews, unhappy to support", "Weekly sentiment reports", "VIP customer flagging"], kpis: { primary: "Sentiment Accuracy", secondary: "Prevention Rate" }, metric: { value: 94, unit: "%", label: "Accuracy" } },
+      { name: "Cart Recovery Agent", icon: "Star", dept: "Sales", description: "Recovers abandoned carts with personalized sequences", status: "active", tasks: ["3-touch recovery sequence", "Skill-level reassurance", "Social proof integration", "Buy 3 Get 1 Free triggers"], kpis: { primary: "Recovery Rate", secondary: "Revenue Recovered" }, metric: { value: 12, unit: "%", label: "Recovery Rate" } },
+      { name: "AI Shopping Advisor", icon: "Star", dept: "Sales", description: "Answers skill-level questions and recommends kits instantly", status: "active", tasks: ["Skill-level matching", "Product recommendations", "FAQ automation", "24/7 availability"], kpis: { primary: "Tickets Automated", secondary: "Response Time" }, metric: { value: 60, unit: "%", label: "Automated" } },
+      { name: "Post-Purchase Nurture Agent", icon: "Star", dept: "Retention", description: "Turns one-time buyers into lifetime stitchers", status: "active", tasks: ["Project-timed nurture", "Next project recommendations", "Buy 3 Get 1 Free triggers", "Dormant reactivation"], kpis: { primary: "Repeat Rate", secondary: "Reorder Timing" }, metric: { value: 45, unit: "%", label: "Repeat Target" } },
+      { name: "Smart Email Agent", icon: "Star", dept: "Marketing", description: "Personalizes Mondays with Needlepoint newsletters", status: "active", tasks: ["Skill-level segmentation", "Personalized content", "Seasonal campaigns", "A/B testing"], kpis: { primary: "Open Rate", secondary: "Email Revenue" }, metric: { value: 35, unit: "%", label: "Open Rate Target" } },
+      { name: "Social Proof Agent", icon: "Star", dept: "Marketing", description: "Feeds Customer Gallery with finished project photos", status: "active", tasks: ["Completion photo requests", "Gallery curation", "Social media sharing", "Brand ambassador ID"], kpis: { primary: "Photo Reviews", secondary: "Gallery Growth" }, metric: { value: 20, unit: "+/mo", label: "Submissions" } }
+    ],
+    workflow: [
+      { step: "Browse", agent: "Shopping Advisor", icon: "Star", before: "Customer unsure about skill level, leaves", after: "Instant skill matching and recommendation", beforeTime: "Bounces", afterTime: "10 seconds", dropoff: { before: 65, after: 25 } },
+      { step: "Cart", agent: "Cart Recovery", icon: "Star", before: "68% abandon cart, no follow-up", after: "3-touch recovery with social proof", beforeTime: "Never", afterTime: "1hr / 24hr / 72hr", dropoff: { before: 68, after: 55 } },
+      { step: "Purchase", agent: "Nurture Agent", icon: "Star", before: "Order confirmation, then silence", after: "Project tips, progress check-ins, next project recs", beforeTime: "One email", afterTime: "Lifecycle sequence", dropoff: { before: 0, after: 0 } },
+      { step: "Stitching", agent: "Nurture Agent", icon: "Star", before: "No engagement during 4–12 week project", after: "Technique tips, progress encouragement, community", beforeTime: "Silence", afterTime: "Timed touchpoints", dropoff: { before: 72, after: 30 } },
+      { step: "Review", agent: "Review Collector", icon: "Star", before: "Random or no review requests", after: "Sentiment-screened, milestone-timed review asks", beforeTime: "Ad hoc", afterTime: "3 weeks + 10 weeks", dropoff: { before: 95, after: 60 } },
+      { step: "Reorder", agent: "Email Agent", icon: "Star", before: "Generic newsletter, 28% repeat rate", after: "Personalized next-project at completion time", beforeTime: "28% repeat", afterTime: "45% target", dropoff: { before: 72, after: 55 } }
+    ],
+    roi: { leadResponseImprovement: 0.60, conversionLift: 0.12, missedLeadRecovery: 0.15, avgResponseTimeBefore: 480, avgResponseTimeAfter: 0.5 },
+    defaults: {
+      monthlyWebVisitors: 18000,
+      monthlyOrders: 320,
+      avgOrderValue: 85,
+      cartAbandonmentRate: 68,
+      emailListSize: 12000,
+      emailOpenRate: 22,
+      repeatCustomerRate: 28,
+      monthlyAdSpend: 2500,
+      googleReviewCount: 47,
+      avgRating: 4.6,
+      customerSupportTickets: 180,
+      monthlyNewCustomers: 95
+    }
   }
 };
 

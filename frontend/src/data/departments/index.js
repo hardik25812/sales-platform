@@ -9,6 +9,7 @@ import { constructionSystems, constructionMetrics, constructionProblems, constru
 import { landscapingSystems, landscapingMetrics, landscapingProblems, landscapingWorkflow, landscapingPersonalization } from './landscaping-systems';
 import { indoorEnvironmentalDepartments } from './indoor-environmental';
 import { bariatricSystems, bariatricMetrics, bariatricProblems, bariatricWorkflow, bariatricPersonalization } from './bariatric-systems';
+import { ecommerceNeedlepointSystems, ecommerceNeedlepointMetrics } from './ecommerce-needlepoint';
 
 // Map industry IDs to their department configurations
 const DEPARTMENT_MAP = {
@@ -28,6 +29,7 @@ const SYSTEMS_MAP = {
   construction: constructionSystems,
   landscaping: landscapingSystems,
   bariatric_surgery: bariatricSystems,
+  ecommerce_needlepoint: ecommerceNeedlepointSystems,
 };
 
 // Industry-specific metrics (replaces generic leads/employees)
@@ -35,6 +37,7 @@ const METRICS_MAP = {
   construction: constructionMetrics,
   landscaping: landscapingMetrics,
   bariatric_surgery: bariatricMetrics,
+  ecommerce_needlepoint: ecommerceNeedlepointMetrics,
 };
 
 // Industry-specific problems (personalized pain points)

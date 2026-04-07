@@ -1,0 +1,347 @@
+{
+  "firm": {
+    "name": "The Art Needlepoint Company",
+    "short_name": "Art Needlepoint",
+    "industry_id": "ecommerce_needlepoint",
+    "website": "artneedlepoint.com",
+    "schedule_url": "artneedlepoint.com/product-category/explore-all/",
+    "profile_image": null,
+    "phone": "(800) 573-1463",
+    "phone_secondary": "(978) 226-8271",
+    "email": "love@artneedlepoint.com",
+    "locations": ["Online Store Only"],
+    "platform": "WooCommerce / Storefront",
+    "hours": {
+      "store": "24/7 (Online)",
+      "support": "Business hours — real person promise"
+    },
+    "team": [
+      "Doreen (Owner)"
+    ],
+    "positioning": "Family-owned needlepoint company — approachable, affordable, achievable for every skill level",
+    "tagline": "Welcome to a whole new world of Needlepoint",
+    "services": [
+      "Needlepoint Canvases & Kits",
+      "Handbag & Tote Kits",
+      "Christmas Ornament Kits",
+      "Christmas Stocking Kits",
+      "Floral Needlepoint Kits",
+      "Rug & Mat Kits",
+      "Modern & Art Deco Kits",
+      "Judaica Kits",
+      "Children's Kits",
+      "Beginner Kits",
+      "Threads & Accessories",
+      "Custom Design Consultation"
+    ],
+    "unique_strengths": [
+      "Family-owned business of passionate stitchers",
+      "Works with world's best needlepoint artists for exclusive designs",
+      "Approachable, affordable, achievable — not intimidating",
+      "'Get a real person right away' phone support promise",
+      "Buy 3 Get 1 Free promotion",
+      "'Mondays with Needlepoint' email newsletter community",
+      "Customer Gallery ('Strut Your Stitches') builds social proof",
+      "Deep emotional connection — needlepoint as family tradition and heritage"
+    ],
+    "tone": "warm_crafty_personal",
+    "target_clients": "Women 35–70 who needlepoint as a creative hobby, gift-givers, beginners looking for approachable kits, experienced stitchers seeking exclusive designs",
+    "social": {
+      "facebook": "facebook.com/ArtNeedlepoint",
+      "twitter": "twitter.com/artneedlepoint",
+      "pinterest": "pinterest.com/artneedlepoint/"
+    },
+    "promotions": [
+      "Buy 3 Get 1 Free",
+      "10% off first order (newsletter signup)",
+      "Mondays with Needlepoint email series"
+    ]
+  },
+
+  "metrics": {
+    "monthlyWebVisitors": 18000,
+    "monthlyOrders": 320,
+    "avgOrderValue": 85,
+    "cartAbandonmentRate": 68,
+    "emailListSize": 12000,
+    "emailOpenRate": 22,
+    "repeatCustomerRate": 28,
+    "monthlyAdSpend": 2500,
+    "googleReviewCount": 47,
+    "avgRating": 4.6,
+    "customerSupportTickets": 180,
+    "productReturnRate": 4,
+    "socialFollowers": 8500,
+    "monthlyNewCustomers": 95
+  },
+
+  "discoveryMetricLabels": {
+    "monthlyWebVisitors": "Monthly Website Visitors",
+    "monthlyOrders": "Monthly Orders",
+    "avgOrderValue": "Avg Order Value ($)",
+    "cartAbandonmentRate": "Cart Abandonment Rate (%)",
+    "emailListSize": "Email List Size",
+    "emailOpenRate": "Email Open Rate (%)",
+    "repeatCustomerRate": "Repeat Customer Rate (%)",
+    "monthlyAdSpend": "Monthly Ad Spend ($)",
+    "googleReviewCount": "Google Review Count",
+    "avgRating": "Avg Star Rating",
+    "customerSupportTickets": "Monthly Support Tickets",
+    "monthlyNewCustomers": "New Customers / Month"
+  },
+
+  "problems": [
+    {
+      "id": "cart_abandonment_revenue_leak",
+      "title": "68% Cart Abandonment — $18K+/Month Left in Carts",
+      "description": "Nearly 7 out of 10 shoppers add needlepoint kits to their cart and leave without buying. For a niche ecommerce store with an $85 average order value, every abandoned cart is a warm buyer who got distracted, had a question about skill level, or wasn't sure which thread weight to pick. Without an automated recovery sequence, those buyers are gone — many to mass retailers or Etsy sellers.",
+      "impact": "At 320 orders/month with 68% abandonment, ~680 carts are abandoned monthly. Recovering just 10% at $85 AOV = $5,780/month in recovered revenue.",
+      "evidence": "Baymard Institute: average ecommerce cart abandonment rate is 70.19%. Niche craft stores with high-consideration products often exceed this. Art Needlepoint's product requires skill-level matching — a key friction point."
+    },
+    {
+      "id": "review_collection_gap",
+      "title": "Only 47 Google Reviews — Trust Gap in a Visual Product Category",
+      "description": "Needlepoint is a visual, tactile craft. Buyers need to trust that the canvas quality, thread colors, and design details match the photos. With only 47 Google reviews, Art Needlepoint is under-indexed on trust signals compared to competitors. The real gold is in customer photos of finished projects — the 'Strut Your Stitches' gallery exists but isn't systematically fed. Happy customers who spent 40–200 hours stitching a project have deep emotional connection to share — but nobody asks at the right moment.",
+      "impact": "Thin review profile reduces conversion rate by an estimated 15–25%. Each 0.1 star improvement in rating drives 2–5% more clicks from Google Shopping.",
+      "evidence": "PowerReviews: 97% of consumers read reviews before buying. For craft products, photo reviews convert 3x better than text-only reviews."
+    },
+    {
+      "id": "negative_review_risk",
+      "title": "No Sentiment Filter — Unhappy Customers Get Review Links, Happy Ones Don't",
+      "description": "Currently, there's no system to gauge customer satisfaction before asking for a review. A customer who received the wrong thread color or found the canvas smaller than expected gets the same (or no) review request as a delighted customer who just finished a 6-month stocking project. Without sentiment analysis, you risk amplifying negative experiences publicly while missing the window to capture glowing transformational reviews from your happiest customers.",
+      "impact": "One 1-star review can reduce conversion by 10–15% in a niche market. Pre-screening sentiment prevents public damage and routes unhappy customers to support instead.",
+      "evidence": "Harvard Business School: a one-star increase in Yelp rating leads to 5–9% revenue increase. Negative reviews in craft/hobby spaces are disproportionately damaging because the community is small and tight-knit."
+    },
+    {
+      "id": "repeat_purchase_underperformance",
+      "title": "Only 28% Repeat Rate — Needlepointers Are Lifetime Buyers If Nurtured",
+      "description": "Needlepoint is inherently a repeat-purchase hobby. Once someone finishes a project, they want the next one. Art Needlepoint's 28% repeat rate is far below what a niche craft store should achieve. The 'Buy 3 Get 1 Free' promo exists but isn't triggered at the right post-purchase moment. No automated sequence introduces the next project when the current one is likely being finished (4–12 weeks after purchase depending on kit size).",
+      "impact": "Improving repeat rate from 28% to 45% on 320 monthly orders at $85 AOV = $4,624/month in additional revenue from existing customers — zero ad spend.",
+      "evidence": "Craft industry repeat purchase benchmarks: 40–55% for specialty retailers with active post-purchase engagement. Art Needlepoint's family-owned warmth is a retention advantage that isn't being systematized."
+    },
+    {
+      "id": "email_engagement_plateau",
+      "title": "22% Open Rate on 12K List — 'Mondays with Needlepoint' Isn't Personalized",
+      "description": "Art Needlepoint has a 12,000-subscriber email list — a massive asset for a niche ecommerce store. But 22% open rate means 78% aren't engaging. 'Mondays with Needlepoint' is one-size-fits-all: a beginner gets the same email as a 20-year veteran. No segmentation by skill level, purchase history, or project interest. A customer who just bought a Christmas stocking kit should get finishing tips and ornament kit suggestions — not a generic newsletter.",
+      "impact": "Improving open rate from 22% to 35% and adding purchase-triggered sequences could drive $3,200+/month in additional email revenue.",
+      "evidence": "Mailchimp: retail email average open rate is 18.4%. Personalized product recommendation emails have 29% higher open rates and 41% higher click rates than generic sends."
+    },
+    {
+      "id": "customer_support_bottleneck",
+      "title": "180 Monthly Support Tickets — Skill-Level Questions Clog the Queue",
+      "description": "Art Needlepoint promises 'get a real person right away' — a beautiful differentiator. But 180 support tickets/month means Doreen and team are spending hours answering the same skill-level, thread, and shipping questions repeatedly. 60%+ of these are pre-purchase questions that could be answered by an AI assistant: 'Is this kit good for beginners?', 'What thread comes with this?', 'How long does this project take?' Freeing up Doreen for high-value customer relationships and product curation is the real win.",
+      "impact": "Automating 60% of routine inquiries saves 15–20 hours/month of staff time. Faster response to remaining tickets improves conversion on pre-purchase questions.",
+      "evidence": "Gorgias ecommerce benchmark: 40–60% of customer support tickets are repetitive and automatable. Response time under 1 hour increases purchase probability by 7x."
+    }
+  ],
+
+  "systems": [
+    {
+      "id": "positive_review_collector",
+      "name": "Positive Review Collector Agent",
+      "icon": "⭐",
+      "priority": "flagship",
+      "department": "Reputation & Reviews",
+      "problem_it_solves": "Only 47 Google reviews despite thousands of happy customers — no system captures reviews at the peak satisfaction moment",
+      "what_it_does": [
+        "Triggers review request at the perfect moment: 2–4 weeks after delivery (when the customer has started stitching and is excited)",
+        "Pre-screens satisfaction with a simple 'How are you enjoying your kit?' message before sending the review link",
+        "Routes happy customers (8+/10) to Google review with a one-tap link and warm personal message",
+        "Routes unhappy customers (<8/10) to Doreen's support inbox — never to a public review page",
+        "Requests photo reviews specifically — 'Share a photo of your project in progress!' for the Customer Gallery",
+        "Sends a second review request at project completion (6–12 weeks) for transformation-style reviews with finished photos",
+        "Tracks review velocity and star rating trend vs. competitors weekly"
+      ],
+      "example_output": {
+        "satisfaction_check": "Hi Sarah! 🧵 Your Floral Garden kit shipped 3 weeks ago — how's the stitching going? We'd love to hear how you're enjoying it.\n\nOn a scale of 1–10, how would you rate your experience so far?\n\nReply with a number and we'll take it from there! — The Art Needlepoint Team",
+        "review_request_happy": "Sarah, we're so glad you're loving the Floral Garden kit! 🌸\n\nWould you mind sharing your experience on Google? Your review helps other stitchers find the right project — and it means the world to our small family business.\n\n⭐ Leave a Review: [GOOGLE REVIEW LINK]\n\nBonus: If you have a photo of your project (even in progress!), we'd love to feature it in our Customer Gallery!\n\nHappy stitching! — Doreen & The Art Needlepoint Team",
+        "unhappy_route": "Hi Sarah — thank you for letting us know. We want to make this right. Doreen will personally reach out within 24 hours to help resolve this. Your satisfaction matters more than anything. — Art Needlepoint",
+        "completion_review": "Sarah! 🎉 It's been about 10 weeks since your Floral Garden kit arrived — have you finished or are you close? We'd LOVE to see your finished piece!\n\n📸 Share a photo of your completed project and we'll feature it in our Strut Your Stitches gallery!\n\nIf you haven't left a review yet, your story helps other stitchers take the leap: [GOOGLE REVIEW LINK]\n\nThank you for being part of our needlepoint family! — Doreen"
+      },
+      "impact": "3x review velocity within 90 days. Pre-screening prevents negative public reviews. Photo reviews drive 3x higher conversion than text-only."
+    },
+    {
+      "id": "sentiment_analysis_engine",
+      "name": "Sentiment Analysis & Review Router",
+      "icon": "🧠",
+      "priority": "flagship",
+      "department": "Reputation & Reviews",
+      "problem_it_solves": "No way to know which customers are happy vs. frustrated before asking for reviews — risk of amplifying negative experiences publicly",
+      "what_it_does": [
+        "Analyzes customer interactions across email replies, support tickets, and satisfaction surveys",
+        "Scores each customer on a sentiment scale: Delighted → Satisfied → Neutral → Frustrated → Angry",
+        "Routes Delighted/Satisfied customers to the Positive Review Collector for public review requests",
+        "Routes Frustrated/Angry customers to Doreen's personal support queue with full context",
+        "Identifies patterns in negative sentiment: shipping delays, color mismatches, skill-level mismatches, missing components",
+        "Generates weekly sentiment report: overall customer health score, trending issues, at-risk customers",
+        "Flags VIP customers (high LTV, influencers, repeat buyers) for white-glove treatment regardless of sentiment"
+      ],
+      "example_output": {
+        "sentiment_routing": "🧠 SENTIMENT ANALYSIS — Weekly Digest\n\n😊 Delighted (Score 9-10): 42 customers → Queued for review request\n🙂 Satisfied (Score 7-8): 28 customers → Queued for review request (softer ask)\n😐 Neutral (Score 5-6): 15 customers → No review ask — nurture sequence instead\n😟 Frustrated (Score 3-4): 8 customers → Routed to Doreen's inbox\n😠 Angry (Score 1-2): 2 customers → URGENT — personal outreach within 4 hours\n\n📊 Trending Issues This Week:\n• 3 mentions of 'thread color doesn't match photo' → Product photography review recommended\n• 2 mentions of 'harder than expected' → Skill level labeling may need adjustment",
+        "vip_alert": "🌟 VIP CUSTOMER ALERT\nCustomer: Margaret T. (Lifetime value: $2,400 — 28 orders)\nLatest order: Judaica Menorah Kit\nSentiment: Delighted (Score: 10)\nAction: Premium review request + invite to Customer Gallery feature + early access to new Judaica collection"
+      },
+      "impact": "Prevent 90% of negative public reviews by routing unhappy customers to support first. Increase positive review conversion by 40% by only asking happy customers."
+    },
+    {
+      "id": "cart_recovery_agent",
+      "name": "Cart Abandonment Recovery Agent",
+      "icon": "🛒",
+      "priority": "high",
+      "department": "Sales & Conversion",
+      "problem_it_solves": "68% cart abandonment rate — $18K+/month in warm buyers walking away without completing purchase",
+      "what_it_does": [
+        "Sends 3-touch recovery sequence: 1 hour (gentle reminder), 24 hours (helpful — addresses common objections), 72 hours (urgency + incentive)",
+        "Personalizes based on cart contents: skill-level reassurance for beginner kits, color/design details for advanced kits",
+        "Answers the #1 abandonment question automatically: 'Is this right for my skill level?'",
+        "Includes social proof: 'Sarah in Vermont just finished this same kit — here's her photo!'",
+        "Triggers Buy 3 Get 1 Free reminder if cart has 2+ items",
+        "Tracks recovery rate by product category and time of day"
+      ],
+      "example_output": {
+        "recovery_1hr": "Hi! 🧵 You left a beautiful Floral Garden Kit in your cart at Art Needlepoint.\n\nThis kit is one of our most popular — perfect for intermediate stitchers. Everything you need is included: canvas, threads, needle, and full instructions.\n\nComplete your order: [CART LINK]\n\nQuestions? Reply to this email or call us at (800) 573-1463 — you'll get a real person right away! — Art Needlepoint",
+        "recovery_24hr": "Still thinking about the Floral Garden Kit? 🌸\n\nHere's what Sarah in Vermont said after finishing hers: 'The colors were even more beautiful in person. Took me about 6 weeks and I loved every stitch.'\n\n📸 [Customer photo of finished project]\n\nPsst — add 2 more kits to get our Buy 3 Get 1 Free deal!\n\n[COMPLETE YOUR ORDER]\n\n— Doreen & The Art Needlepoint Team"
+      },
+      "impact": "Recover 10–15% of abandoned carts = $5,780–$8,670/month in recovered revenue. Zero additional ad spend."
+    },
+    {
+      "id": "post_purchase_nurture_agent",
+      "name": "Post-Purchase Nurture & Reorder Agent",
+      "icon": "💌",
+      "priority": "high",
+      "department": "Customer Retention",
+      "problem_it_solves": "Only 28% repeat rate despite needlepoint being an inherently repeat-purchase hobby — no system introduces the next project at the right time",
+      "what_it_does": [
+        "Sends project-specific tips 3 days after delivery: 'Here's how to get the best tension on your Floral Garden canvas'",
+        "Triggers 'Next Project' recommendation at estimated completion time (4–12 weeks based on kit size)",
+        "Personalizes recommendations based on purchase history, skill level, and seasonal relevance",
+        "Activates Buy 3 Get 1 Free trigger when customer has purchased 2 kits in 90 days",
+        "Sends birthday/holiday gift guide to high-LTV customers",
+        "Re-engages dormant customers (no purchase in 6+ months) with new collection previews"
+      ],
+      "example_output": {
+        "post_delivery_tips": "Your Floral Garden Kit is on its way! 🌷\n\nHere are 3 tips to make your stitching experience even better:\n1. Start from the center of the canvas — it helps prevent distortion\n2. Use 18\" thread lengths to avoid tangling\n3. Good lighting makes ALL the difference\n\nNeed help choosing your next project after this one? We have ideas! — Art Needlepoint",
+        "next_project_trigger": "Hi Sarah! 🎉 It's been about 8 weeks since your Floral Garden Kit arrived — are you getting close to finishing?\n\nBased on what you loved about that kit, we think you'd enjoy:\n🌸 Rose Garden Pillow Kit ($89) — similar color palette, next skill level up\n🎄 Holiday Stocking Kit ($75) — perfect timing for a Christmas gift project\n🦋 Butterfly Collection ($65) — smaller project for a quick creative win\n\nRemember: Buy 3 Get 1 Free! You're one kit away from a freebie. 🎁\n\n[SHOP YOUR PICKS] — Doreen & Team"
+      },
+      "impact": "Improve repeat rate from 28% to 45% = $4,624/month in additional revenue from existing customers with zero ad spend."
+    },
+    {
+      "id": "ai_shopping_assistant",
+      "name": "AI Shopping & Skill-Level Advisor",
+      "icon": "🤖",
+      "priority": "high",
+      "department": "Sales & Conversion",
+      "problem_it_solves": "180 monthly support tickets clogging the queue — 60%+ are pre-purchase skill-level and product questions that delay conversions",
+      "what_it_does": [
+        "Answers 'Is this kit right for me?' questions instantly on-site with skill-level matching",
+        "Recommends kits based on: skill level, time commitment, project type, gift recipient, budget",
+        "Handles FAQ: shipping times, thread types, canvas sizes, finishing options, return policy",
+        "Escalates complex questions to Doreen with full customer context — never a dead end",
+        "Captures pre-purchase intent data for email personalization",
+        "Available 24/7 — handles international customers in different time zones"
+      ],
+      "example_output": {
+        "skill_match": "Great question! The Art Deco Clutch Kit is rated 'Intermediate' — here's what that means:\n\n✅ You should be comfortable with: Tent stitch, basketweave\n🆕 You'll learn: Scotch stitch variation, metallic thread handling\n⏱️ Estimated time: 25–35 hours over 4–6 weeks\n\nIf you've completed 2+ kits before, you'll do great with this one! If this is your first project, I'd recommend starting with our Beginner Collection — same beautiful designs, simpler techniques.\n\n[SHOP BEGINNER KITS] | [ADD TO CART]\n\nStill not sure? Call us at (800) 573-1463 — Doreen can help you choose!",
+        "gift_recommendation": "Looking for a needlepoint gift? Here are our top picks:\n\n🎁 For a beginner: Sunflower Coaster Set ($35) — finishes in 2 weekends\n🎁 For intermediate: Holiday Stocking Kit ($75) — becomes a family heirloom\n🎁 For experienced: Victorian Garden Pillow ($125) — stunning showpiece\n\nAll kits include everything needed. Gift wrapping available!"
+      },
+      "impact": "Automate 60% of support tickets = save 15–20 hours/month. Faster answers to pre-purchase questions increase conversion by 7x."
+    },
+    {
+      "id": "email_personalization_engine",
+      "name": "Smart Email & Newsletter Agent",
+      "icon": "📧",
+      "priority": "medium",
+      "department": "Marketing & Engagement",
+      "problem_it_solves": "22% open rate on 12K email list — 'Mondays with Needlepoint' is one-size-fits-all instead of personalized to each stitcher's interests and skill level",
+      "what_it_does": [
+        "Segments email list by: skill level (beginner/intermediate/advanced), purchase history, project preferences, engagement level",
+        "Personalizes 'Mondays with Needlepoint' content: beginners get tips, veterans get new arrivals in their preferred categories",
+        "Triggers product recommendation emails based on browsing behavior and purchase history",
+        "Sends seasonal campaigns timed to project completion windows (Christmas kits in August, not December)",
+        "Manages winback sequences for lapsed subscribers and customers",
+        "A/B tests subject lines and content blocks automatically"
+      ],
+      "example_output": {
+        "personalized_monday": "✨ Mondays with Needlepoint — Personalized for You, Sarah!\n\n🆕 New This Week (in your favorite categories):\n• Wildflower Meadow Pillow — Intermediate, Florals ($95)\n• Spring Garden Doorstop — Intermediate, Florals ($65)\n\n📖 Tip for Your Current Project:\nWorking on the Floral Garden? Here's how to get perfect French knots for the flower centers...\n\n🎁 You're 1 kit away from Buy 3 Get 1 Free!\n\n[SHOP YOUR PICKS]",
+        "seasonal_trigger": "🎄 Christmas Stitching Starts NOW — August Edition!\n\nThe secret experienced stitchers know: Start your Christmas stockings in August, not November!\n\nAt your skill level, we recommend:\n• Classic Christmas Stocking ($75) — ~80 hours, finishes by mid-November if you start now\n• Set of 4 Ornaments ($45) — perfect gifts, ~6 hours each\n\nDon't forget: Buy 3 Get 1 Free on all holiday kits!\n\n[SHOP CHRISTMAS COLLECTION]"
+      },
+      "impact": "Improve open rate from 22% to 35%+. Personalized product emails drive 29% higher opens and 41% higher clicks. Estimated $3,200+/month in additional email revenue."
+    },
+    {
+      "id": "social_proof_engine",
+      "name": "Customer Gallery & Social Proof Agent",
+      "icon": "📸",
+      "priority": "medium",
+      "department": "Marketing & Engagement",
+      "problem_it_solves": "Customer Gallery ('Strut Your Stitches') exists but isn't systematically fed — the best social proof (finished project photos) is captured randomly instead of automatically",
+      "what_it_does": [
+        "Requests finished project photos at estimated completion milestones",
+        "Auto-curates Customer Gallery submissions with customer permission",
+        "Shares customer photos on social media (Facebook, Pinterest) with attribution",
+        "Creates 'Project of the Week' features for the newsletter",
+        "Identifies brand ambassadors: customers who share frequently and have large followings",
+        "Generates UGC (user-generated content) library for product pages and ads"
+      ],
+      "example_output": {
+        "photo_request": "Sarah! 🎉 You ordered the Floral Garden Kit 10 weeks ago — is your masterpiece finished yet?\n\nWe'd LOVE to feature your work in our Strut Your Stitches gallery! 📸\n\nJust reply with a photo and we'll showcase it to our community of 8,500+ stitchers. You'll also be entered to win our monthly $50 gift card drawing!\n\n— Doreen & The Art Needlepoint Family",
+        "social_share": "📸 Strut Your Stitches — Project of the Week!\n\nSarah from Vermont finished our Floral Garden Kit and it's STUNNING! 🌸\n\n'I started this kit as a beginner project and I can't believe how beautiful it turned out. The colors are even more vivid in person.' — Sarah T.\n\n[PHOTO]\n\nInspired? Shop the Floral Garden Kit: [LINK]\n\n#artneedlepoint #needlepoint #strutYourStitches"
+      },
+      "impact": "Systematic UGC collection feeds product pages, social media, and ads. Photo reviews convert 3x better. Brand ambassador program creates organic word-of-mouth."
+    }
+  ],
+
+  "personalization": {
+    "brand_colors": {
+      "primary": "#8B1A1A",
+      "secondary": "#C4A35A",
+      "accent": "#D4A845",
+      "background": "#FFF9F0",
+      "text_dark": "#3D1C1C",
+      "highlight": "#FFF0E0"
+    },
+    "brand_tone": "Warm, personal, family-owned craft business. Doreen's personality shines through — approachable, passionate about needlepoint, treats every customer like a fellow stitcher. Never corporate, always human.",
+    "messaging_style": "Lead with the review collector and sentiment analysis — Doreen is EXCITED about this. Show how it protects the brand while systematically building trust. Then show the full ecommerce flywheel: reviews → trust → conversion → retention → more reviews.",
+    "hook_question": "If you could capture a Google review from every happy customer — and make sure unhappy customers never hit the review page — what would that do for your business?",
+    "demo_angle": "Open with the Positive Review Collector: 'You have thousands of happy customers who spent 40–200 hours on a project and felt genuine joy when they finished. That emotion is the most powerful marketing asset you have — and right now it's not being captured.' Show the sentiment analysis: screen satisfaction BEFORE asking for reviews. Then expand: cart recovery, post-purchase nurture, email personalization. Close with the math: recovering 10% of abandoned carts + improving repeat rate from 28% to 45% = $10K+/month in new revenue from customers you already have.",
+    "value_proposition": "Turn every happy stitcher into a public advocate, protect the brand from negative reviews, and build a repeat-purchase engine that turns one-time buyers into lifetime needlepoint customers — automatically.",
+    "the_personal_angle": "Art Needlepoint is a family business built on love for the craft. The AI isn't replacing Doreen's personal touch — it's ensuring that personal touch reaches every customer, not just the ones who happen to call. The sentiment analysis protects what Doreen has built.",
+    "key_differentiators": [
+      "Family-owned business — passionate stitchers, not a faceless retailer",
+      "'Get a real person right away' support promise",
+      "Exclusive designs from world-class needlepoint artists",
+      "Approachable, affordable, achievable for every skill level",
+      "Deep emotional connection — needlepoint as family tradition and heritage",
+      "Buy 3 Get 1 Free community incentive"
+    ]
+  },
+
+  "pitch_math": {
+    "cart_recovery_opportunity": {
+      "calculation": "680 abandoned carts/month × 10% recovery × $85 AOV",
+      "result": "$5,780/month in recovered revenue",
+      "label": "Cart Recovery Revenue"
+    },
+    "repeat_rate_improvement": {
+      "calculation": "(45% - 28%) × 320 orders × $85 AOV",
+      "result": "$4,624/month in additional repeat revenue",
+      "label": "Repeat Purchase Revenue Lift"
+    },
+    "email_revenue_lift": {
+      "calculation": "12,000 subscribers × (35% - 22%) open rate lift × improved CTR",
+      "result": "$3,200+/month in email-attributed revenue",
+      "label": "Email Revenue Improvement"
+    },
+    "support_time_saved": {
+      "calculation": "180 tickets × 60% automatable × 5 min avg = 900 min/month",
+      "result": "15+ hours/month freed for Doreen",
+      "label": "Support Time Recovered"
+    },
+    "review_velocity": {
+      "calculation": "47 reviews → 140+ reviews in 90 days (3x velocity)",
+      "result": "3x review count, improved star rating, higher conversion",
+      "label": "Review Growth Target"
+    }
+  },
+
+  "generated_at": "2026-04-07T10:00:00Z",
+  "version": "1.0"
+}
